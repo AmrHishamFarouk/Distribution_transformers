@@ -1,5 +1,14 @@
 function Lv4(){
-  return(
+    // Dmean equation
+    // Dmeanlv = ((a+b))(((3*POWER(a-b,2))/((POWER(a+b,2)*SQRT(((-3((a-b)^2))/((a+b)^2))+4))+10))+1)
+    Radiallv = ((thicknessofwire*layerslv)+(layerslv*noins*insthickness)+(numcooling*coolingthickness))*1.035
+    if(wire == 'Foil'){
+        Axiallv = Radiallv + (2*bars) + (2*3*0.35)*1.035
+    }else{
+        Axiallv = Radiallv
+    }
+    
+    return(
     <>
     <h1>Thickness LV</h1>
     

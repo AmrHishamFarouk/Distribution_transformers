@@ -3,6 +3,10 @@ import HeightWire from '../assets/heights/HeightWire.png'
 import HeightFoil from '../assets/heights/HeightFoil.png'
 
 function Heighthv() {
+
+  turnsperlaayerhv = parseInt(helechv / hwirehv) 
+  numoflayers = turnsperlaayer/maxturnshv
+
   // Wiretype is flat or round or foil
   let [Wiretype, setWiretype] = useState('foil');
   return (
@@ -23,6 +27,7 @@ function Heighthv() {
             src={HeightWire}
             alt="HeightWire.png is missing"
           />
+          <h3>no. of layers:</h3>
         </>
       )}
       {Wiretype == 'round' && (
@@ -41,6 +46,7 @@ function Heighthv() {
             src={HeightWire}
             alt="HeightWire.png is missing"
           />
+          <h3>no. of layers:</h3>
         </>
       )}
       {Wiretype == 'foil' && (
@@ -50,6 +56,7 @@ function Heighthv() {
             src={HeightFoil}
             alt="HeightFoil.png is missing"
           />
+          <h3>no. of layers:</h3>
         </>
       )}
       {}

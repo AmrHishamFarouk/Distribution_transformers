@@ -12,6 +12,11 @@ function Round() {
       <div>
         <div>
           <div>
+            
+            <div>
+              <label>number of wires</label>
+              <input name="myInput" placeholder="number" />
+            </div>
             <div>
               <label>D inner</label>
               <input name="myInput" placeholder="internal diameter" />

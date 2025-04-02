@@ -1,10 +1,8 @@
-import Lv4 from './LV/Lv4';
-import Heightlv from './LV/Heightlv';
+import Hv2 from './HV/Hv2';
 function App() {
   return (
     <>
-      <Lv4 />
-      <Heightlv />
+      <Hv2/>
     </>  );
 }
 
