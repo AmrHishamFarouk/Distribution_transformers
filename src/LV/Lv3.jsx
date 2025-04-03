@@ -29,27 +29,28 @@ function Lv3() {
   };
 
   return (
-    <>
-      <div>insulation between layers</div>
-      <div>
-        <button onClick={() => ChangeIns('+')}> increase insulation </button>
-        <button onClick={() => ChangeIns('-')}> decrease insulation </button>
-      </div>
-      {Noins == 2 && (
-        <img src={ins2} alt="ins 2 missed missed" />      )}
-      {Noins == 3 && (
-        <img src={ins3} alt="ins 3 missed missed" />
-      )}
-      {Noins == 4 && (
-        <img src={ins4} alt="ins 4 missed missed" />
-      )}
-      {Noins == 5 && (
-        <img src={ins5} alt="ins 5 missed missed" />
-      )}
-      {Noins == 6 && (
-        <img src={ins6} alt="ins 6 missed missed" />
-      )}
-    </>
+    <center><h1>Lv3</h1></center>
+    // <>
+    //   <div>insulation between layers</div>
+    //   <div>
+    //     <button onClick={() => ChangeIns('+')}> increase insulation </button>
+    //     <button onClick={() => ChangeIns('-')}> decrease insulation </button>
+    //   </div>
+    //   {Noins == 2 && (
+    //     <img src={ins2} alt="ins 2 missed missed" />      )}
+    //   {Noins == 3 && (
+    //     <img src={ins3} alt="ins 3 missed missed" />
+    //   )}
+    //   {Noins == 4 && (
+    //     <img src={ins4} alt="ins 4 missed missed" />
+    //   )}
+    //   {Noins == 5 && (
+    //     <img src={ins5} alt="ins 5 missed missed" />
+    //   )}
+    //   {Noins == 6 && (
+    //     <img src={ins6} alt="ins 6 missed missed" />
+    //   )}
+    // </>
   );
 }
 export default Lv3;
