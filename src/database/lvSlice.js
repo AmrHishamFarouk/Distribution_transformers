@@ -178,4 +178,36 @@ export const {
   setRph20lv,
 } = lvSlice.actions;
 
-export default lvSlice.reducer;
+export const selectIphlv = (state) => state.lv.Iphlv;
+export const selectWiretypelv = (state) => state.lv.Wiretypelv;
+export const selectδlv = (state) => state.lv.δlv;
+export const selectWirethicknesslv = (state) => state.lv.Wirethicknesslv;
+export const select∆lv = (state) => state.lv.∆lv;
+export const selectTurnlengthlv = (state) => state.lv.Turnlengthlv;
+export const selectTurnthicknesslv = (state) => state.lv.Turnthicknesslv;
+export const selectHmechlv = (state) => state.lv.Hmechlv;
+export const selectHeleclv = (state) => state.lv.Heleclv;
+export const selectLayerslv = (state) => state.lv.Layerslv;
+export const selectFirstpacketlv = (state) => state.lv.Firstpacketlv;
+export const selectSecondpacketlv = (state) => state.lv.Secondpacketlv;
+export const selectThirdpacketlv = (state) => state.lv.Thirdpacketlv;
+export const selectFourthpacketlv = (state) => state.lv.Fourthpacketlv;
+export const selectGlv = (state) => state.lv.Glv;
+export const selectGimplv = (state) => state.lv.Gimplv;
+export const selectInsulationlv = (state) => state.lv.Insulationlv;
+export const selectThickradiallv = (state) => state.lv.Thickradiallv;
+export const selectThickaxiallv = (state) => state.lv.Thickaxiallv;
+export const selectBarslv = (state) => state.lv.Barslv;
+export const selectФexternalradial = (state) => state.lv.Фexternalradial;
+export const selectФexternalaxial = (state) => state.lv.Фexternalaxial;
+export const selectDmeanlv = (state) => state.lv.Dmeanlv;
+export const selectDmlv = (state) => state.lv.Dmlv;
+export const selectCoppermass = (state) => state.lv.Coppermass;
+export const selectConnectionlv = (state) => state.lv.Connectionlv;
+export const selectEddylv = (state) => state.lv.Eddylv;
+export const selectPcc75lv = (state) => state.lv.Pcc75lv;
+export const selectPcc95lv = (state) => state.lv.Pcc95lv;
+export const selectRph75lv = (state) => state.lv.Rph75lv;
+export const selectRph95lv = (state) => state.lv.Rph95lv;
+export const selectRbettwoterminalslv = (state) => state.lv.Rbettwoterminalslv;
+export const selectRph20lv = (state) => state.lv.Rph20lv;
