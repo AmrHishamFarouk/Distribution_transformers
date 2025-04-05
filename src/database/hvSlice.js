@@ -181,7 +181,7 @@ export const {
 export const selectIphhv = (state) => state.hv.Iphhv;
 export const selectWiretypehv = (state) => state.hv.Wiretypehv;
 export const selectδhv = (state) => state.hv.δhv;
-
+// adjust
 export const selectWirethicknesslv = (state) => state.lv.Wirethicknesslv;
 export const select∆lv = (state) => state.lv.∆lv;
 export const selectTurnlengthlv = (state) => state.lv.Turnlengthlv;
