@@ -1,21 +1,28 @@
 function Mechanicalforces(){
-// let Isc = 68396,
-// Ec = 12.85,
-// d = 0.009,
-// Fd = 9.16,
-// Dmeanlv = 295.84,
-// Thicklvradial = 28.2,
-// Dmeanhv = 399.62,
+// let Dmeanlv = 255.3,
+// Thicklvradial = 25.1,
+// Dmeanhv = 343.4,
 // Thickhv = 48.2, 
-// Nphlv = 15,
-// Δlv = 539.78,
+// Nphlv = 20,
+// Δlv = 359.79,
 // Wirelengthlv = 400,
-// Wirethicknesslv = 1.35,
-// Δhv = 13.216,
-// Turnshvcentertap = 682,
+// Wirethicknesslv = 0.9,
+// Δhv = 3.53,
+// Turnshvcentertap = 1904,
 // Heleclv = 400,
-// Helechv = 380,
+// Helechv = 388,
+// Hmechlv = 400,
+// Hilothickness = 8.5,
+// Dmtr = 234.5,
+// Ucc = 3.9, 
+// Ilv = 909.3, 
+// Ur = 1.088, 
+// Ux = 3.75, 
 
+// Isc=0.0,
+// Ec=0.0,
+// d=0.0,
+// Fd=0.0,
 // Fclv=0.0,
 // Fchv=0.0,
 // Slv=0.0,
@@ -41,94 +48,108 @@ function Mechanicalforces(){
 // Fsex=0.0,
 // σexhv=0.0;
 
-// Isc = (100/Ucc)*Ilv*Math.sqrt(2)*(1+e^((22/7)*(Ur/Ux)))
+// Isc = (100 / Ucc) * Ilv * Math.sqrt(2) * (1 + Math.exp((-22 / 7) * (Ur / Ux)));
+// console.log(`Isc = ${Isc.toFixed(2)}`);
 
-// Ec = ( 2 * Math.pow((22/7), 2) * Math.pow((Nph*Isc), 2) * (Dmtr*0.001) * (hilothickness+((hvthickness+lvthickness)/3)) * 0.001 ) / ( (Math.pow(10, 11)) * (Math.pow((((helechv+heleclv)*0.001)/2), 2)) )
+// Ec = (2 * Math.pow((22 / 7), 2) * Math.pow((Nphlv * Isc), 2) * (Dmtr * 0.001) * (Hilothickness + ((Thickhv + Thicklvradial) / 3)) * 0.001) / (
+//     (Math.pow(10, 11)) * Math.pow((((Helechv + Heleclv) * 0.001) / 2), 2));
+// console.log(`Ec = ${Ec.toFixed(2)}`);
 
-// d = (  (hmechlv/200) + ((heleclv=helechv)/2)  ) * 0.001
+// d = ((Hmechlv / 200) + ((Heleclv - Helechv) / 2)) * 0.001;
+// console.log(`d = ${d.toFixed(2)}`);
 
-// Fd = 3.77 * 0.000001 * (d/(((helechv+heleclv)*0.001)/2)) * Math.pow((Nph*Isc), 2) * 0.0001
+// Fd = 3.77 * 0.000001 * (d / (((Helechv + Heleclv) * 0.001) / 2)) * Math.pow((Nphlv * Isc), 2) * 0.0001;
+// console.log(`Fd = ${Fd.toFixed(2)}`);
 
 // // ----------------Axial Forces----------------------
 
 // Fclv = Fchv = 0.75 * Ec;
+// console.log(`Fclv = Fchv = ${Fclv.toFixed(2)}`);
 
-// // Calculation of Slv
 // Slv = (22 / 7) * Dmeanlv * Thicklvradial * 0.33;
+// console.log(`Slv = ${Slv.toFixed(2)}`);
 
-// // Calculation of Shv
 // Shv = (22 / 7) * Dmeanhv * Thickhv * 0.33;
+// console.log(`Shv = ${Shv.toFixed(2)}`);
 
-// // Calculation of σcclv
 // σcclv = (Fclv * 10000) / Slv;
+// console.log(`σcclv = ${σcclv.toFixed(2)}`);
 
-// // Calculation of σcchv
 // σcchv = (Fchv * 10000) / Shv;
+// console.log(`σcchv = ${σcchv.toFixed(2)}`);
 
-// // Calculation of Fdlv and Fdhv
 // Fdlv = Fdhv = (Fd * 10000 * 1.2) / 2;
+// console.log(`Fdlv = Fdhv = ${Fdlv.toFixed(2)}`);
 
-// // Calculation of σcdlv
 // σcdlv = Fdlv / Slv;
+// console.log(`σcdlv = ${σcdlv.toFixed(2)}`);
 
-// // Calculation of σcdhv
 // σcdhv = Fdhv / Shv;
+// console.log(`σcdhv = ${σcdhv.toFixed(2)}`);
 
-// // Total stresses
 // σctlv = σcclv + σcdlv;
+// console.log(`σctlv = ${σctlv.toFixed(2)}`);
 
 // σcthv = σcchv + σcdhv;
+// console.log(`σcthv = ${σcthv.toFixed(2)}`);
 
 // σcttotal = σcthv + σctlv;
+// console.log(`σcttotal = ${σcttotal.toFixed(2)}`);
 
-// if(σcttotal<=40.0){
-// console.log('≤ 40 N/mm^2')
-// }
-// else{    
-// console.log('carefull not ≤ 40 N/mm^2')
+// if (σcttotal <= 40.0) {
+//     console.log('≤ 40 N/mm^2');
+// } else {
+//     console.log('careful not ≤ 40 N/mm^2');
 // }
 
 // // ------------------------Radial forces-------------------------
 
-// Fr = (2 * ((22 / 7) ** 2) * ((Nphlv * Isc) ** 2) * Dmeanlv * 0.001) / (100000000000 * (Heleclv * 0.001));
+// Fr = (2 * Math.pow((22 / 7), 2) * Math.pow((Nphlv * Isc), 2) * Dmeanlv * 0.001) / (100000000000 * (Heleclv * 0.001));
+// console.log(`Fr = ${Fr.toFixed(2)}`);
 
 // Fs = Fr / (22 / 7);
+// console.log(`Fs = ${Fs.toFixed(2)}`);
 
 // σcrlv = (Fs * 10000) / (2 * Δlv * Nphlv);
+// console.log(`σcrlv = ${σcrlv.toFixed(2)}`);
 
-// if(σcrlv<=80.0){
-// console.log('≤ 80 N/mm^2')
-// }
-// else{    
-// console.log('carefull not ≤ 80 N/mm^2')
+// if (σcrlv <= 80.0) {
+//     console.log('≤ 80 N/mm^2');
+// } else {
+//     console.log('careful not ≤ 80 N/mm^2');
 // }
 
-// IVV = (Wirelengthlv * (Wirethicknesslv**2)) / 6;
+// IVV = (Wirelengthlv * Math.pow(Wirethicknesslv, 2)) / 6;
+// console.log(`IVV = ${IVV.toFixed(2)}`);
 
 // Ff = (Fr * 10000) / ((22 / 7) * Dmeanlv * Nphlv);
+// console.log(`Ff = ${Ff.toFixed(2)}`);
 
-// σfflv = ((Ff * (20 ** 2)) / 6) * (1 / IVV);
+// σfflv = ((Ff * Math.pow(20, 2)) / 6) * (1 / IVV);
+// console.log(`σfflv = ${σfflv.toFixed(2)}`);
 
-// σftlv = σcrlv + σfflv
+// σftlv = σcrlv + σfflv;
+// console.log(`σftlv = ${σftlv.toFixed(2)}`);
 
-// if(σftlv<=130.0){
-// console.log('≤ 130 N/mm^2')
+// if (σftlv <= 130.0) {
+//     console.log('≤ 130 N/mm^2');
+// } else {
+//     console.log('careful not ≤ 130 N/mm^2');
 // }
-// else{    
-// console.log('carefull not ≤ 130 N/mm^2')
-// }
 
-// Fexhv = (2 * ((22 / 7) ** 2) * ((Nphlv * Isc) ** 2) * Dmeanhv * 0.001) / (100000000000 * (Helechv*0.001));
+// Fexhv = (2 * Math.pow((22 / 7), 2) * Math.pow((Nphlv * Isc), 2) * Dmeanhv * 0.001) / (100000000000 * (Helechv * 0.001));
+// console.log(`Fexhv = ${Fexhv.toFixed(2)}`);
 
 // Fsex = Fexhv / (22 / 7);
+// console.log(`Fsex = ${Fsex.toFixed(2)}`);
 
 // σexhv = (Fsex * 10000) / (2 * Δhv * Turnshvcentertap);
+// console.log(`σexhv = ${σexhv.toFixed(2)}`);
 
-// if(σexhv<=80.0){
-// console.log('≤ 80 N/mm^2')
-// }
-// else{    
-// console.log('carefull not ≤ 80 N/mm^2')
+// if (σexhv <= 80.0) {
+//     console.log('≤ 80 N/mm^2');
+// } else {
+//     console.log('careful not ≤ 80 N/mm^2');
 // }
 
 
