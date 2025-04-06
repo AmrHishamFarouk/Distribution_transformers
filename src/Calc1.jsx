@@ -1,12 +1,14 @@
 function Calc1() {
-    let [Temporaryvt, setTemporaryvt] = useState(null);
-    let [TemporaryNph, setTemporaryNph] = useState(null);
+  let [Temporaryvt, setTemporaryvt] = useState(null);
+  let [TemporaryNph, setTemporaryNph] = useState(null);
+  let [VT, setVT] = useState(null);
+  let k = 0.486865;
+  setTemporaryvt(k * Math.sqrt(Ratedpower));
+  let TemporaryNph = Lv / Math.sqrt(3) / Temporaryvt;
+  let Nph = Math.ceil(TemporaryNph);
+  setVT(Lv / Math.sqrt(3) / Nph);
+  let B = Lv / Math.sqrt(3) / (4.44 * F * Nph * Δironcore * 0.000001);
 
-    let k = 0.486865;
-    setTemporaryvt(k * Math.sqrt(Ratedpower));
-    let TemporaryNph = ((Lv/Math.sqrt(3))/Temporaryvt);
-    let Nph = Math.ceil(TemporaryNph);
-    let B = (Lv/Math.sqrt(3))/(4.44*F*Nph*Δironcore*0.000001)
   return (
     <>
     <h1>Calc1</h1>
