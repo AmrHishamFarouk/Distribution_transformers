@@ -5,7 +5,7 @@ const initialState = {
   Wiretypelv: 'foil', // String
   δlv: 0.0, // Float
   Wirethicknesslv: 0.0, // Float
-  ∆lv: 0.4, // Float
+  Csalv: 0.4, // Float
   Turnlengthlv: 0.0, // Float
   Turnthicknesslv: 0.0, // Float
   Hmechlv: 0.0,
@@ -52,8 +52,8 @@ const lvSlice = createSlice({
     setWirethicknesslv: (state, action) => {
       state.Wirethicknesslv = action.payload;
     },
-    set∆lv: (state, action) => {
-      state.∆lv = action.payload;
+    setCsalv: (state, action) => {
+      state.Csalv = action.payload;
     },
     setTurnlengthlv: (state, action) => {
       state.Turnlengthlv = action.payload;
@@ -147,7 +147,7 @@ export const {
   setWiretypelv,
   setδlv,
   setWirethicknesslv,
-  set∆lv,
+  setCsalv,
   setTurnlengthlv,
   setTurnthicknesslv,
   setHmechlv,
@@ -182,7 +182,7 @@ export const selectIphlv = (state) => state.lv.Iphlv;
 export const selectWiretypelv = (state) => state.lv.Wiretypelv;
 export const selectδlv = (state) => state.lv.δlv;
 export const selectWirethicknesslv = (state) => state.lv.Wirethicknesslv;
-export const select∆lv = (state) => state.lv.∆lv;
+export const selectCsalv = (state) => state.lv.Csalv;
 export const selectTurnlengthlv = (state) => state.lv.Turnlengthlv;
 export const selectTurnthicknesslv = (state) => state.lv.Turnthicknesslv;
 export const selectHmechlv = (state) => state.lv.Hmechlv;
