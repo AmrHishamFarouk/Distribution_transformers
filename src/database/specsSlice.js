@@ -10,6 +10,7 @@ const initialState = {
   B: 0.0, // Float
   F: 0.0, // Float
   Δironcore: 0.0,
+  Maj:0.0,
 };
 
 const specsSlice = createSlice({
@@ -43,6 +44,9 @@ const specsSlice = createSlice({
     setΔironcore: (state, action) => {
       state.Δironcore = action.payload;
     },
+    setMaj: (state, action) => {
+      state.Maj = action.payload;
+    },
   },
 });
 
@@ -56,6 +60,7 @@ export const selectZ = (state) => state.specs.Z;
 export const selectB = (state) => state.specs.B;
 export const selectF = (state) => state.specs.F;
 export const selectΔironcore = (state) => state.specs.Δironcore;
+export const selectMaj = (state) => state.specs.Maj;
 
 // Actions
 export const {
@@ -68,6 +73,7 @@ export const {
   setB,
   setF,
   setΔironcore,
+  Maj,
 } = specsSlice.actions;
 
 // Reducer
