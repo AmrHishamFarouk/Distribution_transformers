@@ -25,7 +25,7 @@ const initialState = {
   Фexternalaxial: 0.0,
   Dmeanlv: 0.0,
   Dmlv: 0.0, // Only one instance will be kept if duplicates appear.
-  Coppermass: 0.0,
+  Coppermasslv: 0.0,
   Connectionlv: 0.0,
   Eddylv: 0.0,
   Pcc75lv: 0.0,
@@ -112,8 +112,8 @@ const lvSlice = createSlice({
     setDmlv: (state, action) => {
       state.Dmlv = action.payload;
     },
-    setCoppermass: (state, action) => {
-      state.Coppermass = action.payload;
+    setCoppermasslv: (state, action) => {
+      state.Coppermasslv = action.payload;
     },
     setConnectionlv: (state, action) => {
       state.Connectionlv = action.payload;
@@ -167,7 +167,7 @@ export const {
   setФexternalaxial,
   setDmeanlv,
   setDmlv,
-  setCoppermass,
+  setCoppermasslv,
   setConnectionlv,
   setEddylv,
   setPcc75lv,
@@ -202,7 +202,7 @@ export const selectФexternalradial = (state) => state.lv.Фexternalradial;
 export const selectФexternalaxial = (state) => state.lv.Фexternalaxial;
 export const selectDmeanlv = (state) => state.lv.Dmeanlv;
 export const selectDmlv = (state) => state.lv.Dmlv;
-export const selectCoppermass = (state) => state.lv.Coppermass;
+export const selectCoppermasslv = (state) => state.lv.Coppermasslv;
 export const selectConnectionlv = (state) => state.lv.Connectionlv;
 export const selectEddylv = (state) => state.lv.Eddylv;
 export const selectPcc75lv = (state) => state.lv.Pcc75lv;
