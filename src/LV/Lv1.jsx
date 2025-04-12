@@ -2,6 +2,11 @@ import Flat from './WIRES/Flat';
 import Foil from './WIRES/Foil';
 import Round from './WIRES/Round';
 import React, { useState } from 'react';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { selectRatedpower, setRatedpower } from '../database/specsSlice';
+
+
 function Lv1() {
   const [Wire, setWire] = useState(null);
 
@@ -9,8 +14,19 @@ function Lv1() {
     setWire(wire);
   };
 
+  const ratedPower = useSelector(selectRatedpower); // Access state
+  const dispatch = useDispatch(); // Dispatch actions
+  const updateRatedPower = () => {
+    dispatch(setRatedpower(500)); // Update state
+  };
+
   return (
+    <>
     <center><h1>Lv1</h1></center>
+    <p>Rated Power: {ratedPower}</p>
+    <button type="submit" onClick={updateRatedPower}>next</button>
+    </>
+
     // <>
     //   <h1>L.V. winding</h1>
     //   {/* <div>Iline = Iph = ({Rateedpower}*10^3)/(sqrroot(3)*400) </div> */}

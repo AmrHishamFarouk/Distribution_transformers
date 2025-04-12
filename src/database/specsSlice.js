@@ -51,16 +51,16 @@ const specsSlice = createSlice({
 });
 
 // Selectors
-export const selectRatedpower = (state) => state.specs.Ratedpower;
-export const selectHV = (state) => state.specs.HV;
-export const selectLV = (state) => state.specs.LV;
-export const selectPo = (state) => state.specs.Po;
-export const selectPcc = (state) => state.specs.Pcc;
-export const selectZ = (state) => state.specs.Z;
-export const selectB = (state) => state.specs.B;
-export const selectF = (state) => state.specs.F;
-export const selectΔironcore = (state) => state.specs.Δironcore;
-export const selectMaj = (state) => state.specs.Maj;
+export const selectRatedpower = (state) => state.specsSlice.Ratedpower;
+export const selectHV = (state) => state.specsSlice.HV;
+export const selectLV = (state) => state.specsSlice.LV;
+export const selectPo = (state) => state.specsSlice.Po;
+export const selectPcc = (state) => state.specsSlice.Pcc;
+export const selectZ = (state) => state.specsSlice.Z;
+export const selectB = (state) => state.specsSlice.B;
+export const selectF = (state) => state.specsSlice.F;
+export const selectΔironcore = (state) => state.specsSlice.Δironcore;
+export const selectMaj = (state) => state.specsSlice.Maj;
 
 // Actions
 export const {
@@ -73,7 +73,7 @@ export const {
   setB,
   setF,
   setΔironcore,
-  Maj,
+  setMaj,
 } = specsSlice.actions;
 
 // Reducer
