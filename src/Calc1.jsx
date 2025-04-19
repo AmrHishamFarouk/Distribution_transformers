@@ -29,6 +29,7 @@ function Calc1() {
   setVT(LV / Math.sqrt(3) / Nph);
   //--------------------------------assign vt-----------------------------
 
+  
   // let actualB = LV / Math.sqrt(3) / (4.44 * F * Nph * Δironcore * 0.000001);
   // compare it to the B and then assign it
   //--------------------------------assign B-----------------------------
