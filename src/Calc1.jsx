@@ -21,6 +21,7 @@ function Calc1() {
   let k = 0.486865;
   let Temporaryvt;
 
+<<<<<<< HEAD
   useEffect(() => {
     Temporaryvt = k * Math.sqrt(Ratedpower);
     const TemporaryNph = LV / Math.sqrt(3) / Temporaryvt;
@@ -41,6 +42,8 @@ function Calc1() {
       dispatch(setSpec({ key: 'B', value: actualB }));
     }
   }, [Nph, VT, LV, F, Δironcore, dispatch]); // Dependency array
+=======
+>>>>>>> 865e1a8617e446bfeb6c1155f2074ab3876e3a3c
 
   return (
     <>
