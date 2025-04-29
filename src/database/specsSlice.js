@@ -1,80 +1,36 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  Ratedpower: 0.0, // Float
-  HV: 0, // kV
-  LV: 0.4, // kV
-  Po: 0.0, // Float
-  Pcc: 0.0, // Float
-  Z: 0.0, // Float
-  B: 0.0, // Float
-  F: 0.0, // Float
+  Ratedpower: 0.0,
+  HV: 0,
+  LV: 0.4,
+  Po: 0.0,
+  Pcc: 0.0,
+  Z: 0.0,
+  B: 0.0,
+  F: 0.0,
   Δironcore: 0.0,
-  Maj:0.0,
+  Maj: 0.0,
+  VT:0.0,
 };
 
 const specsSlice = createSlice({
   name: 'specs',
   initialState,
   reducers: {
-    setRatedpower: (state, action) => {
-      state.Ratedpower = action.payload;
-    },
-    setHV: (state, action) => {
-      state.HV = action.payload;
-    },
-    setLV: (state, action) => {
-      state.LV = action.payload;
-    },
-    setPo: (state, action) => {
-      state.Po = action.payload;
-    },
-    setPcc: (state, action) => {
-      state.Pcc = action.payload;
-    },
-    setZ: (state, action) => {
-      state.Z = action.payload;
-    },
-    setB: (state, action) => {
-      state.B = action.payload;
-    },
-    setF: (state, action) => {
-      state.F = action.payload;
-    },
-    setΔironcore: (state, action) => {
-      state.Δironcore = action.payload;
-    },
-    setMaj: (state, action) => {
-      state.Maj = action.payload;
+    setSpec: (state, action) => {
+      const { key, value } = action.payload;
+      state[key] = value;
     },
   },
 });
 
 // Selectors
-export const selectRatedpower = (state) => state.specsSlice.Ratedpower;
-export const selectHV = (state) => state.specsSlice.HV;
-export const selectLV = (state) => state.specsSlice.LV;
-export const selectPo = (state) => state.specsSlice.Po;
-export const selectPcc = (state) => state.specsSlice.Pcc;
-export const selectZ = (state) => state.specsSlice.Z;
-export const selectB = (state) => state.specsSlice.B;
-export const selectF = (state) => state.specsSlice.F;
-export const selectΔironcore = (state) => state.specsSlice.Δironcore;
-export const selectMaj = (state) => state.specsSlice.Maj;
+export const selectSpec = (state, key) => state.specs[key];
 
 // Actions
-export const {
-  setRatedpower,
-  setHV,
-  setLV,
-  setPo,
-  setPcc,
-  setZ,
-  setB,
-  setF,
-  setΔironcore,
-  setMaj,
-} = specsSlice.actions;
+export const { setSpec } = specsSlice.actions;
 
 // Reducer
 export default specsSlice.reducer;
+

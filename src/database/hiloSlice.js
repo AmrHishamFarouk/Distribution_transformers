@@ -1,65 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  Canallvhilo: 0.0, // Float
+  Canallvhilo: 0.0,
   Psphilo: 0.0,
-  Canalhvhilo: 0.0, // Float
+  Canalhvhilo: 0.0,
   Thickhilo: 0.0,
-  Radialexternalhilo: 0.0, // Float
-  Axialexternalhilo: 0.4, // Float
-  Dmeanhilo: 0.0, // Float
-  Dmhilo: 0.0, // Float
+  Radialexternalhilo: 0.0,
+  Axialexternalhilo: 0.4,
+  Dmeanhilo: 0.0,
+  Dmhilo: 0.0,
 };
 
-
-const lvSlice = createSlice({
+const hiloSlice = createSlice({
   name: 'hilo',
   initialState,
   reducers: {
-    setCanallvhilo: (state, action) => {
-      state.Canallvhilo = action.payload;
-    },
-    setPsphilo: (state, action) => {
-      state.Psphilo = action.payload;
-    },
-    setCanalhvhilo: (state, action) => {
-      state.Canalhvhilo = action.payload;
-    },
-    setThickhilo: (state, action) => {
-      state.Thickhilo = action.payload;
-    },
-    setRadialexternalhilo: (state, action) => {
-      state.Radialexternalhilo = action.payload;
-    },
-    setAxialexternalhilo: (state, action) => {
-      state.Axialexternalhilo = action.payload;
-    },
-    setDmeanhilo: (state, action) => {
-      state.Dmeanhilo = action.payload;
-    },
-    setDmhilo: (state, action) => {
-      state.Dmhilo = action.payload;
+    setHilo: (state, action) => {
+      const { key, value } = action.payload;
+      state[key] = value;
     },
   },
 });
 
-export const {
-  setCanallvhilo,
-  setPsphilo,
-  setCanalhvhilo,
-  setRadialexternalhilo,
-  setAxialexternalhilo,
-  setDmeanhilo,
-  setDmhilo,
-  setThickhilo,
-} = hiloSlice.actions;
+// Dynamic Selector
+export const selectHilo = (state, key) => state.hilo[key];
 
-export const selectCanallvhilo = (state) => state.hilo.Canallvhilo;
-export const selectPsphilo = (state) => state.hilo.Psphilo;
-export const selectCanalhvhilo = (state) => state.hilo.Canalhvhilo;
-export const selectThickhilo = (state) => state.hilo.Thickhilo;
-export const selectRadialexternalhilo = (state) =>
-  state.hilo.Radialexternalhilo;
-export const selectAxialexternalhilo = (state) => state.hilo.Axialexternalhilo;
-export const selectDmeanhilo = (state) => state.hilo.Dmeanhilo;
-export const selectDmhilo = (state) => state.hilo.Dmhilo;
+// Action
+export const { setHilo } = hiloSlice.actions;
+
+// Reducer
+export default hiloSlice.reducer;
