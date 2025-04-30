@@ -32,7 +32,7 @@ function Specs() {
     { key: 'HV', label: 'H.V.', placeholder: 'kV', defaultValue: '10.5' },
     { key: 'LV', label: 'L.V.', placeholder: 'kV', defaultValue: '0.4' },
     { key: 'Po', label: 'Po', placeholder: 'kVA', defaultValue: '1.25' },
-    { key: 'Pcc', label: 'Pcc', placeholder: 'kVA', defaultValue: '25' },
+    { key: 'Pcc', label: 'Pcc', placeholder: 'kVA', defaultValue: '24' },
     { key: 'Z', label: 'Z%', placeholder: '%', defaultValue: '4' },
     { key: 'B', label: 'Flux Density (B)', placeholder: 'B', defaultValue: '1.6' },
     { key: 'F', label: 'Frequency', placeholder: 'Hz', defaultValue: '50' },
