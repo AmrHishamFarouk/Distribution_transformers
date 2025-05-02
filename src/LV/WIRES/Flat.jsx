@@ -1,6 +1,28 @@
 import React from 'react';
 import flatwire from "../../assets/wires/flat_csa.png"
+
+import { setLV, selectLV } from './../../database/lvSlice';
+
+  Wirethicknesslv
+  Csalv
+  Turnlengthlv
+  Turnthicknesslv
+  NumberOfWires
+  WireInsulation
 function Flat() {
+  const dispatch = useDispatch();
+
+    // function updateLength(value){
+    //   dispatch(setLV({ key: 'Wirethicknesslv', value: value}))
+    // };
+
+    function updatenumber(value){
+      dispatch(setLV({ key: 'NumberOfWires', value: value}))
+    };
+    function updateThickness(value){
+      dispatch(setLV({ key: 'WireInsulation', value: value}))
+    };
+
   return (
     <>
       <div>
@@ -13,15 +35,27 @@ function Flat() {
           <div>
             <div>
               <label>Length</label>
-              <input name="myInput" placeholder="Length" />
+              <input name="myInput" placeholder="Length" onChange={(e) => updateLength(parseFloat(e.target.value))} />
             </div>
+
             <div>
               <label>Thickness</label>
-              <input name="myInput" placeholder="Thickness" />
+              <input name="myInput" placeholder="Thickness" onChange={(e) => updateThickness(parseFloat(e.target.value))} />
             </div>
+
+            <div>
+              <label>Insulation</label>
+              <input name="myInput" placeholder="insulations" />
+            </div>
+
             <div>
               <label>r</label>
-              <input name="myInput" placeholder="r" />
+              <input name="myInput" placeholder="r" defaultValue= '43320' />
+            </div>
+
+            <div>
+              <label>Number of wires</label>
+              <input name="myInput"  onChange={(e) => updatenumber(parseInt(e.target.value))} />
             </div>
           </div>
 

@@ -14,31 +14,38 @@ function Calc1() {
   const Δironcore = useSelector((state) => selectSpec(state, 'Δironcore'));
 
 
-  const dispatch = useDispatch(); // Dispatch actions
+  const dispatch = useDispatch();
 
   let [VT, setVT] = useState(0.0);
   let [Nph, setNph] = useState(0.0);
   let k = 0.486865;
-  let Temporaryvt;
+  let [Temporaryvt, setTemporaryvt] = useState(0.0);
+
 
 
   useEffect(() => {
-    Temporaryvt = k * Math.sqrt(Ratedpower);
-    const TemporaryNph = LV / Math.sqrt(3) / Temporaryvt;
-    const roundedNph = Math.ceil(TemporaryNph); // Round up
-    setNph(roundedNph);
+    setTemporaryvt(k * Math.sqrt(Ratedpower)) 
+  }, [Ratedpower, k]); // Updates Temporaryvt first
   
-    const vt = LV / Math.sqrt(3) / roundedNph;
-    setVT(vt);
-  }, [Ratedpower, LV, k]); // Dependency array
+  useEffect(() => {
+    if (Temporaryvt > 0) {
+      const TemporaryNph = ((LV*1000) / Math.sqrt(3)) / Temporaryvt;
   
+      const roundedNph = Math.ceil(TemporaryNph);  
+      setNph(roundedNph);
+  
+      const vt = (LV*1000) / Math.sqrt(3) / roundedNph;  
+      setVT(vt);
+    }
+  }, [Temporaryvt, LV]); // Runs when Temporaryvt updates
+
   useEffect(() => {
     if (Nph > 0) {
       // Dispatch updated values to Redux store only when Nph and VT are ready
       dispatch(setLV({ key: 'Nph', value: Nph }));
       dispatch(setSpec({ key: 'VT', value: VT }));
   
-      const actualB = LV / Math.sqrt(3) / (4.44 * F * Nph * Δironcore * 0.000001);
+      const actualB = (LV*1000) / Math.sqrt(3) / (4.44 * F * Nph * Δironcore * 0.000001);
       dispatch(setSpec({ key: 'B', value: actualB }));
     }
   }, [Nph, VT, LV, F, Δironcore, dispatch]); // Dependency array
