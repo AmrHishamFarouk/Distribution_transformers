@@ -2,29 +2,36 @@ import React from 'react';
 import flatwire from "../../assets/wires/flat_csa.png"
 
 import { setLV, selectLV } from './../../database/lvSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
-  Wirethicknesslv
-  Csalv
-  Turnlengthlv
-  Turnthicknesslv
-  NumberOfWires
-  WireInsulation
 function Flat() {
   const dispatch = useDispatch();
 
-    // function updateLength(value){
-    //   dispatch(setLV({ key: 'Wirethicknesslv', value: value}))
-    // };
-
     function updatenumber(value){
-      dispatch(setLV({ key: 'NumberOfWires', value: value}))
+      dispatch(setLV({ key: 'NumberOfWires', value: value}));
     };
     function updateThickness(value){
-      dispatch(setLV({ key: 'Wirethicknesslv', value: value}))
+      dispatch(setLV({ key: 'Wirethicknesslv', value: value}));
     };
     function updateLength(value){
-      dispatch(setLV({ key: 'Wirelengthlv', value: value}))
+      dispatch(setLV({ key: 'Wirelengthlv', value: value}));
     }
+    function updateInsulation(value){
+      dispatch(setLV({ key: 'WireInsulation', value: value}));
+    }
+    function updateR(value){
+      dispatch(setLV({ key: 'WireR', value: value}));
+    }
+
+  
+    // const CSA = useSelector((state) => selectLV(state, 'Csalv'));
+    // const Length = useSelector((state) => selectLV(state, 'Csalv'));
+    // const Thickness = useSelector((state) => selectLV(state, 'Csalv'));
+    // const r = useSelector((state) => selectLV(state, 'Csalv'));
+    // const NumberOfWires = useSelector((state) => selectLV(state, 'Csalv'));
+
+    // ({Length} x {Thickness} - {r}^2 x(4-𝜋))*number of wires
+
 
   return (
     <>
@@ -48,12 +55,12 @@ function Flat() {
 
             <div>
               <label>Insulation</label>
-              <input name="myInput" placeholder="insulations" defaultValue= '0.0' onChange={(e) => updateThickness(parseFloat(e.target.value))} />
+              <input name="myInput" placeholder="insulations" defaultValue= '0.5' onChange={(e) => updateInsulation(parseFloat(e.target.value))} />
             </div>
 
             <div>
               <label>r</label>
-              <input name="myInput" placeholder="r" defaultValue= '0.5' onChange={(e) => updateThickness(parseFloat(e.target.value))} />
+              <input name="myInput" placeholder="r" defaultValue= '0.5' onChange={(e) => updateR(parseFloat(e.target.value))} />
             </div>
 
             <div>
@@ -63,7 +70,7 @@ function Flat() {
           </div>
 
           <div>
-            {/* ∆c.s.a = ({Length} x {Thickness} - {r}^2 x(4-𝜋))*number of wires */}
+             ∆c.s.a =  
           </div>
         </div>
 
