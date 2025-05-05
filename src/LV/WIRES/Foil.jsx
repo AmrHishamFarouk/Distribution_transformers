@@ -2,6 +2,7 @@ import React from 'react';
 import foilwire from "../../assets/wires/foil_csa.png"
 
 function Foil() {
+  
   return (
     <>
       <div>
@@ -22,7 +23,7 @@ function Foil() {
             </div>
             <div>
               <label>r</label>
-              <input name="myInput" placeholder="r" />
+              <input name="myInput" placeholder="r" defaultValue= '0.5'/>
             </div>
           </div>
 

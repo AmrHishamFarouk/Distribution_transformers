@@ -20,8 +20,11 @@ function Flat() {
       dispatch(setLV({ key: 'NumberOfWires', value: value}))
     };
     function updateThickness(value){
-      dispatch(setLV({ key: 'WireInsulation', value: value}))
+      dispatch(setLV({ key: 'Wirethicknesslv', value: value}))
     };
+    function updateLength(value){
+      dispatch(setLV({ key: 'Wirelengthlv', value: value}))
+    }
 
   return (
     <>
@@ -45,12 +48,12 @@ function Flat() {
 
             <div>
               <label>Insulation</label>
-              <input name="myInput" placeholder="insulations" />
+              <input name="myInput" placeholder="insulations" defaultValue= '0.0' onChange={(e) => updateThickness(parseFloat(e.target.value))} />
             </div>
 
             <div>
               <label>r</label>
-              <input name="myInput" placeholder="r" defaultValue= '43320' />
+              <input name="myInput" placeholder="r" defaultValue= '0.5' onChange={(e) => updateThickness(parseFloat(e.target.value))} />
             </div>
 
             <div>
