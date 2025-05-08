@@ -1,6 +1,9 @@
 import React from 'react';
 import triplepackets from '../../assets/packets/3packets.png'
 
+
+import { useSelector, useDispatch } from 'react-redux';
+import { setLV, selectLV } from './../../database/lvSlice';
 function Packets3() {
   return (
     <>

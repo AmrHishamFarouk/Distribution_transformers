@@ -1,5 +1,8 @@
 import React from 'react';
 import doublepackets from '../../assets/packets/2packets.png'
+
+import { useSelector, useDispatch } from 'react-redux';
+import { setLV, selectLV } from './../../database/lvSlice';
 function Packets2() {
   return (
     <>

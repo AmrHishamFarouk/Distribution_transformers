@@ -34,7 +34,7 @@ function Lv1() {
   return (
     <>
       <h1>L.V. winding</h1>
-      <div>Iline = Iph = {Iphlv} </div>
+      <div>Iline = Iph = {Iphlv.toFixed(4)} </div>
       <h1>please choose the type of wire</h1>
       <div>
         <button onClick={() => ChangeWire('Foil')}>Foil</button>
@@ -46,7 +46,7 @@ function Lv1() {
         {Wiretypelv == 'Flat' && <Flat />}
         {Wiretypelv == 'Round' && <Round />}
 
-        <div>δ = {δlv} </div>
+        <div>δ = {δlv.toFixed(4)} </div>
       </div>
       <button type="submit">next</button>
     </>

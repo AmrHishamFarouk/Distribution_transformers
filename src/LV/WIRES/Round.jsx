@@ -23,9 +23,17 @@ function Round() {
       useEffect(() => {
         let csa = (((22/7)*Math.pow(Dinner, 2))/4)*NumberOfWires
         dispatch(setLV({ key: 'Csalv', value: csa}));
+      }, [NumberOfWires, Dinner]);
 
-      }, [NumberOfWires, Dinner]); 
+        const Douter = useSelector((state) => selectLV(state, 'Douter'));
+
+      useEffect(() => {
+        let WireInsulation = (Douter-Dinner)/2;
+        dispatch(setLV({ key: 'WireInsulation', value: WireInsulation}));
+      }, [NumberOfWires, Dinner]);
+
       const Csalv = useSelector((state) => selectLV(state, 'Csalv'));
+      const WireInsulation = useSelector((state) => selectLV(state, 'WireInsulation'));
 
   return (
     <>
@@ -49,7 +57,8 @@ function Round() {
             </div>
         <div>
         <div>
-          <div> ∆c.s.a = {Csalv}</div>
+          <div> ∆c.s.a = {Csalv.toFixed(4)}</div>
+          <div> WireInsulation = {WireInsulation.toFixed(4)}</div>
         </div>
 
         <img src={roundwire} alt="Round CSA imgage missed" />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import flatwire from "../../assets/wires/flat_csa.png"
 
 import { setLV, selectLV } from './../../database/lvSlice';
@@ -23,15 +23,17 @@ function Flat() {
       dispatch(setLV({ key: 'WireR', value: value}));
     }
 
-  
-    // const CSA = useSelector((state) => selectLV(state, 'Csalv'));
-    // const Length = useSelector((state) => selectLV(state, 'Csalv'));
-    // const Thickness = useSelector((state) => selectLV(state, 'Csalv'));
-    // const r = useSelector((state) => selectLV(state, 'Csalv'));
-    // const NumberOfWires = useSelector((state) => selectLV(state, 'Csalv'));
+    const Wirethicknesslv = useSelector((state) => selectLV(state, 'Wirethicknesslv'));
+    const Wirelengthlv = useSelector((state) => selectLV(state, 'Wirelengthlv'));
+    const WireR = useSelector((state) => selectLV(state, 'WireR'));
+    const NumberOfWires = useSelector((state) => selectLV(state, 'NumberOfWires'));
 
-    // ({Length} x {Thickness} - {r}^2 x(4-𝜋))*number of wires
-
+        useEffect(() => {
+          let csa = ((Wirelengthlv * Wirethicknesslv) - ((WireR^2)*(4-(22/7))))*NumberOfWires;
+          dispatch(setLV({ key: 'Csalv', value: csa}));
+        }, [Wirethicknesslv, Wirelengthlv, WireR,NumberOfWires]);
+        
+  const Csalv = useSelector((state) => selectLV(state, 'Csalv'));
 
   return (
     <>
@@ -67,13 +69,12 @@ function Flat() {
 
             <div>
               <label>Number of wires</label>
-              <input name="myInput"  onChange={(e) => updatenumber(parseInt(e.target.value))} />
+              <input name="myInput"  defaultValue= '1' onChange={(e) => updatenumber(parseInt(e.target.value))} />
             </div>
           </div>
           </div>
-          <div>
-             ∆c.s.a =  
-          </div>
+
+          <div> ∆c.s.a = {Csalv.toFixed(4)}</div>
         </div>
 
         <img src={flatwire} alt="flat CSA imgage missed" />

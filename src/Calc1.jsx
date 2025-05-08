@@ -52,15 +52,13 @@ function Calc1() {
 
   return (
     <>
-      <h1>Temporary v/t:{Temporaryvt}</h1>
+      <h1>Temporary v/t:{Temporaryvt.toFixed(4)}</h1>
 
-      <h1>Nph: {Nph}</h1>
+      <h1>Nph: {Nph.toFixed(4)}</h1>
 
-      <h1>V/t:{VT}</h1>
+      <h1>V/t:{VT.toFixed(4)}</h1>
 
-      <h1>Flux density : {B}</h1>
-
-      <p>Rated Power: {Ratedpower}</p>
+      <h1>Flux density : {B.toFixed(4)}</h1>
     </>
   );
 }

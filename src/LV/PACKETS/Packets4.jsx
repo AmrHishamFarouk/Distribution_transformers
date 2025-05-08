@@ -1,6 +1,8 @@
 import React from 'react';
 import quadrapackets from '../../assets/packets/4packets.png'
 
+import { useSelector, useDispatch } from 'react-redux';
+import { setLV, selectLV } from './../../database/lvSlice';
 function Packets4() {
   return (
     <>
