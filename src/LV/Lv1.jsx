@@ -1,10 +1,10 @@
 import Flat from './WIRES/Flat';
 import Foil from './WIRES/Foil';
 import Round from './WIRES/Round';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setSpec, selectSpec} from './../database/specsSlice';
+import { selectSpec} from './../database/specsSlice';
 import { setLV, selectLV } from './../database/lvSlice';
 
 function Lv1() {
@@ -20,6 +20,16 @@ function Lv1() {
   const ChangeWire = (wire) => {
     dispatch(setLV({ key: 'Wiretypelv', value: wire})); 
   };
+  const Csalv = useSelector((state) => selectLV(state, 'Csalv'));
+
+        useEffect(() => {
+          let δlv =  Iphlv/Csalv;
+          dispatch(setLV({ key: 'δlv', value: δlv}));
+  
+        }, [Csalv, Iphlv]); 
+
+  const δlv = useSelector((state) => selectLV(state, 'δlv'));
+
 
   return (
     <>
@@ -36,7 +46,7 @@ function Lv1() {
         {Wiretypelv == 'Flat' && <Flat />}
         {Wiretypelv == 'Round' && <Round />}
 
-        <div>δ = Iph/c.s.a =</div>
+        <div>δ = {δlv} </div>
       </div>
       <button type="submit">next</button>
     </>

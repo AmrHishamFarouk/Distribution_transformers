@@ -15,17 +15,16 @@ function Lv2() {
   };
 
   return (
-    <center><h1>Lv2</h1></center>
-    // <>
-    //   <div> n= 100/ (δ^2)*thicknessofwire = = parseInt(n)</div>
-    //   {Nopack == 2 && <Packets2 />}
-    //   {Nopack == 3 && <Packets3 />}
-    //   {Nopack == 4 && <Packets4 />}
-    //   <div>
-    //     <button onClick={() => Changepack('+')}> increase insulation </button>
-    //     <button onClick={() => Changepack('-')}> decrease insulation </button>
-    //   </div>
-    // </>
+    <>
+      <div> n= 100/ (δ^2)*thicknessofwire = = parseInt(n)</div>
+      {Nopack == 2 && <Packets2 />}
+      {Nopack == 3 && <Packets3 />}
+      {Nopack == 4 && <Packets4 />}
+      <div>
+        <button onClick={() => Changepack('+')}> increase insulation </button>
+        <button onClick={() => Changepack('-')}> decrease insulation </button>
+      </div>
+    </>
   );
 }
 export default Lv2;

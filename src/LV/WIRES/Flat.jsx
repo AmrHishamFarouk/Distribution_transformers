@@ -41,7 +41,9 @@ function Flat() {
       </div>
 
       <div>
+        
         <div>
+          <div>
           <div>
             <div>
               <label>Length</label>
@@ -68,7 +70,7 @@ function Flat() {
               <input name="myInput"  onChange={(e) => updatenumber(parseInt(e.target.value))} />
             </div>
           </div>
-
+          </div>
           <div>
              ∆c.s.a =  
           </div>

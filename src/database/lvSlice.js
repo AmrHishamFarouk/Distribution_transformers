@@ -10,6 +10,8 @@ const initialState = {
   Wirelengthlv:0.0,
   WireInsulation: 0.0,
   WireR:0.0,
+  Dinner:0.0,
+  Douter:0.0,
   Csalv: 0.4,
   Turnlengthlv: 0.0,
   Turnthicknesslv: 0.0,
