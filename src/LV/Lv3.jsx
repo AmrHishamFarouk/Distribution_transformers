@@ -5,7 +5,30 @@ import ins4 from '../assets/insulations/ins4.png';
 import ins5 from '../assets/insulations/ins5.png';
 import ins6 from '../assets/insulations/ins6.png';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { setLV, selectLV } from './../database/lvSlice';
+import { setSpec, selectSpec} from './../database/specsSlice';
+
 function Lv3() {
+  const dispatch = useDispatch();
+  
+    const vt = useSelector((state) => selectSpec(state, 'VT'));
+    const TurnsPerLayer = useSelector((state) => selectLV(state, 'TurnsPerLayer'));
+    const WireInsulation = useSelector((state) => selectLV(state, 'WireInsulation'));
+    const InsulationThicknesslv = useSelector((state) => selectLV(state, 'InsulationThicknesslv'));
+
+
+    let minins = (((4*vt*TurnsPerLayer*0.001)/8)-WireInsulation)/InsulationThicknesslv
+    
+    dispatch(setLV({ key: 'Glv', value: Math.ceil(minins) }));
+    const Glv = useSelector((state) => selectLV(state, 'Glv'));
+
+    // dispatch(setLV({ key: 'Gimplv', value: packets }));
+    // const Gimplv = useSelector((state) => selectLV(state, 'Gimplv'));
+
+    // dispatch(setLV({ key: 'Insulationlv', value: packets }));
+    // const Insulationlv = useSelector((state) => selectLV(state, 'Insulationlv'));    
+
   let [Noins, setNoins] = useState(2);
 
   let ChangeIns = (sign) => {
@@ -29,28 +52,27 @@ function Lv3() {
   };
 
   return (
-    <center><h1>Lv3</h1></center>
-    // <>
-    //   <div>insulation between layers</div>
-    //   <div>
-    //     <button onClick={() => ChangeIns('+')}> increase insulation </button>
-    //     <button onClick={() => ChangeIns('-')}> decrease insulation </button>
-    //   </div>
-    //   {Noins == 2 && (
-    //     <img src={ins2} alt="ins 2 missed missed" />      )}
-    //   {Noins == 3 && (
-    //     <img src={ins3} alt="ins 3 missed missed" />
-    //   )}
-    //   {Noins == 4 && (
-    //     <img src={ins4} alt="ins 4 missed missed" />
-    //   )}
-    //   {Noins == 5 && (
-    //     <img src={ins5} alt="ins 5 missed missed" />
-    //   )}
-    //   {Noins == 6 && (
-    //     <img src={ins6} alt="ins 6 missed missed" />
-    //   )}
-    // </>
+    <>
+      <div>insulation between layers</div>
+      <div>
+        <button onClick={() => ChangeIns('+')}> increase insulation </button>
+        <button onClick={() => ChangeIns('-')}> decrease insulation </button>
+      </div>
+      {Noins == 2 && (
+        <img src={ins2} alt="ins 2 missed missed" />      )}
+      {Noins == 3 && (
+        <img src={ins3} alt="ins 3 missed missed" />
+      )}
+      {Noins == 4 && (
+        <img src={ins4} alt="ins 4 missed missed" />
+      )}
+      {Noins == 5 && (
+        <img src={ins5} alt="ins 5 missed missed" />
+      )}
+      {Noins == 6 && (
+        <img src={ins6} alt="ins 6 missed missed" />
+      )}
+    </>
   );
 }
 export default Lv3;

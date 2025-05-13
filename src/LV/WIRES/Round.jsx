@@ -30,7 +30,7 @@ function Round() {
       useEffect(() => {
         let WireInsulation = (Douter-Dinner)/2;
         dispatch(setLV({ key: 'WireInsulation', value: WireInsulation}));
-      }, [NumberOfWires, Dinner]);
+      }, [Douter, Dinner]);
 
       const Csalv = useSelector((state) => selectLV(state, 'Csalv'));
       const WireInsulation = useSelector((state) => selectLV(state, 'WireInsulation'));

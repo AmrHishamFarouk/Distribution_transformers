@@ -8,7 +8,7 @@ import { setLV, selectLV } from './../../database/lvSlice';
 
 function Packets1() {
     const dispatch = useDispatch();
-    updatefirstpacket(value){
+    function updatefirstpacket(value){
         dispatch(setLV({ key: 'Firstpacketlv', value: value }));
     }
   return (
@@ -19,7 +19,7 @@ function Packets1() {
         <div>
           <div>
             <label>1st packet</label>
-            <input name="myInput" placeholder="layers" nChange={(e) => updatefirstpacket(parseFloat(e.target.value))}/>
+            <input name="myInput" placeholder="layers" onChange={(e) => updatefirstpacket(parseFloat(e.target.value))}/>
           </div>
         </div>
         <div><img src={doublepackets} alt='one packet'/></div>

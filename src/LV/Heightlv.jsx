@@ -1,67 +1,22 @@
 import React, { useState } from 'react';
-import HeightWire from '../assets/heights/HeightWire.png'
-import HeightFoil from '../assets/heights/HeightFoil.png'
+import Foilheight from './HEIGHTS/Foilheight';
+import Flatheight from './HEIGHTS/Flatheight';
+import Roundheight from './HEIGHTS/Roundheight';
+import { useSelector, useDispatch } from 'react-redux';
+import { setLV, selectLV } from './../database/lvSlice';
 
 function Heightlv() {
-  // turnsperlaayer = parseInt(heleclv / hwirelv) 
-  // numoflayers = turnsperlaayer/Nph
-  // Wiretype is flat or round or foil
-  let [Wiretype, setWiretype] = useState('foil');
-  return (
-    <center><h1>Heightlv</h1></center>
-    
-    // <>
-    //   {Wiretype == 'flat' && (
-    //     <>
-    //       <div>
-    //         <div>
-    //           <label>Hmech</label>
-    //           <input name="myInput" placeholder="mm" />
-    //         </div>
-    //         <div>
-    //           <label>Helec</label>
-    //           <input name="myInput" placeholder="mm" />
-    //         </div>
-    //       </div>
-    //       <img
-    //         src={HeightWire}
-    //         alt="HeightWire.png is missing"
-    //       />
-    //       <h3>no. of layers:</h3>
-    //     </>
-    //   )}
-    //   {Wiretype == 'round' && (
-    //     <>
-    //       <div>
-    //         <div>
-    //           <label>Hmech</label>
-    //           <input name="myInput" placeholder="mm" />
-    //         </div>
-    //         <div>
-    //           <label>Helec</label>
-    //           <input name="myInput" placeholder="mm" />
-    //         </div>
-    //       </div>
-    //       <img
-    //         src={HeightWire}
-    //         alt="HeightWire.png is missing"
-    //       />
-    //       <h3>no. of layers:</h3>
+  const dispatch = useDispatch();
 
-    //     </>
-    //   )}
-    //   {Wiretype == 'foil' && (
-    //     <>
-    //       <label>Hmech = Helec</label>
-    //       <img
-    //         src={HeightFoil}
-    //         alt="HeightFoil.png is missing"
-    //       />
-    //       <h3>no. of layers:</h3>
-    //     </>
-    //   )}
-    //   {}
-    // </>
+  const Wiretypelv = useSelector((state) => selectLV(state, 'Wiretypelv'));
+
+  return (
+    <>
+      {Wiretypelv == 'Flat' && <Roundheight/>}
+      {Wiretypelv == 'Round' && <Flatheight/>}
+      {Wiretypelv == 'Foil' && <Foilheight/>}
+      {}
+    </>
   );
 }
 export default Heightlv;
