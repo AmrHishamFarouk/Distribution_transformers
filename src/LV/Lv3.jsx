@@ -23,7 +23,7 @@ function Lv3() {
     dispatch(setLV({ key: 'Glv', value: Math.ceil(minins) }));
     const Glv = useSelector((state) => selectLV(state, 'Glv'));
 
-    // dispatch(setLV({ key: 'Gimplv', value: packets }));
+    dispatch(setLV({ key: 'Gimplv', value: packets }));
     // const Gimplv = useSelector((state) => selectLV(state, 'Gimplv'));
 
     // dispatch(setLV({ key: 'Insulationlv', value: packets }));
