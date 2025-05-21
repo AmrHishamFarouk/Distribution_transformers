@@ -14,10 +14,10 @@ import Core from './General/Core';
 import Impedance from './General/Impedance';
 import Ironcore from './General/Ironcore';
 import Mechanicalforces from './General/Mechanicalforces';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function App() {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const pages = [<Specs/>,<Calc1/>,<Core/>,<Lv1/>,<Heightlv/>,<Lv2/>,<Lv3/>,<Lv4/>,<Hv1/>,<Heighthv/>,<Hv2/>,<Hv3/>,<Hv4/>,<Impedance/>,<Ironcore/>,<Mechanicalforces/>];
   const handleNext = () => {
     if (currentIndex < pages.length - 1) {
