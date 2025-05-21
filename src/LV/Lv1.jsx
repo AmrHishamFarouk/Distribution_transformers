@@ -48,7 +48,6 @@ function Lv1() {
 
         <div>δ = {δlv.toFixed(4)} </div>
       </div>
-      <button type="submit">next</button>
     </>
   );
 }

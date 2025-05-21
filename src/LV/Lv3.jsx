@@ -15,16 +15,27 @@ function Lv3() {
     const vt = useSelector((state) => selectSpec(state, 'VT'));
     const TurnsPerLayer = useSelector((state) => selectLV(state, 'TurnsPerLayer'));
     const WireInsulation = useSelector((state) => selectLV(state, 'WireInsulation'));
-    const InsulationThicknesslv = useSelector((state) => selectLV(state, 'InsulationThicknesslv'));
+    const InsulationPaperThicknesslv = useSelector((state) => selectLV(state, 'InsulationPaperThicknesslv'));
 
 
-    let minins = (((4*vt*TurnsPerLayer*0.001)/8)-WireInsulation)/InsulationThicknesslv
-    
-    dispatch(setLV({ key: 'Glv', value: Math.ceil(minins) }));
+    let mininstemp = (((4*vt*TurnsPerLayer*0.001)/8)-WireInsulation)/InsulationPaperThicknesslv;
+    let minins = 0;
+    if(mininstemp<2){
+      minins = 2;
+    }else{
+      minins = Math.ceil(mininstemp);
+
+    }
+
+    let gradient =  (4*vt*TurnsPerLayer*0.001)/(WireInsulation+(InsulationPaperThicknesslv*minins));
+
+    dispatch(setLV({ key: 'Glv', value: gradient }));
     const Glv = useSelector((state) => selectLV(state, 'Glv'));
 
-    // dispatch(setLV({ key: 'Gimplv', value: packets }));
-    // const Gimplv = useSelector((state) => selectLV(state, 'Gimplv'));
+    let gimp =  (20*1.15*0.35)/(InsulationPaperThicknesslv*minins);
+
+    dispatch(setLV({ key: 'Gimplv', value: gimp }));
+    const Gimplv = useSelector((state) => selectLV(state, 'Gimplv'));
 
     // dispatch(setLV({ key: 'Insulationlv', value: packets }));
     // const Insulationlv = useSelector((state) => selectLV(state, 'Insulationlv'));    
@@ -58,6 +69,13 @@ function Lv3() {
         <button onClick={() => ChangeIns('+')}> increase insulation </button>
         <button onClick={() => ChangeIns('-')}> decrease insulation </button>
       </div>
+      <h1>Glv = {Glv}</h1>
+      <h1>Gimplv = {Gimplv}</h1>
+      
+      {vt} <br/>
+    {TurnsPerLayer}<br/> 
+    {WireInsulation} <br/>
+    {InsulationPaperThicknesslv}<br/>
       {Noins == 2 && (
         <img src={ins2} alt="ins 2 missed missed" />      )}
       {Noins == 3 && (

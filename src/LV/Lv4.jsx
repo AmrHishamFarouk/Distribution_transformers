@@ -4,9 +4,11 @@ function Lv4(){
     // Radiallv = ((thicknessofwire*layerslv)+(layerslv*noins*insthickness)+(numcooling*coolingthickness))*1.035
     // if(wire == 'Foil'){
     //     Axiallv = Radiallv + (2*bars) + (2*3*0.35)*1.035
+    // }else if(wire == 'Flat'){
+    //     Axiallv = Radiallv + (2*turnthickness) + (2*3*0.35)*1.035
     // }else{
-    //     Axiallv = Radiallv
-    // }
+
+    // };
     
     return(
         <center><h1>Lv4</h1></center>
