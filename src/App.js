@@ -10,6 +10,7 @@ import Hv3 from './HV/Hv3';
 import Hv2 from './HV/Hv2';
 import Hv1 from './HV/Hv1';
 import Heighthv from './HV/Heighthv';
+import Core from './General/Core';
 import Impedance from './General/Impedance';
 import Ironcore from './General/Ironcore';
 import Mechanicalforces from './General/Mechanicalforces';
@@ -17,7 +18,7 @@ import React, { useState } from 'react';
 
 function App() {
   const [currentIndex, setCurrentIndex] = React.useState(0);
-  const pages = [<Specs/>,<Calc1/>,<Lv1/>,<Heightlv/>,<Lv2/>,<Lv3/>,<Lv4/>,<Hv1/>,<Heighthv/>,<Hv2/>,<Hv3/>,<Hv4/>,<Impedance/>,<Ironcore/>,<Mechanicalforces/>];
+  const pages = [<Specs/>,<Calc1/>,<Core/>,<Lv1/>,<Heightlv/>,<Lv2/>,<Lv3/>,<Lv4/>,<Hv1/>,<Heighthv/>,<Hv2/>,<Hv3/>,<Hv4/>,<Impedance/>,<Ironcore/>,<Mechanicalforces/>];
   const handleNext = () => {
     if (currentIndex < pages.length - 1) {
       setCurrentIndex(currentIndex + 1); // Increment index only if it's not the last one
