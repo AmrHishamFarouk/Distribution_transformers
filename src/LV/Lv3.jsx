@@ -32,10 +32,10 @@ function Lv3() {
     dispatch(setLV({ key: 'Glv', value: gradient }));
     const Glv = useSelector((state) => selectLV(state, 'Glv'));
 
-    let gimp =  (20*1.15*0.35)/(InsulationPaperThicknesslv*minins);
 
-    dispatch(setLV({ key: 'Gimplv', value: gimp }));
-    const Gimplv = useSelector((state) => selectLV(state, 'Gimplv'));
+
+    dispatch(setLV({ key: 'Gimplv', value: packets }));
+    // const Gimplv = useSelector((state) => selectLV(state, 'Gimplv'));
 
     // dispatch(setLV({ key: 'Insulationlv', value: packets }));
     // const Insulationlv = useSelector((state) => selectLV(state, 'Insulationlv'));    
