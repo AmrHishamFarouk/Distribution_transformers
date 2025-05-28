@@ -6,19 +6,18 @@ import { setSpec, selectSpec} from './../database/specsSlice';
 
 function Lv4(){
 
-let thickradial = ((Layerslv*Turnthicknesslv)+(Layerslv*  Noinsl*InsulationPaperThicknesslv)+(Nocollingductlv*Coolingductthickness))*1.035;
-if(Wiretypelv== 'Foil'){
-  let Thickaxiallv = thickradial+(2*Barslv)+((2*3*0.35)*1.035);
-}else if(Wiretypelv== 'Flat'){
-let Thickaxiallv = thickradial + (2*Turnthicknesslv)+((2*3*0.35)*1.035)}
-else if(Wiretypelv== 'Round'){
-    Thickaxiallv = thickradial;
-}
-    const Barslv = useSelector((state) => selectLV(state, 'Barslv'));
-    
+// let thickradial = ((Layerslv*Turnthicknesslv)+(Layerslv*  Noinsl*InsulationPaperThicknesslv)+(Nocollingductlv*Coolingductthickness))*1.035;
+// if(Wiretypelv== 'Foil'){
+//   let Thickaxiallv = thickradial+(2*Barslv)+((2*3*0.35)*1.035);
+// }else if(Wiretypelv== 'Flat'){
+// let Thickaxiallv = thickradial + (2*Turnthicknesslv)+((2*3*0.35)*1.035)}
+// else if(Wiretypelv== 'Round'){
+//     Thickaxiallv = thickradial;
+// }
+//     const Barslv = useSelector((state) => selectLV(state, 'Barslv'));
+//     const Layerslv = useSelector((state) => selectLV(state, 'Layerslv'));
+//     const Turnthicknesslv = useSelector((state) => selectLV(state, 'Turnthicknesslv'));
 
-
-    const Layerslv = useSelector((state) => selectLV(state, 'Layerslv'));
 
 // Nph: 0.0,
 //   Iphlv: 0.0,
