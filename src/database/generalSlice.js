@@ -5,17 +5,17 @@ const initialState = {
   
   Rbettwoterminalslv: 0.0,
   Rph20lv: 0.0,
-  Csacore:0.0,
-  W1:0.0,
-  W2:0.0,
-  W3:0.0,
-  W4:0.0,
-  L1:0.0,
-  L2:0.0,
-  L3:0.0,
-  L4:0.0,
-  Totalstacking:0.0,
-  CoreAspectRatio:0.0,
+  Csacore: 0.0,
+  W1: 0.0,
+  W2: 0.0,
+  W3: 0.0,
+  W4: 0.0,
+  L1: 0.0,
+  L2: 0.0,
+  L3: 0.0,
+  L4: 0.0,
+  Totalstacking: 0.0,
+  CoreAspectRatio: 0.0,
 };
 
 const generalSlice = createSlice({
@@ -30,8 +30,7 @@ const generalSlice = createSlice({
 });
 
 // Dynamic Selector
-export const selectGeneral = (state, key) => state.lv[key];
-
+export const selectGeneral = (state, key) => state.general[key];
 // Action
 export const { setGeneral } = generalSlice.actions;
 

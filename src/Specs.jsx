@@ -20,11 +20,15 @@ function Specs() {
   };
 
   // Generic function to handle the update
-  const updateValues = () => {
-    Object.keys(inputRefs).forEach((key) => {
+const updateValues = () => {
+  Object.keys(inputRefs).forEach((key) => {
+    if (inputRefs[key].current) { // Ensure the reference exists
       dispatch(setSpec({ key, value: parseFloat(inputRefs[key].current.value) }));
-    });
-  };
+    } else {
+      console.warn(`Input reference for ${key} is undefined.`);
+    }
+  });
+};
 
   // Configuration for input fields
   const inputConfig = [
@@ -34,9 +38,7 @@ function Specs() {
     { key: 'Po', label: 'Po', placeholder: 'kVA', defaultValue: '1.222' },
     { key: 'Pcc', label: 'Pcc', placeholder: 'kVA', defaultValue: '9.450' },
     { key: 'Z', label: 'Z%', placeholder: '%', defaultValue: '5' },
-    { key: 'B', label: 'Flux Density (B)', placeholder: 'B', defaultValue: '1.6' },
     { key: 'F', label: 'Frequency', placeholder: 'Hz', defaultValue: '50' },
-    { key: 'Δironcore', label: 'Δironcore', placeholder: 'mm^2',defaultValue: '43320' },
     { key: 'Maj', label: 'Maj', placeholder: 'Maj', defaultValue: '5' },
   ];
 

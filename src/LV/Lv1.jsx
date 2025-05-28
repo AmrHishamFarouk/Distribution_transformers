@@ -25,11 +25,25 @@ function Lv1() {
         useEffect(() => {
           let δlv =  Iphlv/Csalv;
           dispatch(setLV({ key: 'δlv', value: δlv}));
-  
+          barsSelection();
         }, [Csalv, Iphlv]); 
 
   const δlv = useSelector((state) => selectLV(state, 'δlv'));
 
+function barsSelection() {
+  let reqBarArea = Iphlv / 4.5;
+  let barsArea = [160, 250, 360, 490, 640];
+  let barThickness = [4, 5, 6, 7, 8];
+
+  for (let index = 0; index < barsArea.length; index++) {
+    let area = barsArea[index];
+    if (area > reqBarArea) {
+      dispatch(setLV({ key: "Barslv", value: barThickness[index] }));
+      console.log(barThickness[index]);
+      break;
+    }
+  }
+}
 
   return (
     <>

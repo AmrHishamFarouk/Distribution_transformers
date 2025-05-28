@@ -1,26 +1,51 @@
 import React, { useEffect,useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setGeneral, selectGeneral} from './../database/generalSlice';
+import { selectLV } from './../database/lvSlice';
+import { setSpec, selectSpec } from './../database/specsSlice';
 
 function Quickcore(){           
     const dispatch = useDispatch();
+    const Csacore =  useSelector((state) => selectGeneral(state, 'Csacore'));
+    const B =  useSelector((state) => selectSpec(state, 'B'));
 
+    const LV = useSelector((state) => selectSpec(state, 'LV'));  
+    const Nph = useSelector((state) => selectLV(state, 'Nph'));
+    const F = useSelector((state) => selectSpec(state, 'F'));
+    const Requiredcsacore = ((LV*1000) / Math.pow(3, 1/2)) / (4.44 * Nph * F *1.6 * 0.000001);
+    console.log(Csacore);
+
+
+
+      const Totalstacking =  useSelector((state) => selectGeneral(state, 'Totalstacking'));
     function updateTotalstacking(value){
       dispatch(setGeneral({ key: 'Totalstacking', value: value}));
+      console.log(Totalstacking);
+
     };
 
+
+    const W1 =  useSelector((state) => selectGeneral(state, 'W1'));
     function updateW1(value){
       dispatch(setGeneral({ key: 'W1', value: value}));
+            console.log(W1);
+
     };
  
   function updateCsacore(value){
-      dispatch(setGeneral({ key: 'Csacore', value: value}));
+    dispatch(setGeneral({ key: 'Csacore', value: value }));
     };
+    
+  useEffect(() => {
+      const actualB = (LV*1000) / Math.sqrt(3) / (4.44 * F * Nph * Csacore * 0.000001);
+      dispatch(setSpec({ key: 'B', value: actualB}));
+  }, [Csacore]);
+
 
     return(
         <>
         <div>
-            {/* <div>
+          <div>
             required deltacore = {Requiredcsacore}
         </div>
         <div>
@@ -31,7 +56,7 @@ function Quickcore(){
         </div>
         <div>
             current B = {B}
-        </div> */}
+        </div>
             <div>
               <label>total stacking</label>
               <input name="myInput" onChange={(e) => updateTotalstacking(parseFloat(e.target.value))}/>

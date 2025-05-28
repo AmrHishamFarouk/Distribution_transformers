@@ -45,8 +45,6 @@ function Calc1() {
       dispatch(setLV({ key: 'Nph', value: Nph }));
       dispatch(setSpec({ key: 'VT', value: VT }));
   
-      const actualB = (LV*1000) / Math.sqrt(3) / (4.44 * F * Nph * Δironcore * 0.000001);
-      dispatch(setSpec({ key: 'B', value: actualB }));
     }
   }, [Nph, VT, LV, F, Δironcore, dispatch]); // Dependency array
 
@@ -57,8 +55,6 @@ function Calc1() {
       <h1>Nph: {Nph.toFixed(4)}</h1>
 
       <h1>V/t:{VT.toFixed(4)}</h1>
-
-      <h1>Flux density : {B.toFixed(4)}</h1>
     </>
   );
 }

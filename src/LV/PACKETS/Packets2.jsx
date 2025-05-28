@@ -12,6 +12,16 @@ function Packets2() {
       function updatesecondpacket(value){
         dispatch(setLV({ key: 'Secondpacketlv', value: value }));
     };   
+
+    const Firstpacketlv = useSelector((state) => selectLV(state, 'Firstpacketlv'));
+    const Secondpacketlv = useSelector((state) => selectLV(state, 'Secondpacketlv'));
+    const Thirdpacketlv = useSelector((state) => selectLV(state, 'Thirdpacketlv'));
+    const Fourthpacketlv = useSelector((state) => selectLV(state, 'Fourthpacketlv'));
+    useEffect(() => {
+//code here for checking if the no of layers is correct
+
+        }, [Firstpacketlv, Secondpacketlv,Thirdpacketlv,Fourthpacketlv]); 
+
   return (
     <>
       <div>No. of layers in each packet</div>

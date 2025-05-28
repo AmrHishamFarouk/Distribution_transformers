@@ -74,9 +74,9 @@ function Lv3() {
       <h1>Gimplv = {Gimplv}</h1>
       
       {vt} <br/>
-    {TurnsPerLayer}<br/> 
-    {WireInsulation} <br/>
-    {InsulationPaperThicknesslv}<br/>
+    TurnsPerLayer={TurnsPerLayer}<br/> 
+    WireInsulation={WireInsulation} <br/>
+    InsulationPaperThicknesslv={InsulationPaperThicknesslv}<br/>
       {Noins == 2 && (
         <img src={ins2} alt="ins 2 missed missed" />      )}
       {Noins == 3 && (
