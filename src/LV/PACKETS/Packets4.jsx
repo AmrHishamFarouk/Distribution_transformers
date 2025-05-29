@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState , useEffect } from 'react';
 import quadrapackets from '../../assets/packets/4packets.png'
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setLV, selectLV } from './../../database/lvSlice';
 function Packets4() {
           const dispatch = useDispatch();
+
+          dispatch(setLV({ key: 'Nocollingductlv', value: 3 }));
+
           function updatefirstpacket(value){
               dispatch(setLV({ key: 'Firstpacketlv', value: value }));
           }

@@ -11,7 +11,8 @@ import { setSpec, selectSpec} from './../database/specsSlice';
 
 function Lv3() {
   const dispatch = useDispatch();
-  
+  const InsNo = [2,2.5,3,3.5,4,5,6]
+
     const vt = useSelector((state) => selectSpec(state, 'VT'));
     const TurnsPerLayer = useSelector((state) => selectLV(state, 'TurnsPerLayer'));
     const WireInsulation = useSelector((state) => selectLV(state, 'WireInsulation'));
@@ -38,7 +39,7 @@ function Lv3() {
     const Gimplv = useSelector((state) => selectLV(state, 'Gimplv'));
 
 
-    // dispatch(setLV({ key: 'Insulationlv', value: packets }));
+    dispatch(setLV({ key: 'Noinslv', value: InsNo[(minins-2)] }));
     // const Insulationlv = useSelector((state) => selectLV(state, 'Insulationlv'));    
 
   let [Noins, setNoins] = useState(2);
@@ -46,7 +47,7 @@ function Lv3() {
   let ChangeIns = (sign) => {
     switch (sign) {
       case '+':
-        if (Noins == 6) {
+        if (Noins == 9) {
           break;
         }
         setNoins(Noins + 1);
@@ -54,14 +55,21 @@ function Lv3() {
       case '-':
         if (Noins == 2) {
           break;
-        }
+        }else{
         setNoins(Noins - 1);
+
         break;
+        }
+       
       default:
         break;
     }
     console.log(Noins);
   };
+
+  function updateInsulationThickness(value){
+        dispatch(setLV({ key: 'InsulationPaperThicknesslv', value: value }));
+  }
 
   return (
     <>
@@ -70,6 +78,10 @@ function Lv3() {
         <button onClick={() => ChangeIns('+')}> increase insulation </button>
         <button onClick={() => ChangeIns('-')}> decrease insulation </button>
       </div>
+            <div>
+              <label>Insulation paper Thickness</label>
+              <input name="myInput" placeholder="Thickness" defaultValue= '0.13' onChange={(e) => updateInsulationThickness(parseFloat(e.target.value))}/>
+            </div>
       <h1>Glv = {Glv}</h1>
       <h1>Gimplv = {Gimplv}</h1>
       

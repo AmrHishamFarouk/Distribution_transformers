@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setGeneral, selectGeneral} from './../database/generalSlice';
 import { selectLV } from './../database/lvSlice';
 import { setSpec, selectSpec } from './../database/specsSlice';
+import core from "../assets/core/core.jpeg";
+
 
 function Quickcore(){           
     const dispatch = useDispatch();
@@ -72,7 +74,7 @@ function Quickcore(){
               <input name="myInput" onChange={(e) => updateCsacore(parseFloat(e.target.value))}/>
             </div>
         </div>
-        {/* <img src=''/> */}
+        <img src={core}/>
         </>
     )
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState , useEffect } from 'react';
 import triplepackets from '../../assets/packets/3packets.png'
 
 
@@ -6,6 +6,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setLV, selectLV } from './../../database/lvSlice';
 function Packets3() {
         const dispatch = useDispatch();
+
+        dispatch(setLV({ key: 'Nocollingductlv', value: 2 }));
+
         function updatefirstpacket(value){
             dispatch(setLV({ key: 'Firstpacketlv', value: value }));
         }
