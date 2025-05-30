@@ -16,6 +16,10 @@ const initialState = {
   L4: 0.0,
   Totalstacking: 0.0,
   CoreAspectRatio: 0.0,
+  Sticks:6.0,
+  Cyl:1.0,
+  Tums:0.13,
+  Inssteel:6.0,
 };
 
 const generalSlice = createSlice({
