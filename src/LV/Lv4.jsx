@@ -18,6 +18,7 @@ function Lv4(){
     const Фinternalradial = useSelector((state) => selectLV(state, 'Фinternalradial'));
     const Фinternalaxial = useSelector((state) => selectLV(state, 'Фinternalaxial'));
     const Thickaxiallv = useSelector((state) => selectLV(state, 'Thickaxiallv'));
+    const Dmeanlv = useSelector((state) => selectLV(state, 'Dmeanlv'));
 
 let thickradial = ((Layerslv*Turnthicknesslv)+(Layerslv*  Noinslv*InsulationPaperThicknesslv)+(Nocollingductlv*Coolingductthickness))*1.035;
        dispatch(setLV({ key: 'Thickradiallv', value: thickradial }));
@@ -41,27 +42,17 @@ let Фexternalaxial =  Фinternalaxial + (2*Thickaxiallv) - (2*Barslv);
 useEffect(() => {
      dispatch(setLV({ key: 'Фexternalradial', value: Фexternalradial }));
      dispatch(setLV({ key: 'Фexternalaxial', value: Фexternalaxial }));
+
+        let a = ( Фexternalaxial - Thickaxiallv )/2;
+        let b = ( Фexternalradial - thickradial )/2;  
+        let Dmeanlv = ((a + b) * ((3 * Math.pow(a - b, 2)) /((Math.pow(a + b, 2) * Math.sqrt((-3 * Math.pow(a - b, 2)) / Math.pow(a + b, 2) + 4)) + 10))) + 1;
+        dispatch(setLV({ key: 'Dmeanlv', value: Dmeanlv }));   
         }, [Фexternalradial, Фexternalaxial]); 
 
 
 
 
- 
-let a = ( Фexternalaxial - Thickaxiallv )/2;
-let b = ( Фexternalradial - thickradial )/2;
- 
-    // Dmean equation
-     let Dmeanlv = (a + b) * ((3 * Math.pow(a - b, 2)) / (Math.pow(a + b, 2) * Math.sqrt((-3 * Math.pow(a - b, 2)) / Math.pow(a + b, 2) + 4) + 10)) + 1;
-    
-    dispatch(setLV({ key: 'Dmeanlv', value: Dmeanlv }));
-
-
-console.log("Фinternalradial:", Фinternalradial);
-console.log("Фinternalaxial:", Фinternalaxial);
-// console.log("Thickaxiallv:", Thickaxiallv);
-// console.log("thickradial:", thickradial);
-// console.log("Фexternalradial:", Фexternalradial);
-// console.log("Фexternalaxial:", Фexternalaxial);
+ console.log(useSelector((state) => state.lv))
 
 
 
@@ -113,7 +104,6 @@ console.log("Фinternalaxial:", Фinternalaxial);
     </div>
     
     <div>
-        <p>alv =  {a}   ,b lv =   {b}</p>
         <p>Dmean = {Dmeanlv} </p>
     </div>
 {/*     

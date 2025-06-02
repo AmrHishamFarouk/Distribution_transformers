@@ -46,7 +46,6 @@ function Lv2() {
 
   };
   
-
   return (
     <>
       <div> n= {n.toFixed(2)}</div>

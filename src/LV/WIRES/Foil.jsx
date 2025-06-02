@@ -8,9 +8,11 @@ function Foil() {
 
     function updateThickness(value){
       dispatch(setLV({ key: 'Wirethicknesslv', value: value}));
+      dispatch(setLV({ key: 'Turnthicknesslv', value: value}));
     };
     function updateLength(value){
       dispatch(setLV({ key: 'Wirelengthlv', value: value}));
+      dispatch(setLV({ key: 'Turnlengthlv', value: value}));
     }
 
     function updateR(value){

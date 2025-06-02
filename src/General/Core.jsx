@@ -4,6 +4,7 @@ import { setSpec, selectSpec} from './../database/specsSlice';
 import Quickcore from './Quickcore';
 import Detailedcore from './Detailedcore';
 import { setGeneral, selectGeneral} from './../database/generalSlice';
+import { setLV, selectLV } from './../database/lvSlice';
 
 function Core(){
     const dispatch = useDispatch();
@@ -21,19 +22,17 @@ const Totalstacking =  useSelector((state) => selectGeneral(state, 'Totalstackin
 
 
   useEffect(() => {
-    let Фinternalradial = W1 + (2*Sticks) +(2*Cyl)+(2*2*Tums)
-    dispatch(setGeneral({ key: 'Фinternalradial', value: Фinternalradial}));
+    const Фinternalradial = W1 + (2*Sticks) +(2*Cyl)+(2*2*Tums)
+    dispatch(setLV({ key: 'Фinternalradial', value: Фinternalradial}));
   }, [W1]);
 
   useEffect(() => {
-    let Фinternalaxial = Totalstacking + Sticks +(2*1.35)+(((2*Cyl)+ (2*Inssteel) + (6*0.35)  +(2*2*Tums))*1.035);
-    dispatch(setGeneral({ key: 'Фinternalaxial', value: Фinternalaxial}));
+    const Фinternalaxial = Totalstacking + Sticks +(2*1.35)+(((2*Cyl)+ (2*Inssteel) + (6*0.35)  +(2*2*Tums))*1.035);
+    dispatch(setLV({ key: 'Фinternalaxial', value: Фinternalaxial}));
   }, [Totalstacking]);
 
   const Фinternalradial =  useSelector((state) => selectGeneral(state, 'Фinternalradial'));
 const Фinternalaxial =  useSelector((state) => selectGeneral(state, 'Фinternalaxial'));
-
-  console.log(Фinternalradial,Фinternalaxial)
 
     return(
     <>

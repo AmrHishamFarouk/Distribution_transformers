@@ -42,6 +42,7 @@ function Lv3() {
     dispatch(setLV({ key: 'Noinslv', value: InsNo[(minins-2)] }));
     // const Insulationlv = useSelector((state) => selectLV(state, 'Insulationlv'));    
 
+    
   let [Noins, setNoins] = useState(2);
 
   let ChangeIns = (sign) => {

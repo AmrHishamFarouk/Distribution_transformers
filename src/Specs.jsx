@@ -13,9 +13,7 @@ function Specs() {
     Po: useRef(),
     Pcc: useRef(),
     Z: useRef(),
-    B: useRef(),
     F: useRef(),
-    Δironcore: useRef(),
     Maj: useRef(),
   };
 
