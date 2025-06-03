@@ -3,7 +3,9 @@ import React, { useState , useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLV, selectLV } from './../database/lvSlice';
 import { setSpec, selectSpec} from './../database/specsSlice';
+import Power from './POWERS/Power';
 
+import Masses from './MASSES/Masses';
 function Lv4(){
       const dispatch = useDispatch();
 
@@ -19,6 +21,7 @@ function Lv4(){
     const Фinternalaxial = useSelector((state) => selectLV(state, 'Фinternalaxial'));
     const Thickaxiallv = useSelector((state) => selectLV(state, 'Thickaxiallv'));
     const Dmeanlv = useSelector((state) => selectLV(state, 'Dmeanlv'));
+    const Dmlv = useSelector((state) => selectLV(state, 'Dmlv'));
 
 let thickradial = ((Layerslv*Turnthicknesslv)+(Layerslv*  Noinslv*InsulationPaperThicknesslv)+(Nocollingductlv*Coolingductthickness))*1.035;
        dispatch(setLV({ key: 'Thickradiallv', value: thickradial }));
@@ -45,27 +48,28 @@ useEffect(() => {
 
         let a = ( Фexternalaxial - Thickaxiallv )/2;
         let b = ( Фexternalradial - thickradial )/2;  
-        let Dmeanlv = ((a + b) * ((3 * Math.pow(a - b, 2)) /((Math.pow(a + b, 2) * Math.sqrt((-3 * Math.pow(a - b, 2)) / Math.pow(a + b, 2) + 4)) + 10))) + 1;
-        dispatch(setLV({ key: 'Dmeanlv', value: Dmeanlv }));   
-        }, [Фexternalradial, Фexternalaxial]); 
+        const sum = a + b;
+  const diff = a - b;
+  const diffSquared = Math.pow(diff, 2);
+  const sumSquared = Math.pow(sum, 2);
 
+  const sqrtPart = Math.sqrt(((-3 * diffSquared) / sumSquared) + 4);
+  const denominator = (sumSquared * sqrtPart) + 10;
+  const result = sum * ((3 * diffSquared) / denominator + 1);
+        dispatch(setLV({ key: 'Dmeanlv', value: result }));   
+        }, [Фexternalradial, Фexternalaxial]); 
 
 
 
  console.log(useSelector((state) => state.lv))
 
+ useEffect(() => {
+    let Dmlv = Фinternalradial + thickradial;      
+    dispatch(setLV({ key: 'Dmlv', value: Dmlv }));
+       }, [Фinternalradial, thickradial]); 
 
 
 
-//     let Dmlv = Фinternalradial + thickradial;
-        
-//     dispatch(setLV({ key: 'Dmlv', value: Dmlv }));
-//     //need adjustments according to the wire type
-//      singlephaseCoppermasslv = (22/7)*Dmeanlv*Nph*0.001*Csalv*8.9*0.001;
-//      coppermass = 3*singlephaseCoppermasslv;
-     
-//      dispatch(setLV({ key: 'Coppermasslv', value: coppermass }));
-     
 //      Connectionlv = Iphlv/200;
 //      //adjust this equation
 //      Eddylv = (Wirethicknesslv^4)*(Nph^2)*0.001;
@@ -106,12 +110,14 @@ useEffect(() => {
     <div>
         <p>Dmean = {Dmeanlv} </p>
     </div>
-{/*     
-//     <div>
-//     <strong>For Ux:</strong>
-//     <p>Dmlv = {Dmlv}</p>
-//     </div> */}
-//     </>
+    
+     <div>
+     <strong>For Ux:</strong>
+     <p>Dmlv = {Dmlv}</p>
+     </div>
+     <Masses />
+     <Power />
+   </>
     );
 
 }

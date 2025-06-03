@@ -50,6 +50,7 @@ Noinslv:0.0,
   Rph95lv: 0.0,
   Rbettwoterminalslv: 0.0,
   Rph20lv: 0.0,
+  Rph20lvbettwoterminalslv: 0.0,
 };
 
 const lvSlice = createSlice({
