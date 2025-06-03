@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setGeneral, selectGeneral} from './../database/generalSlice';
+import { setGeneral, selectGeneral} from '../../database/generalSlice';
 
 function Detailedcore() {
   const dispatch = useDispatch();

@@ -10,7 +10,7 @@ import Hv3 from './HV/Hv3';
 import Hv2 from './HV/Hv2';
 import Hv1 from './HV/Hv1';
 import Heighthv from './HV/Heighthv';
-import Core from './General/Core';
+import Core from './General/Core/Core';
 import Impedance from './General/Impedance';
 import Ironcore from './General/Ironcore';
 import Mechanicalforces from './General/Mechanicalforces';

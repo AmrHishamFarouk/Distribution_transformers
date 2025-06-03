@@ -1,10 +1,10 @@
 import React, { useState , useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSpec, selectSpec} from './../database/specsSlice';
+import { setSpec, selectSpec} from '../../database/specsSlice';
 import Quickcore from './Quickcore';
 import Detailedcore from './Detailedcore';
-import { setGeneral, selectGeneral} from './../database/generalSlice';
-import { setLV, selectLV } from './../database/lvSlice';
+import { setGeneral, selectGeneral} from '../../database/generalSlice';
+import { setLV, selectLV } from '../../database/lvSlice';
 
 function Core(){
     const dispatch = useDispatch();

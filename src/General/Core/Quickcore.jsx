@@ -1,9 +1,9 @@
 import React, { useEffect,useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setGeneral, selectGeneral} from './../database/generalSlice';
-import { selectLV } from './../database/lvSlice';
-import { setSpec, selectSpec } from './../database/specsSlice';
-import core from "../assets/core/core.jpeg";
+import { setGeneral, selectGeneral} from '../../database/generalSlice';
+import { selectLV } from '../../database/lvSlice';
+import { setSpec, selectSpec } from '../../database/specsSlice';
+import core from "../../assets/core/core.jpeg";
 
 
 function Quickcore(){           
