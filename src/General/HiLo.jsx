@@ -1,7 +1,7 @@
 import { setHilo, selectHilo } from '../database/hiloSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLV, selectLV } from './../database/lvSlice';
-
+import { selectLV } from './../database/lvSlice';
+import React, { useEffect } from 'react';
 function HiLo(){
     const dispatch = useDispatch();
     const Фexternalradiallv =  useSelector((state) => selectLV(state, 'Фexternalradial'));
@@ -23,14 +23,28 @@ function HiLo(){
           } 
           return Thickhilo;    
       };
+      
+        let Radialexthilo = Фexternalradiallv+((2*Thickhilo)+(2*0.35))
+
+        dispatch(setHilo({ key: 'Radialexternalhilo', value: Radialexthilo}));
+        let Axialexthilo = Фexternalaxiallv+((2*Thickhilo)+(2*0.35))
+
+        dispatch(setHilo({ key: 'Axialexternalhilo', value: Axialexthilo}));
+        let Dm = Фexternalradiallv + Thickhilo;
+  
+          dispatch(setHilo({ key: 'Dmhilo', value: Dm}));
 
       useEffect(() => {
         let Radialexternalhilo = Фexternalradiallv+((2*Thickhilo)+(2*0.35))
 
         dispatch(setHilo({ key: 'Radialexternalhilo', value: Thickhilo + 2}));
-        dispatch(setHilo({ key: 'Axialexternalhilo', value: Thickhilo + 2}));
-  
+        let Axialexternalhilo = Фexternalaxiallv+((2*Thickhilo)+(2*0.35))
 
+        dispatch(setHilo({ key: 'Axialexternalhilo', value: Thickhilo + 2}));
+        let Dm = Фexternalradiallv + Thickhilo;
+  
+          dispatch(setHilo({ key: 'Dmhilo', value: Dmhilo}));
+  
     }, [Thickhilo]);
 
     return(
@@ -43,11 +57,12 @@ function HiLo(){
     
      <div>
      <strong>For Ux:</strong>
-     <p>Dmtr = {Dmlv}</p>
+     <p>Dmtr = {Dmhilo}</p>
      </div>
      <button onClick={() => Changehilo('+')}> increase Thickness </button>
      <button onClick={() => Changehilo('-')}> decrease Thickness </button>
         </>
     )
 }
+
 export default HiLo;

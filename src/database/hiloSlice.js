@@ -4,7 +4,7 @@ const initialState = {
   Canallvhilo: 0.0,
   Psphilo: 0.0,
   Canalhvhilo: 0.0,
-  Thickhilo: 0.0,
+  Thickhilo: 8.5,
   Radialexternalhilo: 0.0,
   Axialexternalhilo: 0.4,
   Dmeanhilo: 0.0,
