@@ -1,0 +1,54 @@
+.flatwire-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: flex-start;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,255,255,0.05);
+    margin-top: 2rem;
+  }
+  
+  .flatwire-left {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+  
+  .input-group label {
+    color: #0ff;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+  }
+  
+  .input-group input {
+    background: #1e1e1e;
+    border: 1px solid #0ff;
+    border-radius: 6px;
+    padding: 0.5rem;
+    color: #0ff;
+    font-size: 1rem;
+    box-shadow: 0 0 6px rgba(0,255,255,0.15);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .input-group input:focus {
+    outline: none;
+    box-shadow: 0 0 10px #00ffff, 0 0 4px #00cccc;
+  }
+  
+  .flatwire-right img {
+    max-width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
+  }
+  

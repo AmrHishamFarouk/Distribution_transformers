@@ -2,7 +2,7 @@ import Flat from './WIRES/Flat';
 import Foil from './WIRES/Foil';
 import Round from './WIRES/Round';
 import React, { useEffect } from 'react';
-
+import './../CSS/LV/Lv1.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSpec} from './../database/specsSlice';
 import { setLV, selectLV } from './../database/lvSlice';
@@ -46,23 +46,24 @@ function barsSelection() {
 }
 
   return (
-    <>
-      <h1>L.V. winding</h1>
-      <div>Iline = Iph = {Iphlv.toFixed(4)} </div>
-      <h1>please choose the type of wire</h1>
-      <div>
-        <button onClick={() => ChangeWire('Foil')}>Foil</button>
-        <button onClick={() => ChangeWire('Flat')}>Flat</button>
-        <button onClick={() => ChangeWire('Round')}>Round</button>
-      </div>
-      <div>
-        {Wiretypelv == 'Foil' && <Foil />}
-        {Wiretypelv == 'Flat' && <Flat />}
-        {Wiretypelv == 'Round' && <Round />}
+      <>
+  <h1 className="neon-title">L.V. winding</h1>
+  <div className="neon-text">Iline = Iph = {Iphlv.toFixed(4)}</div>
 
-        <div>δ = {δlv.toFixed(4)} </div>
-      </div>
-    </>
+  <h1 className="neon-title">Please choose the type of wire</h1>
+  <div className="wire-buttons">
+    <button onClick={() => ChangeWire('Foil')}>Foil</button>
+    <button onClick={() => ChangeWire('Flat')}>Flat</button>
+    <button onClick={() => ChangeWire('Round')}>Round</button>
+  </div>
+
+  <div className="wire-output">
+    {Wiretypelv === 'Foil' && <Foil />}
+    {Wiretypelv === 'Flat' && <Flat />}
+    {Wiretypelv === 'Round' && <Round />}
+    <div className="neon-text">δ = {δlv.toFixed(4)}</div>
+  </div>
+</>
   );
 }
 export default Lv1;

@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react';
-
+import './CSS/Calc1.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { setSpec, selectSpec} from './database/specsSlice';
 
@@ -50,11 +50,9 @@ function Calc1() {
 
   return (
     <>
-      <h1>Temporary v/t:{Temporaryvt.toFixed(4)}</h1>
-
-      <h1>Nph: {Nph.toFixed(4)}</h1>
-
-      <h1>V/t:{VT.toFixed(4)}</h1>
+      <h1 className="neon-title">Temporary v/t: {Temporaryvt.toFixed(4)}</h1>
+      <h1 className="neon-title">Nph: {Nph.toFixed(4)}</h1>
+      <h1 className="neon-title">V/t: {VT.toFixed(4)}</h1>
     </>
   );
 }

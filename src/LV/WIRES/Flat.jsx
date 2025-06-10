@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import flatwire from "../../assets/wires/flat_csa.png"
-
+import './../../CSS/Wires/Flat.css'
 import { setLV, selectLV } from './../../database/lvSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -37,10 +37,6 @@ function Flat() {
 
   return (
     <>
-      <div>
-        <h2>Flat</h2>
-        <img scr=".assets/Flat.png" />
-      </div>
 
       <div>
         

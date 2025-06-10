@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { setSpec } from './database/specsSlice';
 import { useDispatch } from 'react-redux';
-
+import './CSS/Specs.css'
 function Specs() {
   const dispatch = useDispatch();
 
@@ -41,23 +41,23 @@ const updateValues = () => {
   ];
 
   return (
-    <div>
-      <h1>Specifications</h1>
-      <h2>Dyn11</h2>
-      <div>
-        {inputConfig.map(({ key, label, placeholder, defaultValue }) => (
-          <div key={key}>
-            <label>{label}</label>
-            <input
-              ref={inputRefs[key]}
-              placeholder={placeholder}
-              defaultValue={defaultValue}
-            />
-          </div>
-        ))}
+    <div className="specs-container">
+  <h1>Specifications</h1>
+  <h2>Dyn11</h2>
+  <div className="input-wrapper">
+    {inputConfig.map(({ key, label, placeholder, defaultValue }) => (
+      <div key={key} className="input-group">
+        <label>{label}</label>
+        <input
+          ref={inputRefs[key]}
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+        />
       </div>
-      <button onClick={updateValues}>Update Specs</button>
-    </div>
+    ))}
+  </div>
+  <button onClick={updateValues}>Update Specs</button>
+</div>
   );
 }
 

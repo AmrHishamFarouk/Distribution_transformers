@@ -4,6 +4,7 @@ import { setGeneral, selectGeneral} from '../../database/generalSlice';
 import { selectLV } from '../../database/lvSlice';
 import { setSpec, selectSpec } from '../../database/specsSlice';
 import core from "../../assets/core/core.jpeg";
+import "./../../CSS/General/Quickcore.css"
 
 
 function Quickcore(){           
@@ -46,35 +47,34 @@ function Quickcore(){
 
     return(
         <>
-        <div>
-          <div>
-            required deltacore = {Requiredcsacore}
-        </div>
-        <div>
-            required B = 1.6
-        </div>
-        <div>
-            current deltacore = {Csacore}
-        </div>
-        <div>
-            current B = {B}
-        </div>
-            <div>
-              <label>total stacking</label>
-              <input name="myInput" onChange={(e) => updateTotalstacking(parseFloat(e.target.value))}/>
-            </div>
-         
-             <div>
-              <label>largest width</label>
-              <input name="myInput" onChange={(e) => updateW1(parseFloat(e.target.value))}/>
-            </div>
-        
-              <div>
-              <label>core area net</label>
-              <input name="myInput" onChange={(e) => updateCsacore(parseFloat(e.target.value))}/>
-            </div>
-        </div>
-        <img src={core}/>
+<div className="core-section">
+  <div className="core-left">
+    <div className="neon-text">required deltacore = {Requiredcsacore}</div>
+    <div className="neon-text">required B = 1.6</div>
+    <div className="neon-text">current deltacore = {Csacore}</div>
+    <div className="neon-text">current B = {B}</div>
+
+    <div className="input-group small">
+      <label>total stacking</label>
+      <input onChange={(e) => updateTotalstacking(parseFloat(e.target.value))} />
+    </div>
+
+    <div className="input-group small">
+      <label>largest width</label>
+      <input onChange={(e) => updateW1(parseFloat(e.target.value))} />
+    </div>
+
+    <div className="input-group small">
+      <label>core area net</label>
+      <input onChange={(e) => updateCsacore(parseFloat(e.target.value))} />
+    </div>
+  </div>
+
+  <div className="core-right">
+    <img src={core} alt="core diagram" />
+  </div>
+</div>
+
         </>
     )
 }

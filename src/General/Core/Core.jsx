@@ -5,7 +5,7 @@ import Quickcore from './Quickcore';
 import Detailedcore from './Detailedcore';
 import { setGeneral, selectGeneral} from '../../database/generalSlice';
 import { setLV, selectLV } from '../../database/lvSlice';
-
+import './../../CSS/General/Core.css'
 function Core(){
     const dispatch = useDispatch();
 
@@ -36,13 +36,14 @@ const Фinternalaxial =  useSelector((state) => selectGeneral(state, 'Фinternal
 
     return(
     <>
-    <div>
-        <button onClick={() => setsimpleCore(true)}> Simple Core </button>
-        <button onClick={() => setsimpleCore(false)}> Detailed Core </button>
-    </div>
-    
-    {simpleCore == true && <Quickcore />}
-    {simpleCore == false && <Detailedcore />}
+<div className="core-toggle">
+  <button onClick={() => setsimpleCore(true)}>Simple Core</button>
+  <button onClick={() => setsimpleCore(false)}>Detailed Core</button>
+</div>
+
+{simpleCore === true && <Quickcore />}
+{simpleCore === false && <Detailedcore />}
+
     </>
     )
 }
