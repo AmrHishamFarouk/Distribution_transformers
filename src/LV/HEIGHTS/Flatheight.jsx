@@ -16,7 +16,7 @@ const Turnlengthlv = useSelector((state) => selectLV(state, 'WirelengTurnlengthl
     
 
   function updateHmechlv(value){
-    let NumWires = parseInt(value/ Turnlengthlv);
+    let NumWires = parseInt(value/ (Turnlengthlv*1.025));
     dispatch(setLV({ key: 'TurnsPerLayer', value: NumWires})); 
 
     dispatch(setLV({ key: 'Hmechlv', value: (NumWires*Turnlengthlv)})); 

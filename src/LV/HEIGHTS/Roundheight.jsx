@@ -20,7 +20,7 @@ function updateHmechlv(value) {
   console.log('Current Douter:', Douter);
   console.log('Current Nph:', Nph);
 
-  let NumWires = parseInt(value / Douter);
+  let NumWires = parseInt(value / (Douter*1.025));
   console.log('Computed NumWires:', NumWires);
 
   dispatch(setLV({ key: 'TurnsPerLayer', value: NumWires }));
