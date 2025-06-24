@@ -1,19 +1,85 @@
 function Hv1(){
-    // let HV = 10500,
-    //     vtoriginal = 15.396;
-    // HV = [HV*1.05,HV*1.025,HV,HV*0.975,HV*0.95,HV*0.925,HV*0.9]
-    // turns=[neeeeeeeeeed logic]
-    // vt=[HV[0]/turns[0],HV[1]/turns[1],HV[2]/turns[2],HV[3]/turns[3],HV[4]/turns[4],HV[5]/turns[5],HV[6]/turns[6]]
-    // tolerance=[]
+    // voltagetaps = get it from redux
 
-    // for(let i=0,i<7,i++){
-    //     tolerance.push(100*(1-(vt[i]/vtoriginal)))
+    // function voltagescalculator(){
+    //     let newvoltages =[];
+        
+    //     if(voltagetaps.length == 7){
+    //         for(int i=105.0;i>=90.0;i-=2.5){
+    //             newvoltages.append(HV*(i/100))
+    //         }
+    //         return newvoltages;
+    //     }
+        
+    //     else{
+    //         for(let i=0;i < voltagetaps.length;i++){
+    //             newvoltages.append(HV*(voltagetaps[i]/100));
+    //         }
+    //         return newvoltages;
+    //     }
+        
+    //     assign the centertap voltage to redux
+    //     set centertapvoltage = ;
+        
     // }
-
-    // Ilinehv = ratedpower/( Math.sqrt(3)*HV)
-    // Iphasehv = Ilinehv/Math.sqrt(3)
-    // Ilinehv10 = ratedpower/( Math.sqrt(3)*HV[6])
-    // Iphasehv10 = Ilinehv10/Math.sqrt(3)
+    
+    // function tempturnscalculator(voltages){
+    //     let tempturns =[];
+    //     for(int i = 0; i<voltages.length;i++){
+    //         let turns = voltages[i]/VT;
+    //         tempturns.push(turns);
+    //     }
+    //     return tempturns;
+    // }
+    
+    // const tempturns = tempturnscalculator(voltages);
+    
+    // function averagestepcalculator(tempturns){
+    //     let averagestep = 0.0;
+    //     for(int i = 0; i<tempturns.length;i++){
+    //         averagestep = averagestep + tempturns[i];
+    //     }
+    //     averagestep = averagestep/tempturns.length;
+    //     averagestep = math.round(averagestep);
+    
+    //     //dispatch when finished
+    
+    //     return averagestep;
+    // }
+    
+    // const averagestep = averagestepcalculator(voltages);
+    
+    // const firstturns = tempturns[0].round;
+    
+    // let turns = [firstturns];
+    
+    // function newturns(){
+    //     for(int i = 1;i < (tempturns.length-1);i++){
+    //         turns.append(turns[i-1]+averagestep);
+    //     }
+    
+    //     //dispatch when finished
+    //     return;
+    // }
+    
+    
+    // actualVT = [];
+    
+    // function calculateactualVT(){
+    //     for(int i = 0;i < (tempturns.length-1);i++){
+    //         actualVT.append(voltages[i]/turns[i]);
+    //     }
+    //     //dispatch when finished
+    // }
+    
+    // Tolerance = [];
+    
+    // function calculatetolerance(){
+    //     for(int i = 0;i < (actualVT.length-1);i++){
+    //         Tolerance.append((actualVT[i]/VT[i])-1);
+    //     }
+    //     //dispatch when finished
+    // }
 
     return(
         <center><h1>Hv1</h1></center>
