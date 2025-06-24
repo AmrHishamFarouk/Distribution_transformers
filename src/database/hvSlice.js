@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+  voltagetaps: [],
   Iphhv: 0.0,
   Ilinehv: 0.0,
   Iphhvpos7: 0.0,

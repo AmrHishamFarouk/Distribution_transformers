@@ -1,11 +1,19 @@
+import { setHV, selectHV } from './../database/hvSlice';
+import { useSelector, useDispatch } from 'react-redux';
+
+import Taps from './Taps/Taps'
+// dispatch(setLV({ key: 'Csalv', value: csa}));
+
 function Hv1(){
-    // voltagetaps = get it from redux
+    const dispatch = useDispatch();
+
+    const voltagetaps = useSelector((state) => selectHV(state, 'voltagetaps'));
 
     // function voltagescalculator(){
     //     let newvoltages =[];
         
     //     if(voltagetaps.length == 7){
-    //         for(int i=105.0;i>=90.0;i-=2.5){
+    //         for(let i=105.0;i>=90.0;i-=2.5){
     //             newvoltages.append(HV*(i/100))
     //         }
     //         return newvoltages;
@@ -17,7 +25,6 @@ function Hv1(){
     //         }
     //         return newvoltages;
     //     }
-        
     //     assign the centertap voltage to redux
     //     set centertapvoltage = ;
         
@@ -82,28 +89,9 @@ function Hv1(){
     // }
 
     return(
-        <center><h1>Hv1</h1></center>
-        // <>
-        // {HV[0]}      {HV[0]/vtoriginal}
-        // <br></br>
-
-        // {HV[1]}      {HV[1]/vtoriginal}
-        // <br></br>
-
-        // {HV[2]}      {HV[2]/vtoriginal}
-        // <br></br>
-
-        // {HV[3]}      {HV[3]/vtoriginal}
-        // <br></br>
-
-        // {HV[4]}      {HV[4]/vtoriginal}
-        // <br></br>
-
-        // {HV[5]}      {HV[5]/vtoriginal}
-        // <br></br>
-
-        // {HV[6]}      {HV[6]/vtoriginal}
-        // </>
+        <>
+            <Taps/>
+        </>
     )
 }
 export default Hv1;
