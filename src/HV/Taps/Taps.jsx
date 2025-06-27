@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setHV, selectHV } from './../../database/hvSlice';
+import { setSpec, selectSpec } from './../../database/specsSlice';
 
 function Taps() {
+  const dispatch = useDispatch();
+
   const defaultValues = [105, 102.5, 100, 97.5, 95, 92.5, 90];
   const [tapCount, setTapCount] = useState(defaultValues.length);
   const [tapValues, setTapValues] = useState({});
@@ -25,11 +30,18 @@ function Taps() {
       [`tap${index}`]: value,
     }));
   };
+    
+  const HV = useSelector((state) => selectSpec(state, 'HV'));
 
   const saveValues = () => {
-    console.log('Saved tap values:', tapValues);
     setSavedValues(tapValues);
-    // You could call a backend service or trigger PDF generation here
+    dispatch(setHV({ key: 'Tapvalueshv', value: tapValues}));
+    let voltages = [];
+  Object.values(tapValues).forEach((val) => {
+    const numericVal = parseFloat(val);
+    voltages.push(((numericVal / 100) * HV)*1000);
+  });
+    dispatch(setHV({ key: 'Voltages', value: voltages}));
   };
 
   return (
@@ -60,3 +72,4 @@ function Taps() {
 }
 
 export default Taps;
+

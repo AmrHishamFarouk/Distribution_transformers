@@ -41,12 +41,11 @@ function Calc1() {
 
   useEffect(() => {
     if (Nph > 0) {
-      // Dispatch updated values to Redux store only when Nph and VT are ready
       dispatch(setLV({ key: 'Nph', value: Nph }));
       dispatch(setSpec({ key: 'VT', value: VT }));
   
     }
-  }, [Nph, VT, LV, F, Δironcore, dispatch]); // Dependency array
+  }, [Nph, VT, LV, F, Δironcore, dispatch]); 
 
   return (
     <>

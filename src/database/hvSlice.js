@@ -1,8 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+
 const initialState = {
+  Tapvalueshv:[],
   Voltages: [],
   Stephv: 0.0,
+  Turnshv: [],
+  actualVT: [],
+  Tolerance: [],
   Iphhv: 0.0,
   Ilinehv: 0.0,
   Iphhvpos7: 0.0,
