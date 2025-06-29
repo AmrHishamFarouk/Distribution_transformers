@@ -15,13 +15,27 @@ function Hv1(){
     const actualVT = useSelector((state) => selectHV(state, 'actualVT'));
     const Tolerance = useSelector((state) => selectHV(state, 'Tolerance'));
 
+
+    let tempturns;
+    let averagestep ;
+    let turns;
     useEffect(() => {
-  console.log('Voltages redux:', Voltages);
-  console.log('VT redux:', VT);
-  console.log('Turnshv redux:', Turnshv);
-  console.log('actualVT redux:', actualVT);
-  console.log('Tolerance redux:', Tolerance);
-}, [Voltages, VT, Turnshv, actualVT, Tolerance]);
+      tempturns = tempturnscalculator(Voltages);
+      averagestep = averagestepcalculator(tempturns);
+    }, [Voltages]);
+
+    useEffect(() => {
+      
+    }, [tempturns]);
+
+    useEffect(() => {
+      turns = newturns();
+    }, [averagestep]);
+      
+    useEffect(() => {
+      calculatetolerance();
+    }, [turns]);
+      
 
     //turns but decimal
     function tempturnscalculator(Voltages){
@@ -30,34 +44,46 @@ function Hv1(){
             let turns = Voltages[i]/VT;
             tempturns.push(turns);
         }
+          console.log('temp turns:', tempturns);
+
+        
         return tempturns;
     }
     
-    const tempturns = tempturnscalculator(Voltages);
+    
     
     function averagestepcalculator(tempturns){
-      
-        let averagestep = 0.0;
+      averagestep = 0.0;
         for(let i = 0; i<tempturns.length -1;i++){
+          console.log('tempturns:', tempturns);
+
             averagestep = averagestep +(tempturns[i]-tempturns[i+1]) ;
+console.log('averagestep:', averagestep);
+
         }
         averagestep = averagestep/(tempturns.length-1);
         averagestep = Math.round(averagestep);
         dispatch(setHV({ key: 'Stephv', value: averagestep}));
+        console.log('averagestep:', averagestep);
+
         return averagestep;
     }
     
-    const averagestep = averagestepcalculator(tempturns);
     
+    
+
 
     function newturns(){
         const firstturns = Math.round(tempturns[0]);
+        console.log("averagestep",averagestep);
         let turns = [firstturns];
-        for(let i = 1;i <tempturns.length;i++){
-            turns.push(turns[i-1]-averagestep);
+        for (let i = 1; i < tempturns.length; i++) {
+          turns.push(turns[i - 1] - averagestep);
         }
         dispatch(setHV({ key: 'Turnshv', value: turns}));
-        return;
+        console.log(' turns:', turns);
+
+        return turns;
     }
     
     
@@ -67,24 +93,29 @@ function Hv1(){
             actualVT.push(Voltages[i]/Turnshv[i]);
         }
         dispatch(setHV({ key: 'actualVT', value: actualVT}));
-
+        console.log(' actualVT:', actualVT);
+        return actualVT;
     }
     
     
     function calculatetolerance(){
         let Tolerance = [];
         for(let i = 0;i < actualVT.length;i++){
-          let result = (actualVT[i].toFixed(3)/VT.toFixed(3));
-          console.log(result);
-          console.log((result*100)-100);
-
-            Tolerance.push((result.toFixed(3)-1)*100);
+          let result = (parseFloat(actualVT[i])/parseFloat(VT));
+          Tolerance.push(parseFloat(((result * 100) - 100).toFixed(4)));
         }
         dispatch(setHV({ key: 'Tolerance', value: Tolerance}));
-
+        return Tolerance;
     }
 
-      useEffect(() => {
+
+  let array1 ;
+  let array2 ;
+  let array3 ;
+  let array4 ;
+  let length ;
+
+  useEffect(() => {
         newturns()
         calculateactualVT()
         calculatetolerance()
@@ -95,14 +126,6 @@ function Hv1(){
         length = array1.length;
 
     }, [Voltages]); 
-
-    //assigning arreys
-  let array1 ;
-  let array2 ;
-  let array3 ;
-  let array4 ;
-  let length ;
-
 
     return(
         <>
