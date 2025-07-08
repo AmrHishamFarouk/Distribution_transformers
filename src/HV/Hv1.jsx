@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState } from 'react';
 
 import { setHV, selectHV } from './../database/hvSlice';
 import { setSpec, selectSpec } from './../database/specsSlice';
@@ -23,10 +23,6 @@ function Hv1(){
       tempturns = tempturnscalculator(Voltages);
       averagestep = averagestepcalculator(tempturns);
     }, [Voltages]);
-
-    useEffect(() => {
-      
-    }, [tempturns]);
 
     useEffect(() => {
       turns = newturns();
@@ -104,26 +100,29 @@ console.log('averagestep:', averagestep);
           let result = (parseFloat(actualVT[i])/parseFloat(VT));
           Tolerance.push(parseFloat(((result * 100) - 100).toFixed(4)));
         }
+        console.log('tol:',Tolerance);
         dispatch(setHV({ key: 'Tolerance', value: Tolerance}));
         return Tolerance;
     }
 
 
-  let array1 ;
-  let array2 ;
-  let array3 ;
-  let array4 ;
-  let length ;
+
+  const [array1, setArray1] = useState([]);
+  const [array2, setArray2] = useState([]);
+  const [array3, setArray3] = useState([]);
+  const [array4, setArray4] = useState([]);
+  const [length, setlength] = useState([]);
 
   useEffect(() => {
         newturns()
         calculateactualVT()
         calculatetolerance()
-        array1 = Voltages;
-        array2 = Turnshv;
-        array3 = actualVT;
-        array4 = Tolerance;
-        length = array1.length;
+
+      setArray1(Voltages);
+      setArray2(Turnshv);
+      setArray3(actualVT);
+      setArray4(Tolerance);
+      setlength(array1.length);
 
     }, [Voltages]); 
 
@@ -155,4 +154,5 @@ console.log('averagestep:', averagestep);
     )
 }
 export default Hv1;
+
 
