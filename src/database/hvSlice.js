@@ -15,6 +15,7 @@ const initialState = {
   Wiretypehv: 'foil',
   NumberOfWires: 1.0,
   δhv: 0.0,
+  δhvpos7: 0.0,
   Wirethicknesshv: 0.0,
   Wirelengthhv: 0.0,
   WireInsulation: 0.0,

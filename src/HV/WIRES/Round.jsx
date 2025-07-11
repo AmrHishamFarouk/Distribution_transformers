@@ -1,35 +1,37 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import roundwire from "../../assets/wires/round_csa.png"
+import { setHV, selectHV } from './../../database/hvSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 function Round() {
    const dispatch = useDispatch();
   
       function updatenumber(value){
-        dispatch(setLV({ key: 'NumberOfWires', value: value}));
+        dispatch(setHV({ key: 'NumberOfWires', value: value}));
       };
       function updateDinner(value){
-        dispatch(setLV({ key: 'Dinner', value: value}));
+        dispatch(setHV({ key: 'Dinner', value: value}));
       };
       function updateDouter(value){
-        dispatch(setLV({ key: 'Douter', value: value}));
+        dispatch(setHV({ key: 'Douter', value: value}));
       };          
-      const Dinner = useSelector((state) => selectLV(state, 'Dinner'));
-      const NumberOfWires = useSelector((state) => selectLV(state, 'NumberOfWires'));
+      const Dinner = useSelector((state) => selectHV(state, 'Dinner'));
+      const NumberOfWires = useSelector((state) => selectHV(state, 'NumberOfWires'));
       
       useEffect(() => {
-        let csa = (((22/7)*Math.pow(Dinner, 2))/4)*NumberOfWires
-        dispatch(setLV({ key: 'Csalv', value: csa}));
+        let csa = (((22/7)*Math.pow(Dinner, 2))/4)*NumberOfWires;
+        dispatch(setHV({ key: 'Csahv', value: csa}));
       }, [NumberOfWires, Dinner]);
 
-        const Douter = useSelector((state) => selectLV(state, 'Douter'));
+        const Douter = useSelector((state) => selectHV(state, 'Douter'));
 
       useEffect(() => {
         let WireInsulation = (Douter-Dinner)/2;
-        dispatch(setLV({ key: 'WireInsulation', value: WireInsulation}));
+        dispatch(setHV({ key: 'WireInsulation', value: WireInsulation}));
       }, [Douter, Dinner]);
 
-      const Csalv = useSelector((state) => selectLV(state, 'Csalv'));
-      const WireInsulation = useSelector((state) => selectLV(state, 'WireInsulation'));
+      const Csahv = useSelector((state) => selectHV(state, 'Csahv'));
+      const WireInsulation = useSelector((state) => selectHV(state, 'WireInsulation'));
 
   return (
 <>
@@ -53,8 +55,8 @@ function Round() {
           </div>
         <div>
         <div>
-          <div> ∆c.s.a = {Csalv.toFixed(4)}</div>
-          <div> WireInsulation = {WireInsulation.toFixed(4)}</div>
+          <div> ∆c.s.a = {typeof Csahv === "number" ? Csahv.toFixed(4) : "N/A"}</div>
+          <div> WireInsulation = {typeof WireInsulation === "number" ? WireInsulation.toFixed(4) : "N/A"}</div>
         </div>
 
         <img src={roundwire} alt="Round CSA imgage missed" />

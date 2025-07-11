@@ -54,7 +54,7 @@ function Round() {
               <label>Number of wires</label>
               <input name="myInput"  onChange={(e) => updatenumber(parseInt(e.target.value))} />
             </div>
-            </div>
+          </div>
         <div>
         <div>
           <div> ∆c.s.a = {Csalv.toFixed(4)}</div>

@@ -16,6 +16,9 @@ function Hv2() {
 
   const Ratedpower = useSelector((state) => selectSpec(state, 'Ratedpower'));
   const HV = useSelector((state) => selectSpec(state, 'HV'));
+  const Csahv = useSelector((state) => selectHV(state, 'Csahv'));
+  const δhv = useSelector((state) => selectHV(state, 'δhv'));
+  const δhvpos7 = useSelector((state) => selectHV(state, 'δhvpos7'));
 
     let Ilinehv =  Ratedpower/(Math.sqrt(3)*HV);
     dispatch(setHV({ key: 'Ilinehv', value: Ilinehv}));
@@ -29,18 +32,20 @@ function Hv2() {
     let Iphpos7hv = Ilinepos7hv/Math.sqrt(3);
     dispatch(setHV({ key: 'Iphpos7hv', value: Iphpos7hv}));
 
-    // dispatch(setHV({ key: 'Iphhv', value: Iphhv}));
-    // dispatch(setHV({ key: 'Ilinehv', value: Ilinehv}));
-    // dispatch(setHV({ key: 'Iphpos7hv', value: Iphpos7hv}));
-    // dispatch(setHV({ key: 'Ilinepos7hv', value: Ilinepos7hv}));
-
-
   const [Wire, setWire] = useState(null);
 
   const ChangeWire = (wire) => {
     setWire(wire);
+    dispatch(setHV({ key: 'Wiretypehv', value: Wire }));
   };
 
+   useEffect(() => {
+            let δhv =  Iph/Csahv;
+            dispatch(setHV({ key: 'δhv', value: δhv}));
+            let δhvposition7 =  Iphpos7/Csahv;
+            dispatch(setHV({ key: 'δhvpos7', value: δhvposition7}));
+          }, [Csahv, Iph, Iphpos7]); 
+  
   return (
     <>
       <p><strong>Ilinehv:</strong> {Iline.toFixed(2)} A</p>
@@ -59,10 +64,9 @@ function Hv2() {
         {Wire == 'Flat' && <Flat />}
         {Wire == 'Round' && <Round />}
 
-        <div>δ = Iph/c.s.a =</div>
-        <div>δ-10= Iph-10/c.s.a =</div>
+        <div>δ = Iph/c.s.a ={typeof δhv === "number" ? δhv.toFixed(4) : "N/A"}</div>
+        <div>δ-10= Iph-10/c.s.a ={typeof δhvpos7 === "number" ? δhvpos7.toFixed(4) : "N/A"}</div>
       </div>
-      <button type="submit">next</button>
     </>
   );
 }
