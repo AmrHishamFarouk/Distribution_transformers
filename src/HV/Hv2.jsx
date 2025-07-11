@@ -17,16 +17,23 @@ function Hv2() {
   const Ratedpower = useSelector((state) => selectSpec(state, 'Ratedpower'));
   const HV = useSelector((state) => selectSpec(state, 'HV'));
 
-  useEffect(() => {
-    let Iphhv = Ilinehv/Math.sqrt(3);
     let Ilinehv =  Ratedpower/(Math.sqrt(3)*HV);
-    let Iphpos7hv = Ilinepos7hv/Math.sqrt(3);
-    let Ilinepos7hv =  Ratedpower/(Math.sqrt(3)*HV*0.9);
-    dispatch(setHV({ key: 'Iphhv', value: Iphhv}));
     dispatch(setHV({ key: 'Ilinehv', value: Ilinehv}));
-    dispatch(setHV({ key: 'Iphpos7hv', value: Iphpos7hv}));
+
+    let Iphhv = Ilinehv/Math.sqrt(3);
+    dispatch(setHV({ key: 'Iphhv', value: Iphhv}));
+
+    let Ilinepos7hv =  Ratedpower/(Math.sqrt(3)*HV*0.9);
     dispatch(setHV({ key: 'Ilinepos7hv', value: Ilinepos7hv}));
-}, [Ratedpower, HV]);
+
+    let Iphpos7hv = Ilinepos7hv/Math.sqrt(3);
+    dispatch(setHV({ key: 'Iphpos7hv', value: Iphpos7hv}));
+
+    // dispatch(setHV({ key: 'Iphhv', value: Iphhv}));
+    // dispatch(setHV({ key: 'Ilinehv', value: Ilinehv}));
+    // dispatch(setHV({ key: 'Iphpos7hv', value: Iphpos7hv}));
+    // dispatch(setHV({ key: 'Ilinepos7hv', value: Ilinepos7hv}));
+
 
   const [Wire, setWire] = useState(null);
 
@@ -36,8 +43,6 @@ function Hv2() {
 
   return (
     <>
-      <h1>H.V. winding</h1>
-      
       <p><strong>Ilinehv:</strong> {Iline.toFixed(2)} A</p>
       <p><strong>Iphhv:</strong> {Iph.toFixed(2)} A</p>
       <p><strong>Ilinepos7hv:</strong> {Ilinepos7.toFixed(2)} A</p>

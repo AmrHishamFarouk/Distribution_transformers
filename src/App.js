@@ -19,7 +19,7 @@ import { useState } from 'react';
 
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const pages = [<Specs/>,<Calc1/>,<Core/>,<Lv1/>,<Heightlv/>,<Lv2/>,<Lv3/>,<Lv4/>,<HiLo />,<Hv1/>,<Heighthv/>,<Hv2/>,<Hv3/>,<Hv4/>,<Impedance/>,<Ironcore/>,<Mechanicalforces/>];
+  const pages = [<Specs/>,<Calc1/>,<Core/>,<Lv1/>,<Heightlv/>,<Lv2/>,<Lv3/>,<Lv4/>,<HiLo />,<Hv1/>,<Hv2/>,<Heighthv/>,<Hv3/>,<Hv4/>,<Impedance/>,<Ironcore/>,<Mechanicalforces/>];
   const handleNext = () => {
     if (currentIndex < pages.length - 1) {
       setCurrentIndex(currentIndex + 1); // Increment index only if it's not the last one
