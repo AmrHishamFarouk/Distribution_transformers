@@ -88,7 +88,7 @@ function Lv3() {
       
       {vt} <br/>
     TurnsPerLayer={TurnsPerLayer}<br/> 
-    WireInsulation={WireInsulation} <br/>
+    WireInsulation = {WireInsulation} {WireInsulation === 0 && "because it is foil"}<br />
     InsulationPaperThicknesslv={InsulationPaperThicknesslv}<br/>
       {Noins == 2 && (
         <img src={ins2} alt="ins 2 missed missed" />      )}
