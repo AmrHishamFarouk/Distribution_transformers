@@ -9,11 +9,10 @@ function Heighthv() {
   const dispatch = useDispatch();
 
   const Wiretypehv = useSelector((state) => selectHV(state, 'Wiretypehv'));
-  console.log("Wiretypehv",Wiretypehv);
   return (
     <>
-      {Wiretypehv == 'Flat' && <Roundheight/>}
-      {Wiretypehv == 'Round' && <Flatheight/>}
+      {Wiretypehv == 'Flat' && <Flatheight/>}
+      {Wiretypehv == 'Round' && <Roundheight/>}
       {Wiretypehv == 'Foil' && <Foilheight/>}
     </>
   );

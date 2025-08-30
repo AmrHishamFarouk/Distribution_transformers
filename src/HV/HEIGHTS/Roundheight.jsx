@@ -1,58 +1,50 @@
-import React, { useEffect,useState } from 'react';
-import HeightWire from '../../assets/heights/HeightWire.png'
-import { setLV, selectLV } from './../../database/lvSlice';
+import React, { useState } from 'react';
+import HeightWire from '../../assets/heights/HeightWire.png';
+import { setHV, selectHV } from './../../database/hvSlice';
+import { selectLV } from './../../database/lvSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
-function Roundheight(){
-const dispatch = useDispatch();
+function Roundheight() {
+  const dispatch = useDispatch();
 
-const Hmechlv = useSelector((state) => selectLV(state, 'Hmechlv'));
-const Heleclv = useSelector((state) => selectLV(state, 'Heleclv'));
-const Nph = useSelector((state) => selectLV(state, 'Nph'));
-const Layerslv = useSelector((state) => selectLV(state, 'Layerslv'));
-const Douter = useSelector((state) => selectLV(state, 'Douter'));
-useEffect(() => {
-  console.log('State Values:', { Hmechlv, Heleclv, Nph, Layerslv, Douter });
-}, [Hmechlv, Heleclv, Nph, Layerslv, Douter]);
+  const [sliderValue, setSliderValue] = useState(1);
+  const [factor, setfactor] = useState(1.025);
 
-function updateHmechlv(value) {
-  console.log('updateHmechlv called with value:', value);
-  console.log('Current Douter:', Douter);
-  console.log('Current Nph:', Nph);
+  const Douter = useSelector((state) => selectHV(state, 'Douter'));
+  const Heleclv = useSelector((state) => selectLV(state, 'Heleclv'));
 
-  let NumWires = parseInt(value / (Douter*1.025));
-  console.log('Computed NumWires:', NumWires);
+  const tempLayerTurns = Heleclv / (Douter*factor);
+  const maxValue = parseInt(tempLayerTurns)-1;
 
-  dispatch(setLV({ key: 'TurnsPerLayer', value: NumWires }));
-  dispatch(setLV({ key: 'Hmechlv', value: NumWires * Douter }));
-  dispatch(setLV({ key: 'Heleclv', value: (NumWires - 1) * Douter }));
 
-  let layers = Nph / (NumWires - 1);
-  console.log('Computed Layers:', layers);
 
-  dispatch(setLV({ key: 'Layerslv', value: Math.ceil(layers) }));
+  const handleChange = (event) => {
+    const newValue = Number(event.target.value);
+    setSliderValue(newValue);
+    console.log('Slider moved to:', newValue);
+    dispatch(setHV({ key: 'Hmech', value: newValue }));
+
+    const Hmechhv = (newValue+1)*Douter*factor;
+  };
+
+  return (
+    <>
+      <div>
+        <div>
+          <label>Helec</label>
+          <input type="range" min="1" max={maxValue} value={sliderValue} onChange={handleChange} style={{ width: '50%' }}/>
+          <button onClick={() => setfactor(1.025)}>Factor 1.025</button>
+          <button onClick={() => setfactor(1.035)}>Factor 1.035</button>
+
+        {/* <h2>Hmech = {Hmechlv}</h2>
+            <h2>Helec = {Heleclv}</h2> */}
+        </div>
+        <p>Current Value: {sliderValue}</p>
+      </div>
+        {/* <img src={HeightWire} alt="HeightWire.png is missing"/>
+          <h3>no. of layers: {Layerslv}</h3> */}
+    </>
+  );
 }
 
-
-    return(
-          <>
-          <div>
-            <div>
-              <label>Hmech</label>
-<input name="myInput" placeholder="mm" onChange={(e) => {
-  console.log('Input changed:', e.target.value);
-  updateHmechlv(parseFloat(e.target.value));
-}} />            </div>
-            <h2>Hmech = {Hmechlv}</h2>
-            <h2>Helec = {Heleclv}</h2>
-          </div>
-          <img
-            src={HeightWire}
-            alt="HeightWire.png is missing"
-          />
-          <h3>no. of layers: {Layerslv}</h3>
-
-        </>
-  )
-}
 export default Roundheight;
