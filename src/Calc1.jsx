@@ -48,7 +48,7 @@ function Calc1() {
   return (
     <>
       <h1 className="neon-title">Temporary v/t: {Temporaryvt.toFixed(4)}</h1>
-      <h1 className="neon-title">Nph: {Nph.toFixed(4)}</h1>
+      <h1 className="neon-title">Nph: {Nph}</h1>
       <h1 className="neon-title">V/t: {VT.toFixed(4)}</h1>
       <div>
         <label>change Nph</label>

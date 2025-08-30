@@ -2,93 +2,63 @@ import React, { useState } from 'react';
 import Packets2 from './PACKETS/Packets2';
 import Packets3 from './PACKETS/Packets3';
 import Packets4 from './PACKETS/Packets4';
-
 import ins2 from '../assets/insulations/ins2.png';
 import ins3 from '../assets/insulations/ins3.png';
 import ins4 from '../assets/insulations/ins4.png';
 import ins5 from '../assets/insulations/ins5.png';
 import ins6 from '../assets/insulations/ins6.png';
+import { setHV, selectHV } from './../database/hvSlice';
 
 function Hv3() {
-//   const [minNopack, setminNopack] = useState(null);
-//   setminNopack(parseInt('n-10%'));
+    const dispatch = useDispatch();
+    const δhv =  useSelector((state) => selectHV(state, 'δhv'));
 
-//   const [Nopack, setNopack] = useState(minNopack);
+  const Wirethicknesslv = useSelector((state) => selectLV(state, 'Wirethicknesslv'));
+
+
+  useEffect(() => {
+      let MinLayersPerPacket = 100 / (Math.pow(δlv, 2) * Wirethicknesslv);
+      let n = parseInt(MinLayersPerPacket);
+      dispatch(setLV({ key: 'MinLayersPerPacketlv', value: n }));
+  }, [δlv, Wirethicknesslv]);
+        
+      const n = useSelector((state) => selectLV(state, 'MinLayersPerPacketlv'));
+      const Nph = useSelector((state) => selectLV(state, 'Nph'));
+
+      useEffect(() => {
+        let packets = Math.ceil(Nph/n);
+        dispatch(setLV({ key: 'Minpacketslv', value: packets }));
+    }, [Nph, n]);
+          
+    const Minpacketslv = useSelector((state) => selectLV(state, 'Minpacketslv'));
+
+        
+  const [Nopack, setNopack] = useState(1);
   
+  useEffect(() => {
+    setNopack(Minpacketslv); // Sync when Minpacketslv updates
+  }, [Minpacketslv]);
 
-//   let Changepack = (sign) => {
-//     if (sign === '+' && Nopack < 6) {
-//       setNopack(Nopack + 1);
-//     } else if (sign === '-' && Nopack > minNopack) {
-//       setNopack(Nopack - 1);
-//     }
-//   };
-
-
-//   // insulation equations
-
-// let [Noins, setNoins] = useState(2);
-  
-//     let ChangeIns = (sign) => {
-//       switch (sign) {
-//         case '+':
-//           if (Noins == 6) {
-//             break;
-//           }
-//           setNoins(Noins + 1);
-//           break;
-//         case '-':
-//           if (Noins == 2) {
-//             break;
-//           }
-//           setNoins(Noins - 1);
-//           break;
-//         default:
-//           break;
-//       }
-//       console.log(Noins);
-//     };
+  let Changepack = (sign) => {
+    setNopack(prevNopack => {
+      if (sign === '+' && prevNopack < 4) return prevNopack + 1;
+      if (sign === '-' && prevNopack > Minpacketslv) return prevNopack - 1;
+      return prevNopack; // Keep the same value if conditions are not met
+    });
+    console.log("Current Nopack:", Nopack);
+  };
 
   return (
-    <center><h1>Hv3</h1></center>
-
-//     <>
-//     <div>
-//          <div> n= 100/ (δ^2)*thicknessofwire = = parseInt(n)</div>
-//       <div> n-10%= 100/ (δ-10%^2)*thicknessofwire = = parseInt(n)</div>
-
-//       {Nopack == 2 && <Packets2 />}
-//       {Nopack == 3 && <Packets3 />}
-//       {Nopack == 4 && <Packets4 />}
-//       <div>
-//         <button onClick={() => Changepack('+')}> increase insulation </button>
-//         <button onClick={() => Changepack('-')}> decrease insulation </button>
-//       </div>   
-//     </div>
-
-// {/* insulation section */}
-//     <div>
-//       <div>insulation between layers</div>
-//             <div>
-//               <button onClick={() => ChangeIns('+')}> increase insulation </button>
-//               <button onClick={() => ChangeIns('-')}> decrease insulation </button>
-//             </div>
-//             {Noins == 2 && (
-//               <img src={ins2} alt="ins 2 missed missed" />      )}
-//             {Noins == 3 && (
-//               <img src={ins3} alt="ins 3 missed missed" />
-//             )}
-//             {Noins == 4 && (
-//               <img src={ins4} alt="ins 4 missed missed" />
-//             )}
-//             {Noins == 5 && (
-//               <img src={ins5} alt="ins 5 missed missed" />
-//             )}
-//             {Noins == 6 && (
-//               <img src={ins6} alt="ins 6 missed missed" />
-//             )}
-//     </div>
-//     </>
+    <>
+      <div> n= {n.toFixed(2)}</div>
+      {Nopack == 2 && <Packets2 />}
+      {Nopack == 3 && <Packets3 />}
+      {Nopack == 4 && <Packets4 />}
+      <div>
+        <button onClick={() => Changepack('+')}> increase insulation </button>
+        <button onClick={() => Changepack('-')}> decrease insulation </button>
+      </div>
+    </>
   );
 }
 export default Hv3;

@@ -28,7 +28,7 @@ function App() {
   return (
     <div>
         {pages[currentIndex]}
-        <center><button onClick={handleNext}>Next</button></center>
+        <button onClick={handleNext} >Next</button>    
     </div>
     );
 }
