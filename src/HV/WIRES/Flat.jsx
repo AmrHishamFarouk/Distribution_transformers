@@ -1,5 +1,9 @@
 import React, { useEffect,useState } from 'react';
-import flatwire from "../../assets/wires/flat_csa.png"
+import flatwire1 from "../../assets/wires/flat_csa.png";
+import flatwire2horizontally from "../../assets/wires/2wires_horizontal_flat.png";
+import flatwire3horizontally from "../../assets/wires/3wires_horizontal_flat.png";
+import flatwire2vertically from "../../assets/wires/2wires_vertical_flat.png";
+import flatwire3vertically from "../../assets/wires/3wires_vertical_flat.png";
 
 import { setHV, selectHV } from './../../database/hvSlice';
 import { useSelector, useDispatch } from 'react-redux';
@@ -33,7 +37,36 @@ function Flat() {
           dispatch(setHV({ key: 'Csahv', value: csa}));
         }, [Wirethicknesshv, Wirelengthhv, WireR,NumberOfWires]);
         
-  const Csahv = useSelector((state) => selectHV(state, 'Csahv'));
+    const Csahv = useSelector((state) => selectHV(state, 'Csahv'));
+    const Wirealignment = useSelector((state) => selectHV(state, 'Wirealignmenthv'));
+
+    function alignWire(value){
+      dispatch(setHV({ key: 'Wirealignmenthv', value: value}));
+    }
+
+const [wirepicture, setwirepicture] = useState(flatwire1);
+
+useEffect(() => {
+  switch (`${Wirealignment}_${NumberOfWires}`) {
+    case 'vertically_2':
+      setwirepicture(flatwire2vertically);
+      break;
+    case 'vertically_3':
+      setwirepicture(flatwire3vertically);
+      break;
+    case 'horizontally_2':
+      setwirepicture(flatwire2horizontally);
+      break;
+    case 'horizontally_3':
+      setwirepicture(flatwire3horizontally);
+      break;
+    default:
+      setwirepicture(flatwire1);
+  }
+}, [Wirealignment, NumberOfWires]);
+
+
+
 
   return (
     <>
@@ -71,13 +104,15 @@ function Flat() {
               <label>Number of wires</label>
               <input name="myInput"  defaultValue= '1' onChange={(e) => updatenumber(parseInt(e.target.value))} />
             </div>
+            <button onClick={() => alignWire('vertically')}>Aligned vertically</button>
+            <button onClick={() => alignWire('horizontally')}>Aligned horizontally</button>
           </div>
           </div>
 
           <div> ∆c.s.a = {Csahv.toFixed(4)}</div>
         </div>
 
-        <img src={flatwire} alt="flat CSA imgage missed" />
+        <img src={wirepicture} alt="flat CSA imgage missed" />
       </div>
     </>
   );

@@ -12,6 +12,7 @@ const initialState = {
   Iphhvpos7: 0.0,
   Ilinehvpos7: 0.0,
   Wiretypehv: 'foil',
+  Wirealignmenthv: 'vertically',
   NumberOfWires: 1.0,
   δhv: 0.0,
   δhvpos7: 0.0,
