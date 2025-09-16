@@ -1,46 +1,80 @@
-import React, { useEffect,useState } from 'react';
-
-import HeightWire from '../../assets/heights/HeightWire.png'
-import { setLV, selectLV } from './../../database/lvSlice';
+import React, {useEffect, useState } from 'react';
+import HeightWire from '../../assets/heights/HeightWire.png';
+import { setHV, selectHV } from './../../database/hvSlice';
+import { selectLV } from './../../database/lvSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 function Flatheight(){
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-const Hmechlv = useSelector((state) => selectLV(state, 'Hmechlv'));
-const Heleclv = useSelector((state) => selectLV(state, 'Heleclv'));
-const Wirelengthlv = useSelector((state) => selectLV(state, 'Wirelengthlv'));
-const Nph = useSelector((state) => selectLV(state, 'Nph'));
-const Layerslv = useSelector((state) => selectLV(state, 'Layerslv'));
-const Turnlengthlv = useSelector((state) => selectLV(state, 'WirelengTurnlengthlvthlv'));
-    
+  const [sliderValue, setSliderValue] = useState(1);
+  const [factor, setfactor] = useState(1.025);
+  const [maxValue, setmaxValue] = useState(401);
 
-  function updateHmechlv(value){
-    let NumWires = parseInt(value/ (Turnlengthlv*1.025));
-    dispatch(setLV({ key: 'TurnsPerLayer', value: NumWires})); 
+  const Douter = useSelector((state) => selectHV(state, 'Douter'));
+  const NumberOfWires = useSelector((state) => selectHV(state, 'NumberOfWires'));
+  const Heleclv = useSelector((state) => selectLV(state, 'Heleclv'));
+  const Helechv = useSelector((state) => selectHV(state, 'Helechv'));
+  const Hmechhv = useSelector((state) => selectHV(state, 'Hmechhv'));
+  const Turnshv = useSelector((state) => selectHV(state, 'Turnshv'));
+  const Layershv = useSelector((state) => selectHV(state, 'Layershv'));
+  const Wirealignment = useSelector((state) => selectHV(state, 'Wirealignmenthv'));
+  const Wirelength = useSelector((state) => selectHV(state, 'Wirelengthhv'));
+  const WireInsulation = useSelector((state) => selectHV(state, 'WireInsulation'));
 
-    dispatch(setLV({ key: 'Hmechlv', value: (NumWires*Turnlengthlv)})); 
+      useEffect(() => {
+  if(Wirealignment == 'vertically'){
+    const tempLayerTurns = Heleclv / ((Wirelength+WireInsulation)*NumberOfWires*factor);
+    setmaxValue(parseInt(tempLayerTurns)-1);
+  }
+  else if(Wirealignment == 'horizontally'){
+    const tempLayerTurns = Heleclv / ((Wirelength+WireInsulation)*factor);
+    setmaxValue(parseInt(tempLayerTurns)-1);
+  };
+  }, [Heleclv]);
 
-    dispatch(setLV({ key: 'Heleclv', value: ((NumWires-1)*Turnlengthlv)}));
-    let layers = Nph/(NumWires-1)
-    dispatch(setLV({ key: 'Layerslv', value: Math.ceil(layers)})); 
 
-  }    
+  const handleChange = (event) => {
+    const newValue = Number(event.target.value);
+    setSliderValue(newValue);
+  };
+
+    useEffect(() => {
+      if(Wirealignment == 'vertically'){
+        const Helechv = sliderValue*NumberOfWires*(Wirelength+WireInsulation)*factor;
+        dispatch(setHV({ key: 'Helechv', value: Helechv}));
+        const Hmechhv = Helechv+((Wirelength+WireInsulation)*factor);
+        dispatch(setHV({ key: 'Hmechhv', value: Hmechhv}));
+        const layers = Turnshv[0]/sliderValue;
+        dispatch(setHV({ key: 'Layershv', value: layers}));
+      }
+      else if(Wirealignment == 'horizontally'){
+        const Helechv = sliderValue*(Wirelength+WireInsulation)*factor;
+        dispatch(setHV({ key: 'Helechv', value: Helechv}));
+        const Hmechhv = Helechv+((Wirelength+WireInsulation)*factor);
+        dispatch(setHV({ key: 'Hmechhv', value: Hmechhv}));
+        const layers = Turnshv[0]/sliderValue;
+        dispatch(setHV({ key: 'Layershv', value: layers}));
+      };
+  }, [sliderValue,factor]);
+
     return(
         <>
+        <div>
           <div>
-            <div>
-              <label>Hmech</label>
-              <input name="myInput" placeholder="mm" onChange={(e) => updateHmechlv(parseFloat(e.target.value))} />
-            </div>
-            <h2>Hmech = {Hmechlv}</h2>
-            <h2>Helec = {Heleclv}</h2>
+            <label>Helec</label>
+            <input type="range" min={maxValue-30} max={maxValue} value={sliderValue} onChange={handleChange} style={{ width: '50%' }}/>
+            <button onClick={() => setfactor(1.025)}>Factor 1.025</button>
+            <button onClick={() => setfactor(1.035)}>Factor 1.035</button>
+
+          <h2>Hmechhv = {Hmechhv.toFixed(1)}</h2>
+              <h2>Helechv = {Helechv.toFixed(1)}</h2>
+              <h2>Heleclv = {Heleclv.toFixed(1)}</h2>
           </div>
-        <img
-          src={HeightWire}
-          alt="HeightWire.png is missing"
-        />
-        <h3>no. of layers: {Layerslv}</h3>
+          <p>turns per layer: {sliderValue}</p>
+        </div>
+          <img src={HeightWire} alt="HeightWire.png is missing"/>
+            <h3>no. of layers: {Layershv.toFixed(2)}</h3>
       </>
   )
 }
