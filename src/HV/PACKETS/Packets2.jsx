@@ -1,19 +1,42 @@
-import React from 'react';
+import React, { useState , useEffect } from 'react';
 import doublepackets from '../../assets/packets/2packets.png'
+
+import { useSelector, useDispatch } from 'react-redux';
+import { setLV, selectLV } from './../../database/lvSlice';
+
 function Packets2() {
+      const dispatch = useDispatch();
+
+      dispatch(setLV({ key: 'Nocollingductlv', value: 1 }));
+
+      function updatefirstpacket(value){
+          dispatch(setLV({ key: 'Firstpacketlv', value: value }));
+      };
+      function updatesecondpacket(value){
+        dispatch(setLV({ key: 'Secondpacketlv', value: value }));
+    };   
+
+    const Firstpackethv = useSelector((state) => selectHV(state, 'Firstpackethv'));
+    const Secondpackethv = useSelector((state) => selectHV(state, 'Secondpackethv'));
+
+    useEffect(() => {
+//code here for checking if the no of layers is correct
+
+        }, [Firstpacketlv, Secondpacketlv,Thirdpacketlv,Fourthpacketlv]); 
+
   return (
     <>
       <div>No. of layers in each packet</div>
-      <h1>HV</h1>
+
       <div>
         <div>
           <div>
             <label>1st packet</label>
-            <input name="myInput" placeholder="layers" />
+            <input name="myInput" placeholder="layers" onChange={(e) => updatefirstpacket(parseFloat(e.target.value))} />
           </div>
           <div>
             <label>2nd packet</label>
-            <input name="myInput" placeholder="layers" />
+            <input name="myInput" placeholder="layers" onChange={(e) => updatesecondpacket(parseFloat(e.target.value))}/>
           </div>
         </div>
         <div><img src={doublepackets} alt='two packets'/></div>
@@ -22,3 +45,4 @@ function Packets2() {
   );
 }
 export default Packets2;
+

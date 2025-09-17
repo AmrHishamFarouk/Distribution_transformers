@@ -25,6 +25,7 @@ function Hv3() {
       const n = useSelector((state) => selectLV(state, 'MinLayersPerPacketlv'));
       const Nph = useSelector((state) => selectLV(state, 'Nph'));
 
+      
       useEffect(() => {
         let packets = Math.ceil(Nph/n);
         dispatch(setLV({ key: 'Minpacketslv', value: packets }));
