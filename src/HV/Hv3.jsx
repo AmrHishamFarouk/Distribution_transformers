@@ -1,65 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
+import Packets1 from './PACKETS/Packets1';
 import Packets2 from './PACKETS/Packets2';
 import Packets3 from './PACKETS/Packets3';
 import Packets4 from './PACKETS/Packets4';
-import ins2 from '../assets/insulations/ins2.png';
-import ins3 from '../assets/insulations/ins3.png';
-import ins4 from '../assets/insulations/ins4.png';
-import ins5 from '../assets/insulations/ins5.png';
-import ins6 from '../assets/insulations/ins6.png';
+
+import { useSelector, useDispatch } from 'react-redux';
 import { setHV, selectHV } from './../database/hvSlice';
 
 function Hv3() {
-    const dispatch = useDispatch();
-    const δhv =  useSelector((state) => selectHV(state, 'δhv'));
-
-  const Wirethicknesslv = useSelector((state) => selectLV(state, 'Wirethicknesslv'));
-
-
-  useEffect(() => {
-      let MinLayersPerPacket = 100 / (Math.pow(δlv, 2) * Wirethicknesslv);
-      let n = parseInt(MinLayersPerPacket);
-      dispatch(setLV({ key: 'MinLayersPerPacketlv', value: n }));
-  }, [δlv, Wirethicknesslv]);
-        
-      const n = useSelector((state) => selectLV(state, 'MinLayersPerPacketlv'));
-      const Nph = useSelector((state) => selectLV(state, 'Nph'));
-
-      
-      useEffect(() => {
-        let packets = Math.ceil(Nph/n);
-        dispatch(setLV({ key: 'Minpacketslv', value: packets }));
-    }, [Nph, n]);
-          
-    const Minpacketslv = useSelector((state) => selectLV(state, 'Minpacketslv'));
-
-        
+  const dispatch = useDispatch();
+  const δhv =  useSelector((state) => selectHV(state, 'δhv'));
   const [Nopack, setNopack] = useState(1);
-  
-  useEffect(() => {
-    setNopack(Minpacketslv); // Sync when Minpacketslv updates
-  }, [Minpacketslv]);
+  const Wirethicknesshv = useSelector((state) => selectHV(state, 'Wirethicknesshv'));
 
+
+  useEffect(() => {
+      let MinLayersPerPacket = 100 / (Math.pow(δhv, 2) * Wirethicknesshv);
+      let n = parseInt(MinLayersPerPacket);
+      dispatch(setHV({ key: 'MinLayersPerPackethv', value: n }));
+  }, [δhv, Wirethicknesshv]);
+        
+      const n = useSelector((state) => selectHV(state, 'MinLayersPerPackethv'));
+      const layers = useSelector((state) => selectHV(state, 'Layershv'));
+  
   let Changepack = (sign) => {
     setNopack(prevNopack => {
       if (sign === '+' && prevNopack < 4) return prevNopack + 1;
-      if (sign === '-' && prevNopack > Minpacketslv) return prevNopack - 1;
+      if (sign === '-' && prevNopack > 1) return prevNopack - 1;
       return prevNopack; // Keep the same value if conditions are not met
     });
-    console.log("Current Nopack:", Nopack);
   };
 
   return (
     <>
+      <h1>Maximum layers = {layers} </h1>
       <div> n= {n.toFixed(2)}</div>
+      {Nopack == 1 && <Packets1 />}
       {Nopack == 2 && <Packets2 />}
       {Nopack == 3 && <Packets3 />}
       {Nopack == 4 && <Packets4 />}
       <div>
-        <button onClick={() => Changepack('+')}> increase insulation </button>
-        <button onClick={() => Changepack('-')}> decrease insulation </button>
+        <button onClick={() => Changepack('+')}> increase Packets </button>
+        <button onClick={() => Changepack('-')}> decrease Packets </button>
       </div>
-      <h1>Maximum layers = </h1>
     </>
   );
 }

@@ -28,6 +28,7 @@ const initialState = {
   Hmechhv: 0.0,
   Helechv: 0.0,
   Layershv: 0.0,
+  MinLayersPerPackethv: 0.0,
   Firstpackethv: 0.0,
   Secondpackethv: 0.0,
   Thirdpackethv: 0.0,

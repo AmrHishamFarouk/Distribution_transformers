@@ -2,23 +2,24 @@ import React, { useState , useEffect } from 'react';
 import quadrapackets from '../../assets/packets/4packets.png'
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setLV, selectLV } from './../../database/lvSlice';
+import { setHV, selectHV } from './../../database/hvSlice';
+
 function Packets4() {
           const dispatch = useDispatch();
 
-          dispatch(setLV({ key: 'Nocollingductlv', value: 3 }));
+          dispatch(setHV({ key: 'Nocollingductlv', value: 3 }));
 
           function updatefirstpacket(value){
-              dispatch(setLV({ key: 'Firstpacketlv', value: value }));
+              dispatch(setHV({ key: 'Firstpacketlv', value: value }));
           }
           function updatesecondpacket(value){
-            dispatch(setLV({ key: 'Secondpacketlv', value: value }));
+            dispatch(setHV({ key: 'Secondpacketlv', value: value }));
         }
         function updatethirdpacket(value){
-          dispatch(setLV({ key: 'Thirdpacketlv', value: value }));
+          dispatch(setHV({ key: 'Thirdpacketlv', value: value }));
       }    
       function updatefourthpacket(value){
-        dispatch(setLV({ key: 'Fourthpacketlv', value: value }));
+        dispatch(setHV({ key: 'Fourthpacketlv', value: value }));
     }     
     
     const Firstpackethv = useSelector((state) => selectHV(state, 'Firstpackethv'));
@@ -27,7 +28,7 @@ function Packets4() {
     const Fourthpackethv = useSelector((state) => selectHV(state, 'Fourthpackethv'));
     useEffect(() => {
 //code here for checking if the no of layers is correct
-        }, [Firstpacketlv, Secondpacketlv,Thirdpacketlv,Fourthpacketlv]); 
+        }, [Firstpackethv, Secondpackethv,Thirdpackethv,Fourthpackethv]); 
 
   return (
     <>

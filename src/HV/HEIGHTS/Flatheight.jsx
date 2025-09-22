@@ -10,6 +10,7 @@ function Flatheight(){
   const [sliderValue, setSliderValue] = useState(1);
   const [factor, setfactor] = useState(1.025);
   const [maxValue, setmaxValue] = useState(401);
+  const [Layers, setLayers] = useState(0);
 
   const Douter = useSelector((state) => selectHV(state, 'Douter'));
   const NumberOfWires = useSelector((state) => selectHV(state, 'NumberOfWires'));
@@ -46,7 +47,8 @@ function Flatheight(){
         const Hmechhv = Helechv+((Wirelength+WireInsulation)*factor);
         dispatch(setHV({ key: 'Hmechhv', value: Hmechhv}));
         const layers = Turnshv[0]/sliderValue;
-        dispatch(setHV({ key: 'Layershv', value: layers}));
+        setLayers(layers);
+        dispatch(setHV({ key: 'Layershv', value: Math.ceil(layers)}));
       }
       else if(Wirealignment == 'horizontally'){
         const Helechv = sliderValue*(Wirelength+WireInsulation)*factor;
@@ -54,7 +56,8 @@ function Flatheight(){
         const Hmechhv = Helechv+((Wirelength+WireInsulation)*factor);
         dispatch(setHV({ key: 'Hmechhv', value: Hmechhv}));
         const layers = Turnshv[0]/sliderValue;
-        dispatch(setHV({ key: 'Layershv', value: layers}));
+        setLayers(layers);
+        dispatch(setHV({ key: 'Layershv', value: Math.ceil(layers)}));
       };
   }, [sliderValue,factor]);
 
@@ -74,7 +77,8 @@ function Flatheight(){
           <p>turns per layer: {sliderValue}</p>
         </div>
           <img src={HeightWire} alt="HeightWire.png is missing"/>
-            <h3>no. of layers: {Layershv.toFixed(2)}</h3>
+          <h3>no. of layers: {Layers.toFixed(2)}</h3>
+          <h3>used layers: {Layershv.toFixed(2)}</h3>
       </>
   )
 }

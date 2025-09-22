@@ -9,6 +9,7 @@ function Roundheight() {
 
   const [sliderValue, setSliderValue] = useState(1);
   const [factor, setfactor] = useState(1.025);
+  const [Layers, setLayers] = useState(0);
 
   const Douter = useSelector((state) => selectHV(state, 'Douter'));
   const NumberOfWires = useSelector((state) => selectHV(state, 'NumberOfWires'));
@@ -33,7 +34,8 @@ function Roundheight() {
         dispatch(setHV({ key: 'Hmechhv', value: Hmechhv}));
         dispatch(setHV({ key: 'Helechv', value: Helechv}));
         const layers = Turnshv[0]/sliderValue;
-        dispatch(setHV({ key: 'Layershv', value: layers}));
+        setLayers(layers);
+        dispatch(setHV({ key: 'Layershv', value: Math.ceil(layers)}));
   }, [sliderValue,factor]);
 
   return (
@@ -52,7 +54,8 @@ function Roundheight() {
         <p>turns per layer: {sliderValue}</p>
       </div>
         <img src={HeightWire} alt="HeightWire.png is missing"/>
-          <h3>no. of layers: {Layershv.toFixed(2)}</h3>
+          <h3>no. of layers: {Layers.toFixed(2)}</h3>
+          <h3>used layers: {Layershv.toFixed(2)}</h3>
     </>
   );
 }

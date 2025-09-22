@@ -9,6 +9,7 @@ import { setHV, selectHV } from './../../database/hvSlice';
 function Packets1() {
     const dispatch = useDispatch();
     dispatch(setHV({ key: 'Nocollingducthv', value: 0 }));
+    
     function updatefirstpacket(value){
         dispatch(setHV({ key: 'Firstpackethv', value: value }));
     }
@@ -18,7 +19,7 @@ function Packets1() {
     useEffect(() => {
 //code here for checking if the no of layers is correct
 
-        }, [Firstpackethv, Secondpackethv,Thirdpackethv,Fourthpackethv]); 
+        }, [Firstpackethv]); 
 
   return (
     <>

@@ -2,18 +2,18 @@ import React, { useState , useEffect } from 'react';
 import doublepackets from '../../assets/packets/2packets.png'
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setLV, selectLV } from './../../database/lvSlice';
+import { setHV, selectHV } from './../../database/hvSlice';
 
 function Packets2() {
       const dispatch = useDispatch();
 
-      dispatch(setLV({ key: 'Nocollingductlv', value: 1 }));
+      dispatch(setHV({ key: 'Nocollingducthv', value: 1 }));
 
       function updatefirstpacket(value){
-          dispatch(setLV({ key: 'Firstpacketlv', value: value }));
+          dispatch(setHV({ key: 'Firstpackethv', value: value }));
       };
       function updatesecondpacket(value){
-        dispatch(setLV({ key: 'Secondpacketlv', value: value }));
+        dispatch(setHV({ key: 'Secondpackethv', value: value }));
     };   
 
     const Firstpackethv = useSelector((state) => selectHV(state, 'Firstpackethv'));
@@ -22,8 +22,7 @@ function Packets2() {
     useEffect(() => {
 //code here for checking if the no of layers is correct
 
-        }, [Firstpacketlv, Secondpacketlv,Thirdpacketlv,Fourthpacketlv]); 
-
+        }, [Firstpackethv, Secondpackethv]); 
   return (
     <>
       <div>No. of layers in each packet</div>
