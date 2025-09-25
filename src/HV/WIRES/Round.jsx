@@ -14,6 +14,8 @@ function Round() {
       };
       function updateDouter(value){
         dispatch(setHV({ key: 'Douter', value: value}));
+        dispatch(setHV({ key: 'Wirelengthhv', value: value}));
+        dispatch(setHV({ key: 'Wirethicknesshv', value: value}));
       };          
       const Dinner = useSelector((state) => selectHV(state, 'Dinner'));
       const NumberOfWires = useSelector((state) => selectHV(state, 'NumberOfWires'));
@@ -26,7 +28,7 @@ function Round() {
         const Douter = useSelector((state) => selectHV(state, 'Douter'));
 
       useEffect(() => {
-        let WireInsulation = (Douter-Dinner)/2;
+        let WireInsulation = (Douter-Dinner);
         dispatch(setHV({ key: 'WireInsulation', value: WireInsulation}));
       }, [Douter, Dinner]);
 

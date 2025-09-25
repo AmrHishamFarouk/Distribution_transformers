@@ -1,8 +1,7 @@
-import React, { useState , useEffect } from 'react';
-import doublepackets from '../../assets/packets/2packets.png'
+import doublepackets from '../../assets/packets/1packets.jpeg'
 
-import { useSelector, useDispatch } from 'react-redux';
-import { setHV, selectHV } from './../../database/hvSlice';
+import { useDispatch } from 'react-redux';
+import { setHV } from './../../database/hvSlice';
 
 
 
@@ -13,13 +12,6 @@ function Packets1() {
     function updatefirstpacket(value){
         dispatch(setHV({ key: 'Firstpackethv', value: value }));
     }
-
-    const Firstpackethv = useSelector((state) => selectHV(state, 'Firstpackethv'));
-
-    useEffect(() => {
-//code here for checking if the no of layers is correct
-
-        }, [Firstpackethv]); 
 
   return (
     <>

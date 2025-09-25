@@ -1,5 +1,5 @@
 import React, {useEffect, useState } from 'react';
-import HeightWire from '../../assets/heights/HeightWire.png';
+import HeightWire from '../../assets/heights/HeightWire.jpeg';
 import { setHV, selectHV } from './../../database/hvSlice';
 import { selectLV } from './../../database/lvSlice';
 import { useSelector, useDispatch } from 'react-redux';
@@ -29,6 +29,7 @@ function Roundheight() {
   };
 
     useEffect(() => {
+        dispatch(setHV({ key: 'TurnsPerLayerhv', value: sliderValue}));
         const Helechv = sliderValue*NumberOfWires*Douter*factor;
         const Hmechhv = (sliderValue+1)*NumberOfWires*Douter*factor;
         dispatch(setHV({ key: 'Hmechhv', value: Hmechhv}));

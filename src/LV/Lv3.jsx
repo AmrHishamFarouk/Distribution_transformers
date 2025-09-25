@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ins2 from '../assets/insulations/ins2.png';
 import ins3 from '../assets/insulations/ins3.png';
 import ins4 from '../assets/insulations/ins4.png';
-import ins5 from '../assets/insulations/ins5.png';
+import ins5 from '../assets/insulations/ins5.jpeg';
 import ins6 from '../assets/insulations/ins6.png';
 
 import { useSelector, useDispatch } from 'react-redux';

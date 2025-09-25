@@ -13,12 +13,11 @@ function Hv3() {
   const [Nopack, setNopack] = useState(1);
   const Wirethicknesshv = useSelector((state) => selectHV(state, 'Wirethicknesshv'));
 
-
   useEffect(() => {
       let MinLayersPerPacket = 100 / (Math.pow(δhv, 2) * Wirethicknesshv);
       let n = parseInt(MinLayersPerPacket);
       dispatch(setHV({ key: 'MinLayersPerPackethv', value: n }));
-  }, [δhv, Wirethicknesshv]);
+  }, [δhv, Wirethicknesshv,Nopack]);
         
       const n = useSelector((state) => selectHV(state, 'MinLayersPerPackethv'));
       const layers = useSelector((state) => selectHV(state, 'Layershv'));

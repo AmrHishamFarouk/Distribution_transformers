@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setLV, selectLV } from './../database/lvSlice';
-import { setSpec, selectSpec} from './../database/specsSlice';
 import Power from './POWERS/Power';
 
 import Masses from './MASSES/Masses';
@@ -68,30 +67,6 @@ useEffect(() => {
     dispatch(setLV({ key: 'Dmlv', value: Dmlv }));
        }, [Фinternalradial, thickradial]); 
 
-
-
-//      Connectionlv = Iphlv/200;
-//      //adjust this equation
-//      Eddylv = (Wirethicknesslv^4)*(Nph^2)*0.001;
-//      Pcc75lvtemp = 2.097*0.00001*( ((22/7)*Dmeanlv*Nph)/Csalv)*3*Iphlv;
-//      let pccConn= (0.01*Connectionlv);
-//      let pccEddy= (0.01*Eddylv);
-     
-//      pccAdditioned = Pcc75lvtemp+pccConn+pccEddy;
-//      Pcc75lv = pccAdditioned * (0.01*Maj);
-//      Pcc95lv = Pcc75lv*1.064;
-     
-     
-     
-//      Rph75lvtemp = 2.097*0.00001*( ((22/7)*Dmeanlv*Nph)/Csalv);
-//      Rph75lv= Rph75lvtemp * (0.01*Maj);
-//      Rph95lv= Rph75lv*1.064;
-//      Rbettwoterminalslv=Rph95lv*2;
-//      Rph20lv=  Rph95lv  *1.2947;
-     
-     
-     
-
     return( 
         <>
         <h1>Thickness LV</h1>
@@ -99,14 +74,12 @@ useEffect(() => {
     <div>
         <strong>Radial LV: {thickradial}</strong>
     </div>
-    
      <div>
         <strong>Axial LV: { Thickaxiallv }</strong>
     </div>
      <div>
          <p>Φ LV = {Фinternalradial}/{Фinternalaxial} Ξ {Фexternalradial} /{Фexternalaxial}</p>
     </div>
-    
     <div>
         <p>Dmean = {Dmeanlv} </p>
     </div>
