@@ -8,8 +8,9 @@ function Power(){
     const dispatch = useDispatch();
 
     const Iphhv = useSelector((state) => selectHV(state, 'Iphhv'));
-    const Wirethicknesshv = useSelector((state) => selectHVV(state, 'Wirethicknesshv'));
-    
+    const Wirethicknesshv = useSelector((state) => selectHV(state, 'Wirethicknesshv'));
+    const Layershv = useSelector((state) => selectHV(state, 'Layershv'));
+
     const turnshv = useSelector((state) => selectHV(state, 'Turnshv'));
     const Dmeanhv = useSelector((state) => selectHV(state, 'Dmeanhv'));
     const Maj = useSelector((state) => selectSpec(state, 'Maj'));
