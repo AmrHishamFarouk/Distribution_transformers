@@ -18,8 +18,8 @@ function Hv3() {
     const TurnsPerLayer = useSelector((state) => selectHV(state, 'TurnsPerLayerhv'));
     const WireInsulation = useSelector((state) => selectHV(state, 'WireInsulation'));
     const InsulationPaperThicknesshv = useSelector((state) => selectHV(state, 'InsulationPaperThicknesshv'));
-    const Glv = useSelector((state) => selectHV(state, 'Glv'));
-    const Gimplv = useSelector((state) => selectHV(state, 'Gimplv'));
+    const Glv = useSelector((state) => selectHV(state, 'Ghv'));
+    const Gimplv = useSelector((state) => selectHV(state, 'Gimphv'));
 
     let mininstemp = (((4*vt*TurnsPerLayer*0.001)/8)-WireInsulation)/InsulationPaperThicknesshv;
     let minins = 0;
@@ -35,13 +35,13 @@ function Hv3() {
     if(HV<12){
           let gimp =  (75*1.15*0.4)/denomenator;
           console.log(InsulationPaperThicknesshv,minins,WireInsulation)
-          dispatch(setHV({ key: 'Gimplv', value: gimp }));
+          dispatch(setHV({ key: 'Gimphv', value: gimp }));
     }else{
           let gimp =  (125*1.15*0.4)/denomenator;
-          dispatch(setHV({ key: 'Gimplv', value: gimp }));      
+          dispatch(setHV({ key: 'Gimphv', value: gimp }));      
     }
-    dispatch(setHV({ key: 'Glv', value: gradient }));
-    dispatch(setHV({ key: 'Noinslv', value: InsNo[(minins-2)] }));
+    dispatch(setHV({ key: 'Ghv', value: gradient }));
+    dispatch(setHV({ key: 'Noinshv', value: InsNo[(minins-2)] }));
     // const Insulationlv = useSelector((state) => selectHV(state, 'Insulationlv'));    
   }, [InsulationPaperThicknesshv]);    
 

@@ -6,7 +6,7 @@ import { setHV, selectHV } from './../../database/hvSlice';
 function Packets3() {
   const dispatch = useDispatch();
 
-  dispatch(setHV({ key: 'Nocollingducthv', value: 1 }));
+  dispatch(setHV({ key: 'Nocollingducthv', value: 2 }));
 
   
   function updatefirstpacket(value){

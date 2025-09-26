@@ -5,9 +5,16 @@ import { useSelector, useDispatch } from 'react-redux';
 
 function Round() {
    const dispatch = useDispatch();
-  
+      const Dinner = useSelector((state) => selectHV(state, 'Dinner'));
+      const NumberOfWires = useSelector((state) => selectHV(state, 'NumberOfWires'));
+      const Douter = useSelector((state) => selectHV(state, 'Douter'));
+      const Csahv = useSelector((state) => selectHV(state, 'Csahv'));
+      const WireInsulation = useSelector((state) => selectHV(state, 'WireInsulation'));
+
       function updatenumber(value){
         dispatch(setHV({ key: 'NumberOfWires', value: value}));
+        let Turnlengthhv = value*Douter;
+        dispatch(setHV({ key: 'Turnlengthhv', value: Turnlengthhv}));
       };
       function updateDinner(value){
         dispatch(setHV({ key: 'Dinner', value: value}));
@@ -16,24 +23,18 @@ function Round() {
         dispatch(setHV({ key: 'Douter', value: value}));
         dispatch(setHV({ key: 'Wirelengthhv', value: value}));
         dispatch(setHV({ key: 'Wirethicknesshv', value: value}));
+        dispatch(setHV({ key: 'Turnthicknesshv', value: value}));
       };          
-      const Dinner = useSelector((state) => selectHV(state, 'Dinner'));
-      const NumberOfWires = useSelector((state) => selectHV(state, 'NumberOfWires'));
-      
+
       useEffect(() => {
         let csa = (((22/7)*Math.pow(Dinner, 2))/4)*NumberOfWires;
         dispatch(setHV({ key: 'Csahv', value: csa}));
       }, [NumberOfWires, Dinner]);
 
-        const Douter = useSelector((state) => selectHV(state, 'Douter'));
-
       useEffect(() => {
         let WireInsulation = (Douter-Dinner);
         dispatch(setHV({ key: 'WireInsulation', value: WireInsulation}));
       }, [Douter, Dinner]);
-
-      const Csahv = useSelector((state) => selectHV(state, 'Csahv'));
-      const WireInsulation = useSelector((state) => selectHV(state, 'WireInsulation'));
 
   return (
 <>

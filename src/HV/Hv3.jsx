@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react';
+import { useState , useEffect } from 'react';
 import Packets1 from './PACKETS/Packets1';
 import Packets2 from './PACKETS/Packets2';
 import Packets3 from './PACKETS/Packets3';
@@ -10,8 +10,10 @@ import { setHV, selectHV } from './../database/hvSlice';
 function Hv3() {
   const dispatch = useDispatch();
   const δhv =  useSelector((state) => selectHV(state, 'δhv'));
-  const [Nopack, setNopack] = useState(1);
+  const n = useSelector((state) => selectHV(state, 'MinLayersPerPackethv'));
+  const layers = useSelector((state) => selectHV(state, 'Layershv'));
   const Wirethicknesshv = useSelector((state) => selectHV(state, 'Wirethicknesshv'));
+  const [Nopack, setNopack] = useState(1);
 
   useEffect(() => {
       let MinLayersPerPacket = 100 / (Math.pow(δhv, 2) * Wirethicknesshv);
@@ -19,8 +21,7 @@ function Hv3() {
       dispatch(setHV({ key: 'MinLayersPerPackethv', value: n }));
   }, [δhv, Wirethicknesshv,Nopack]);
         
-      const n = useSelector((state) => selectHV(state, 'MinLayersPerPackethv'));
-      const layers = useSelector((state) => selectHV(state, 'Layershv'));
+
   
   let Changepack = (sign) => {
     setNopack(prevNopack => {
@@ -30,10 +31,17 @@ function Hv3() {
     });
   };
 
+  function updatecoolingduct(value){
+      dispatch(setHV({ key: 'Coolingductthicknesshv', value: value }));
+  }
   return (
     <>
       <h1>Maximum layers = {layers} </h1>
       <div> n= {n.toFixed(2)}</div>
+      <div>
+        <label>cooling duct thicness</label>
+        <input name="myInput" placeholder="layers" onChange={(e) => updatecoolingduct(parseFloat(e.target.value))} value='3.1'/>
+      </div>
       {Nopack == 1 && <Packets1 />}
       {Nopack == 2 && <Packets2 />}
       {Nopack == 3 && <Packets3 />}

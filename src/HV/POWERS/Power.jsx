@@ -8,7 +8,8 @@ function Power(){
     const dispatch = useDispatch();
 
     const Iphhv = useSelector((state) => selectHV(state, 'Iphhv'));
-    const Wirethicknesshv = useSelector((state) => selectHV(state, 'Wirethicknesshv'));
+    const Ilinehv = useSelector((state) => selectHV(state, 'Ilinehv'));
+    const Dinner = useSelector((state) => selectHV(state, 'Dinner'));
     const Layershv = useSelector((state) => selectHV(state, 'Layershv'));
 
     const turnshv = useSelector((state) => selectHV(state, 'Turnshv'));
@@ -16,9 +17,9 @@ function Power(){
     const Maj = useSelector((state) => selectSpec(state, 'Maj'));
     const Csahv = useSelector((state) => selectHV(state, 'Csahv'));
 
-        let Connectionhv = Iphhv/200;
+        let Connectionhv = Ilinehv/200;
         //adjust this equation
-        let Eddyhv = Math.pow(Wirethicknesshv, 4) * Math.pow(Layershv, 2)* 0.83 * 0.001;
+        let Eddyhv = Math.pow(Dinner, 4) * Math.pow(Layershv, 2)* 0.83 * 0.001;
 
         let Pcc75hvtemp = 2.097*0.00001*( ((22/7)*Dmeanhv*turnshv[2])/Csahv)*3*Math.pow(Iphhv, 2) ;
         let pccConn= (0.01*Connectionhv)*Pcc75hvtemp;

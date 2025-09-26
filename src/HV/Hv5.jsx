@@ -24,22 +24,26 @@ function Hv5(){
     const Dmeanhv = useSelector((state) => selectHV(state, 'Dmeanhv'));
     const Dmhv = useSelector((state) => selectHV(state, 'Dmhv'));
 
+    const Фexternalradialhv = useSelector((state) => selectHV(state, 'Фexternalradial'));
+    const Фexternalaxialhv = useSelector((state) => selectHV(state, 'Фexternalaxial'));
 
-    let thickradial = ((Layershv*Turnthicknesshv)+(Layershv*Noinshv*InsulationPaperThicknesshv)+(Nocollingducthv*Coolingductthicknesshv))*1.035;
+    const thickradial = ((Layershv*Turnthicknesshv)+(Layershv*Noinshv*InsulationPaperThicknesshv)+(Nocollingducthv*Coolingductthicknesshv))*1.035;
+    console.log(Layershv,Turnthicknesshv,Noinshv,InsulationPaperThicknesshv,Nocollingducthv,Coolingductthicknesshv)
+    
+useEffect(() => {
     let Thickaxial = thickradial;
     dispatch(setHV({ key: 'Thickradialhv', value: thickradial }));
-    dispatch(setHV({ key: 'Thickaxialhv', value: Thickaxial }));
+    dispatch(setHV({ key: 'Thickaxialhv', value: thickradial }));
+    let Фexternalradial = Фinternalradial + (2*thickradial);
+    let Фexternalaxial =  Фinternalaxial + (2*thickradial);
+    dispatch(setHV({ key: 'Фexternalradial', value: Фexternalradial }));
+    dispatch(setHV({ key: 'Фexternalaxial', value: Фexternalaxial }));
+    }, [thickradial]); 
 
-
-let Фexternalradial = Фinternalradial + (2*thickradial);
-let Фexternalaxial =  Фinternalaxial + (2*Thickaxialhv);
 useEffect(() => {
-     dispatch(setHV({ key: 'Фexternalradial', value: Фexternalradial }));
-     dispatch(setHV({ key: 'Фexternalaxial', value: Фexternalaxial }));
-
-        let a = ( Фexternalaxial - Thickaxialhv )/2;
-        let b = ( Фexternalradial - thickradial )/2;
-        const sum = a + b;
+    let a = ( Фexternalaxialhv - Thickaxialhv )/2;
+    let b = ( Фexternalradialhv - thickradial )/2;
+    const sum = a + b;
   const diff = a - b;
   const diffSquared = Math.pow(diff, 2);
   const sumSquared = Math.pow(sum, 2);
@@ -47,29 +51,24 @@ useEffect(() => {
   const sqrtPart = Math.sqrt(((-3 * diffSquared) / sumSquared) + 4);
   const denominator = (sumSquared * sqrtPart) + 10;
   const result = sum * ((3 * diffSquared) / denominator + 1);
-        dispatch(setHV({ key: 'Dmeanhv', value: result }));
-        }, [Фexternalradial, Фexternalaxial]); 
+    dispatch(setHV({ key: 'Dmeanhv', value: result }));
 
-
-
- useEffect(() => {
-    let Dmhv = Фinternalradial + thickradial;
-    dispatch(setHV({ key: 'Dmlv', value: Dmhv }));
-       }, [Фinternalradial, thickradial]); 
+    let Dm = Фinternalradial + thickradial;
+    console.log(Dm);
+    dispatch(setHV({ key: 'Dmhv', value: Dm }));
+    }, [Фexternalradialhv, Фexternalaxialhv]); 
 
     return( 
         <>
-        <h1>Thickness LV</h1>
-
     <div>
-        <strong>Radial LV: {thickradial}</strong>
+        <strong>Radial HV: {thickradial}</strong>
     </div>
 
      <div>
-        <strong>Axial LV: { Thickaxialhv }</strong>
+        <strong>Axial HV: { Thickaxialhv }</strong>
     </div>
      <div>
-         <p>Φ LV = {Фinternalradial}/{Фinternalaxial} Ξ {Фexternalradial} /{Фexternalaxial}</p>
+         <p>Φ HV = {Фinternalradial}/{Фinternalaxial} Ξ {Фexternalradialhv} /{Фexternalaxialhv}</p>
     </div>
 
     <div>
@@ -77,9 +76,12 @@ useEffect(() => {
     </div>
 
      <div>
-     <strong>For Ux:</strong>
-     <p>Dmlv = {Dmhv}</p>
+        <strong>For Ux:</strong>
+        <p>Dmhv = {Dmhv}</p>
      </div>
+     
+     <Masses />
+     <Power />
    </>
     )
 }
