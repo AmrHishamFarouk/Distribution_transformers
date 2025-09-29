@@ -1,4 +1,42 @@
+import { setLV, selectLV } from './../database/lvSlice';
+import { setHV, selectHV } from './../database/lvSlice';
+
+
 function Impedance(){
+
+const Ratedpower = useSelector((state) => selectHV(state, 'Ratedpower'));
+const LV = useSelector((state) => selectHV(state, 'LV'));
+const Totalloadlosses
+//the total losses is not found in the slices
+const F = useSelector((state) => selectHV(state, 'Ratedpower'));
+const Maj = useSelector((state) => selectHV(state, 'Maj'));
+const Thicklvradial = useSelector((state) => selectLV(state, 'Thickradiallv'));
+const Dmlv = useSelector((state) => selectLV(state, 'Dmlv'));
+const δlv = useSelector((state) => selectLV(state, 'δlv'));
+const Dmeanlv = useSelector((state) => selectLV(state, 'Dmeanlv'));
+const Nphlv = useSelector((state) => selectLV(state, 'Nph'));
+const Δlv = useSelector((state) => selectLV(state, 'Csalv'));
+const Wirelengthlv = useSelector((state) => selectLV(state, 'Wirelengthlv'));
+const Wirethicknesslv = useSelector((state) => selectLV(state, 'Wirethicknesslv'));
+const Heleclv = useSelector((state) => selectLV(state, 'Heleclv'));
+const Hmechlv = useSelector((state) => selectLV(state, 'Hmechlv'));
+const Ilv = useSelector((state) => selectLV(state, 'Iphlv'));
+//we need to make a num variable to identify if it is power or normal distrebution
+
+//hilo variables
+const Dmhilo = useSelector((state) => selectLV(state, 'Dmhilo'));
+const Thickhilo = useSelector((state) => selectLV(state, 'Thickhilo'));
+
+//we need to add distance between rods in the hilo slice
+const Thickradialhv = useSelector((state) => selectHV(state, 'Thickradialhv'));
+const Helechv = useSelector((state) => selectHV(state, 'Helechv'));
+const Dmhv = useSelector((state) => selectHV(state, 'Dmhv'));
+const turns = useSelector((state) => selectHV(state, 'Turnshv'));
+const Iphhv = useSelector((state) => selectHV(state, 'Iphhv'));
+const δhvpos7 = useSelector((state) => selectHV(state, 'δhvpos7'));
+const Dmeanhv = useSelector((state) => selectHV(state, 'Dmeanhv'));
+const Csahv = useSelector((state) => selectHV(state, 'Csahv'));
+
 
       let Kf = 1 - ((Thicklvradial + Hilothickness + Thickhv) / ((22 / 7) * Helechv));
       let Ur = Totalloadlosses / (Ratedpower * 10);
@@ -74,55 +112,38 @@ export default Impedance;
 //     <!-- First Group -->
 //     <div class="form-group">
 //       <label for="Ratedpower">Rated Power(kVA):</label>
-//       <input type="number" id="Ratedpower">
 
 //       <label for="LV"> LV(do not write it in kV):</label>
-//       <input type="number" id="LV" value="400">
 
 //       <label for="Totalloadlosses">Total Load Losses(at 95):</label>
-//       <input type="number" id="Totalloadlosses">
 
 //       <label for="F">Frequency (HZ):</label>
-//       <input type="number" id="F" value="50">
 
 //       <label for="Maj">Maj(%):</label>
-//       <input type="number" id="Maj" value="5">
 
 //       <label for="Thicklvradial">Thick LV Radial(mm):</label>
-//       <input type="number" id="Thicklvradial">
 
 //       <label for="Dmlv">Dmlv(mm):</label>
-//       <input type="number" id="Dmlv">
 
 //       <label for="δlv">δlv(A/mm²):</label>
-//       <input type="number" id="δlv">
 
 //       <label for="Dmeanlv">Dmeanlv(mm):</label>
-//       <input type="number" id="Dmeanlv">
 
 //       <label for="Nphlv">Nphlv:</label>
-//       <input type="number" id="Nphlv">
 
 //       <label for="Δlv">Δlv(sum of all wires):</label>
-//       <input type="number" id="Δlv">
 
 //       <label for="Wirelengthlv">Wirelengthlv(mm):</label>
-//       <input type="number" id="Wirelengthlv">
 
 //       <label for="Wirethicknesslv">Wirethicknesslv(mm):</label>
-//       <input type="number" id="Wirethicknesslv">
 
 //       <label for="Heleclv">Heleclv(mm):</label>
-//       <input type="number" id="Heleclv">
 
 //       <label for="Hmechlv">Hmechlv(mm):</label>
-//       <input type="number" id="Hmechlv">
 
 //       <label for="Ilv">Ilv(A):</label>
-//       <input type="number" id="Ilv">
 
 //       <label for="num">for power(12),for distrebution(6):</label>
-//       <input type="number" id="num" value="6">
 //     </div>
 
 //     <!-- Second Group -->
