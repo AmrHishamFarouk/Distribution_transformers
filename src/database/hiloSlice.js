@@ -9,6 +9,7 @@ const initialState = {
   Axialexternalhilo: 0.4,
   Dmeanhilo: 0.0,
   Dmhilo: 0.0,
+  Rodshilo:20.0,
 };
 
 const hiloSlice = createSlice({

@@ -2,6 +2,7 @@ import React, { useState , useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setHV, selectHV } from './../../database/hvSlice';
+import { setLV, selectLV } from './../../database/lvSlice';
 import { selectSpec} from './../../database/specsSlice';
     
 function Power(){
@@ -16,6 +17,7 @@ function Power(){
     const Dmeanhv = useSelector((state) => selectHV(state, 'Dmeanhv'));
     const Maj = useSelector((state) => selectSpec(state, 'Maj'));
     const Csahv = useSelector((state) => selectHV(state, 'Csahv'));
+    const Pcc95lv = useSelector((state) => selectLV(state, 'Pcc95lv'));
 
         let Connectionhv = Ilinehv/200;
         //adjust this equation
@@ -32,6 +34,9 @@ function Power(){
         let Pcc95hv = Pcc75hv*1.064;
         dispatch(setHV({ key: 'Pcc95hv', value: Pcc95hv }));
 
+        let Totalloadlosses = Pcc95hv + Pcc95lv;
+        dispatch(setHV({ key: 'Totalloadlosses', value: Totalloadlosses }));
+
 
         let Rph75hvtemp = 2.097*0.00001*( ((22/7)*Dmeanhv*turnshv[2])/Csahv);
         let Rph75hv= Rph75hvtemp * (1+(0.01*Maj));
@@ -39,6 +44,7 @@ function Power(){
 
         let Rph95hv= Rph75hv*1.064;
         dispatch(setHV({ key: 'Rph95hv', value: Rph95hv }));
+
 return(
     <div>
     <h3>Connection= {Connectionhv}</h3>

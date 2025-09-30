@@ -56,6 +56,7 @@ const initialState = {
   Rph95hv: 0.0,
   Rbettwoterminalshv: 0.0,
   Rph20hv: 0.0,
+  Totalloadlosses:0.0,
 };
 
 const hvSlice = createSlice({
