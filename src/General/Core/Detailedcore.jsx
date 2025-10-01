@@ -4,8 +4,8 @@ import { setGeneral, selectGeneral} from '../../database/generalSlice';
 
 function Detailedcore() {
   const dispatch = useDispatch();
-// remember to change the setLV 
-    function updateW1(value){
+
+  function updateW1(value){
       dispatch(setGeneral({ key: 'W1', value: value}));
     };
     function updateW2(value){

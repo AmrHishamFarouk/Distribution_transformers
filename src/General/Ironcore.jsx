@@ -1,11 +1,19 @@
+import React, { useEffect,useState } from 'react';
+import { setGeneral, selectGeneral} from '../../database/generalSlice';
+import { setSpec, selectSpec } from '../../database/specsSlice';
+import { useSelector, useDispatch } from 'react-redux';
+
 function Ironcore(){
-    // massironcorenet = 7.65*0.000001*corecsa*((3*hw)+(4*ew)+(2*largeststep));
+    const Csacore =  useSelector((state) => selectGeneral(state, 'Csacore'));
+    const Maj =  useSelector((state) => selectSpec(state, 'Maj'));
     
-    // massironcoregross = massironcorenet*1.05; 
+    // const massironcorenet = 7.65*0.000001*Csacore*((3*hw)+(4*ew)+(2*largeststep));
+    
+    // const massironcoregross = massironcorenet*(1+(Maj/100)); 
     
     return(
         <>
-        <h1>ironcore</h1>
+        
         </>
     )
 }
