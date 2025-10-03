@@ -16,7 +16,6 @@ function Detailedcore() {
   const L2 = useSelector((state) => selectGeneral(state, 'L2'));  
   const L3 = useSelector((state) => selectGeneral(state, 'L3'));  
   const L4 = useSelector((state) => selectGeneral(state, 'L4'));  
-  const Csacore = useSelector((state) => selectGeneral(state, 'Csacore'));  
   const CoreAreanet = useSelector((state) => selectGeneral(state, 'CoreAreanet'));  
   const Nphlv = useSelector((state) => selectLV(state, 'Nph'));  
   const B =  useSelector((state) => selectSpec(state, 'B'));
@@ -58,6 +57,9 @@ function Detailedcore() {
 
 
         useEffect(() => {
+          let newTotalstacking = L1+(2*L2)+(2*L3)+(2*L4);
+          dispatch(setGeneral({ key: 'Totalstacking', value: newTotalstacking}));
+
           let CoreArea = (L1*W1)+(2*L2*W2)+(2*L3*W3)+(2*L4*W4);
           dispatch(setGeneral({ key: 'Csacore', value: CoreArea}));
           let CoreAreanet = CoreArea*Math.pow(0.98957, 2);
@@ -68,7 +70,7 @@ function Detailedcore() {
         }, [L1,W1,L2,W2,L3,W3,L4,W4]);
        
         useEffect(() => {
-          let fluxdensity = (400/Math.sqrt(3))/(4.44*Nphlv*CoreAreanet*0.000001);
+          let fluxdensity = (400/Math.sqrt(3))/(4.44*F*Nphlv*CoreAreanet*0.000001);
           dispatch(setSpec({ key: 'B', value: fluxdensity}));
         }, [CoreAreanet]);
        

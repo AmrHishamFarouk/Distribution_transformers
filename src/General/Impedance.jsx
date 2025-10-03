@@ -1,10 +1,10 @@
+import React, { useEffect,useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { setLV, selectLV } from './../database/lvSlice';
 import { setHV, selectHV } from './../database/hvSlice';
 import { setHilo, selectHilo } from './../database/hiloSlice';
 import { setSpec, selectSpec } from './../database/specsSlice';
-import React, { useState } from 'react';
+import { setGeneral, selectGeneral} from './../../database/generalSlice';
 
 
 function Impedance(){
@@ -48,8 +48,8 @@ const Dmeanhv = useSelector((state) => selectHV(state, 'Dmeanhv'));
 const Δhv = useSelector((state) => selectHV(state, 'Csahv'));
 const Totalloadlosses = useSelector((state) => selectHV(state, 'Totalloadlosses'));
 
-      let Kf = 1 - ((Thicklvradial + Hilothickness + Thickhv) / ((22 / 7) * Helechv));
-      let Ur = Totalloadlosses / (Ratedpower * 10);
+let Kf = 1 - ((Thicklvradial + Hilothickness + Thickhv) / ((22 / 7) * Helechv));
+let Ur = Totalloadlosses / (Ratedpower * 10);
 
 const geomFactor = (((Dmlv * Thicklvradial) / 3) + (Dmtr * Hilothickness) + ((Dmhv * Thickhv) / 3));
 const currentFactor = Math.pow((Turnsatcentertap * Iphhv), 2);
@@ -73,12 +73,18 @@ const Uxtemp = coeff * geomFactor * currentFactor * scalingFactor;
       
       // Mechanical Calculations
       let Isc = (100 / Ucc) * Ilv * Math.sqrt(2) * (1 + Math.exp((-22 / 7) * (Ur / Ux)));
+      dispatch(setGeneral({ key: 'Isc', value: Isc}));
+      
       let Ec = (2 * Math.pow((22 / 7), 2) * Math.pow((Nphlv * Isc), 2) * (Dmtr * 0.001) *
                (Hilothickness + ((Thickhv + Thicklvradial) / 3)) * 0.001) /
                (Math.pow(10, 11) * Math.pow((((Helechv + Heleclv) * 0.001) / 2), 2));
-
-      let d = ((Hmechlv / 200) + (((Heleclv - Hmechhv) / 2)) * 0.001);
+      dispatch(setGeneral({ key: 'Ec', value: value}));
+      
+      let d = (((Hmechlv / 200) + ( (Heleclv - Hmechhv) / 2)) * 0.001);
+      dispatch(setGeneral({ key: 'd', value: value}));
+      
       let Fd = 3.77 * 0.000001 * (1/200) * Math.pow((Nphlv * Isc), 2) * 0.0001;
+      dispatch(setGeneral({ key: 'Fd', value: value}));
       
       // Axial Forces
       let Fclv = 0.75 * Ec;
@@ -94,10 +100,11 @@ const Uxtemp = coeff * geomFactor * currentFactor * scalingFactor;
       let σctlv = σcclv + σcdlv;
       let σcthv = σcchv + σcdhv;
       let σcttotal = σcthv + σctlv;
-      
+      dispatch(setGeneral({ key: 'σcttotal', value: value}));
+
       // Radial Forces
-      let Fr = (2 * Math.pow((22 / 7), 2) * Math.pow((Nphlv * Isc), 2) * Dmeanlv * 0.001) /
-               (100000000000 * (Heleclv * 0.001));
+      useEffect(() => {
+      let Fr = (2 * Math.pow((22 / 7), 2) * Math.pow((Nphlv * Isc), 2) * Dmeanlv * 0.001) /(100000000000 * (Heleclv * 0.001));
       let Fs = Fr / (22 / 7);
       let σcrlv = (Fs * 10000) / (2 * Δlv * Nphlv);
       
@@ -105,12 +112,15 @@ const Uxtemp = coeff * geomFactor * currentFactor * scalingFactor;
       let Ff = (Fr * 10000) / ((22 / 7) * Dmeanlv * Nphlv);
       let σfflv = ((Ff * Math.pow(Rods, 2)) / num) * (1 / IVV);
       let σftlv = σcrlv + σfflv;
-      
+      dispatch(setGeneral({ key: 'σftlv', value: value}));
+
       let Fexhv = (2 * Math.pow((22 / 7), 2) * Math.pow((Nphlv * Isc), 2) * Dmeanhv * 0.001) /
                   (100000000000 * (Helechv * 0.001));
       let Fsex = Fexhv / (22 / 7);
       let σexhv = (Fsex * 10000) / (2 * Δhv * Turnsatcentertap);
-      
+      dispatch(setGeneral({ key: 'σexhv', value: value}));
+    }, [num,Rods]);
+
       function updateRods(value){
         dispatch(setHilo({ key: 'Rodshilo', value: value }));
       }
@@ -144,7 +154,7 @@ return(
 
       <div>
         <label>change Rods distances</label>
-        <input placeholder="Distance between Rods" onChange={(e) => updateRods(parseFloat(e.target.value))} value='20'/>
+        <input type="number" placeholder="Distance between Rods" onChange={(e) => updateRods(parseFloat(e.target.value))} value={Rods}/>
       </div>
         <button onClick={() => {setnum(12)}}>Power transformer</button>
         <button onClick={() => {setnum(6)}}>distrebution transformer</button>

@@ -21,6 +21,25 @@ const initialState = {
   Cyl:1.0,
   Tums:0.13,
   Inssteel:6.0,
+  //impedance and short circuit
+  Ux: 0.0, 
+  Ucc:0.0, 
+  voltagedrop08:0.0,
+  voltagedropunity:0.0,
+  voltagelv08:0.0,
+  Tsclv:0.0,
+  Tschv:0.0,
+  Tsc:0.0,
+  tempcoillv:0.0,
+  tempcoilhv:0.0,
+  //forces
+  Isc:0.0,
+  Ec:0.0,
+  d:0.0,
+  Fd:0.0,
+  σcttotal:0.0,      
+  σftlv:0.0,
+  σexhv:0.0,
 };
 
 const generalSlice = createSlice({

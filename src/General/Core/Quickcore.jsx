@@ -19,10 +19,7 @@ function Quickcore(){
       const Totalstacking =  useSelector((state) => selectGeneral(state, 'Totalstacking'));
     function updateTotalstacking(value){
       dispatch(setGeneral({ key: 'Totalstacking', value: value}));
-      console.log(Totalstacking);
-
     };
-
 
     const W1 =  useSelector((state) => selectGeneral(state, 'W1'));
     function updateW1(value){
