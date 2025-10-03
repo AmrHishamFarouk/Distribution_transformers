@@ -28,6 +28,7 @@ const initialState = {
   TurnsPerLayerhv: 0.0,
   Hmechhv: 0.0,
   Helechv: 0.0,
+  Hardboardhv:0.0,
   Layershv: 0.0,
   MinLayersPerPackethv: 0.0,
   Firstpackethv: 0.0,

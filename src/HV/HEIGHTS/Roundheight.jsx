@@ -3,6 +3,7 @@ import HeightWire from '../../assets/heights/HeightWire.jpeg';
 import { setHV, selectHV } from './../../database/hvSlice';
 import { selectLV } from './../../database/lvSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import { setGeneral, selectGeneral} from './../database/generalSlice';
 
 function Roundheight() {
   const dispatch = useDispatch();
@@ -18,10 +19,10 @@ function Roundheight() {
   const Hmechhv = useSelector((state) => selectHV(state, 'Hmechhv'));
   const Turnshv = useSelector((state) => selectHV(state, 'Turnshv'));
   const Layershv = useSelector((state) => selectHV(state, 'Layershv'));
-
-  
   const tempLayerTurns = Heleclv / (Douter*NumberOfWires*factor);
   const maxValue = parseInt(tempLayerTurns)-1;
+  const Hcoil =  useSelector((state) => selectGeneral(state, 'Hcoil'));
+  const Hardboardhv = useSelector((state) => selectHV(state, 'Hardboardhv'));
 
   const handleChange = (event) => {
     const newValue = Number(event.target.value);
@@ -37,6 +38,8 @@ function Roundheight() {
         const layers = Turnshv[0]/sliderValue;
         setLayers(layers);
         dispatch(setHV({ key: 'Layershv', value: Math.ceil(layers)}));
+        const Hardboard = Hcoil - Hmechhv;
+        dispatch(setHV({ key: 'Hardboardhv', value: Hardboard}));
   }, [sliderValue,factor]);
 
   return (
@@ -55,8 +58,9 @@ function Roundheight() {
         <p>turns per layer: {sliderValue}</p>
       </div>
         <img src={HeightWire} alt="HeightWire.png is missing"/>
-          <h3>no. of layers: {Layers.toFixed(2)}</h3>
-          <h3>used layers: {Layershv.toFixed(2)}</h3>
+        <h3>no. of layers: {Layers.toFixed(2)}</h3>
+        <h3>used layers: {Layershv.toFixed(2)}</h3>
+        <h3>Extra hard bressboard = {Hardboardhv}</h3>
     </>
   );
 }

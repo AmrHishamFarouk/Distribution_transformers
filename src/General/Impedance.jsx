@@ -48,44 +48,66 @@ const Dmeanhv = useSelector((state) => selectHV(state, 'Dmeanhv'));
 const Δhv = useSelector((state) => selectHV(state, 'Csahv'));
 const Totalloadlosses = useSelector((state) => selectHV(state, 'Totalloadlosses'));
 
-let Kf = 1 - ((Thicklvradial + Hilothickness + Thickhv) / ((22 / 7) * Helechv));
-let Ur = Totalloadlosses / (Ratedpower * 10);
+
+  let Kf = 1 - ((Thicklvradial + Hilothickness + Thickhv) / ((22 / 7) * Helechv));
+  dispatch(setGeneral({ key: 'Kf', value: Kf }));
+
+  let Ur = Totalloadlosses / (Ratedpower * 10);
+  dispatch(setGeneral({ key: 'Ur', value: Ur }));
 
 const geomFactor = (((Dmlv * Thicklvradial) / 3) + (Dmtr * Hilothickness) + ((Dmhv * Thickhv) / 3));
 const currentFactor = Math.pow((Turnsatcentertap * Iphhv), 2);
 const scalingFactor = 300 / (Ratedpower * Helechv);
 const coeff = 2.4805 * 0.00001 * F * 0.000001 * Kf;
-const Uxtemp = coeff * geomFactor * currentFactor * scalingFactor;
 
-      let Ux = Uxtemp * (1 + (Maj / 100));
-      let Ucc = Math.sqrt(Math.pow(Ur, 2) + Math.pow(Ux, 2));
-      
-      let voltagedrop08 = ((Ur * 0.8) + (Ux * 0.6)) + ((1 / 200) * ((Ux * 0.8) - (Ur * 0.6)));
-      let voltagedropunity = Ur + ((1 / 200) * (Math.pow(Ux, 2)));
-      let voltagelv08 = LV *1000* (1 - (voltagedrop08 / 100));
-      
-      let Tsclv = 1.768 * Math.pow((Ucc / δlv), 2);
-      let Tschv = 1.768 * Math.pow((Ucc / δhvpos7), 2);
-      let Tsc = (Tsclv > Tschv ? parseInt(Tschv) : parseInt(Tsclv));
-      
-      let tempcoillv = 105 + (8.2 * Math.pow(((100 / Ucc) * δlv), 2) * Tsc * 0.001);
-      let tempcoilhv = 105 + (8.2 * Math.pow(((100 / Ucc) * δhvpos7), 2) * Tsc * 0.001);
-      
-      // Mechanical Calculations
-      let Isc = (100 / Ucc) * Ilv * Math.sqrt(2) * (1 + Math.exp((-22 / 7) * (Ur / Ux)));
-      dispatch(setGeneral({ key: 'Isc', value: Isc}));
-      
-      let Ec = (2 * Math.pow((22 / 7), 2) * Math.pow((Nphlv * Isc), 2) * (Dmtr * 0.001) *
-               (Hilothickness + ((Thickhv + Thicklvradial) / 3)) * 0.001) /
-               (Math.pow(10, 11) * Math.pow((((Helechv + Heleclv) * 0.001) / 2), 2));
-      dispatch(setGeneral({ key: 'Ec', value: value}));
-      
-      let d = (((Hmechlv / 200) + ( (Heleclv - Hmechhv) / 2)) * 0.001);
-      dispatch(setGeneral({ key: 'd', value: value}));
-      
-      let Fd = 3.77 * 0.000001 * (1/200) * Math.pow((Nphlv * Isc), 2) * 0.0001;
-      dispatch(setGeneral({ key: 'Fd', value: value}));
-      
+  const Uxtemp = coeff * geomFactor * currentFactor * scalingFactor;
+  dispatch(setGeneral({ key: 'Uxtemp', value: Uxtemp }));
+
+  let Ux = Uxtemp * (1 + (Maj / 100));
+  dispatch(setGeneral({ key: 'Ux', value: Ux }));
+
+  let Ucc = Math.sqrt(Math.pow(Ur, 2) + Math.pow(Ux, 2));
+  dispatch(setGeneral({ key: 'Ucc', value: Ucc }));
+
+  let voltagedrop08 = ((Ur * 0.8) + (Ux * 0.6)) + ((1 / 200) * ((Ux * 0.8) - (Ur * 0.6)));
+  dispatch(setGeneral({ key: 'voltagedrop08', value: voltagedrop08 }));
+
+  let voltagedropunity = Ur + ((1 / 200) * (Math.pow(Ux, 2)));
+  dispatch(setGeneral({ key: 'voltagedropunity', value: voltagedropunity }));
+
+  let voltagelv08 = LV * 1000 * (1 - (voltagedrop08 / 100));
+  dispatch(setGeneral({ key: 'voltagelv08', value: voltagelv08 }));
+
+  let Tsclv = 1.768 * Math.pow((Ucc / δlv), 2);
+  dispatch(setGeneral({ key: 'Tsclv', value: Tsclv }));
+
+  let Tschv = 1.768 * Math.pow((Ucc / δhvpos7), 2);
+  dispatch(setGeneral({ key: 'Tschv', value: Tschv }));
+
+  let Tsc = (Tsclv > Tschv ? parseInt(Tschv) : parseInt(Tsclv));
+  dispatch(setGeneral({ key: 'Tsc', value: Tsc }));
+
+  let tempcoillv = 105 + (8.2 * Math.pow(((100 / Ucc) * δlv), 2) * Tsc * 0.001);
+  dispatch(setGeneral({ key: 'tempcoillv', value: tempcoillv }));
+
+  let tempcoilhv = 105 + (8.2 * Math.pow(((100 / Ucc) * δhvpos7), 2) * Tsc * 0.001);
+  dispatch(setGeneral({ key: 'tempcoilhv', value: tempcoilhv }));
+
+  // Mechanical Calculations
+  let Isc = (100 / Ucc) * Ilv * Math.sqrt(2) * (1 + Math.exp((-22 / 7) * (Ur / Ux)));
+  dispatch(setGeneral({ key: 'Isc', value: Isc }));
+
+  let Ec = (2 * Math.pow((22 / 7), 2) * Math.pow((Nphlv * Isc), 2) * (Dmtr * 0.001) *
+          (Hilothickness + ((Thickhv + Thicklvradial) / 3)) * 0.001) /
+          (Math.pow(10, 11) * Math.pow((((Helechv + Heleclv) * 0.001) / 2), 2));
+  dispatch(setGeneral({ key: 'Ec', value: Ec }));
+
+  let d = (((Hmechlv / 200) + ((Heleclv - Hmechhv) / 2)) * 0.001);
+  dispatch(setGeneral({ key: 'd', value: d }));
+
+  let Fd = 3.77 * 0.000001 * (1 / 200) * Math.pow((Nphlv * Isc), 2) * 0.0001;
+  dispatch(setGeneral({ key: 'Fd', value: Fd }));
+
       // Axial Forces
       let Fclv = 0.75 * Ec;
       let Fchv = Fclv; // same as Fclv
@@ -124,6 +146,7 @@ const Uxtemp = coeff * geomFactor * currentFactor * scalingFactor;
       function updateRods(value){
         dispatch(setHilo({ key: 'Rodshilo', value: value }));
       }
+      
 return(
         <>
 <div>

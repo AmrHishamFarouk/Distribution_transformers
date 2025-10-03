@@ -1,12 +1,16 @@
 import React, { useEffect,useState } from 'react';
 import { setGeneral, selectGeneral} from './../database/generalSlice';
 import { setSpec, selectSpec } from './../database/specsSlice';
+import { setHV, selectHV } from './../database/hvSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 function Ironcore(){
     const Csacore =  useSelector((state) => selectGeneral(state, 'Csacore'));
     const Maj =  useSelector((state) => selectSpec(state, 'Maj'));
+    const Фexternalradialhv = useSelector((state) => selectHV(state, 'Фexternalradial'));
+    const Hmechhv = useSelector((state) => selectHV(state, 'Hmechhv'));
     
+
     // const massironcorenet = 7.65*0.000001*Csacore*((3*hw)+(4*ew)+(2*largeststep));
     
     // const massironcoregross = massironcorenet*(1+(Maj/100)); 

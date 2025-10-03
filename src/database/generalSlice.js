@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  
+  Hcoil:0.0,
   Rbettwoterminalslv: 0.0,
   Rph20lv: 0.0,
   Csacore: 0.0,

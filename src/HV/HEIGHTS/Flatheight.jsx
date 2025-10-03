@@ -79,6 +79,9 @@ function Flatheight(){
           <img src={HeightWire} alt="HeightWire.png is missing"/>
           <h3>no. of layers: {Layers.toFixed(2)}</h3>
           <h3>used layers: {Layershv.toFixed(2)}</h3>
+          <label>--BORAGET--</label>
+          <h3>BORAGET VALUEEEEEEEEEEEEEEEEE</h3>
+
       </>
   )
 }
