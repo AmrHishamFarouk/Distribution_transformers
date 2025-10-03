@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
-import { setGeneral, selectGeneral} from '../../database/generalSlice';
-import { setSpec, selectSpec } from '../../database/specsSlice';
+import { setGeneral, selectGeneral} from './../database/generalSlice';
+import { setSpec, selectSpec } from './../database/specsSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 function Ironcore(){

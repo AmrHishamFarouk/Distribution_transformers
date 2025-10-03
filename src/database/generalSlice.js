@@ -6,6 +6,7 @@ const initialState = {
   Rbettwoterminalslv: 0.0,
   Rph20lv: 0.0,
   Csacore: 0.0,
+  CoreAreanet:0.0,
   W1: 0.0,
   W2: 0.0,
   W3: 0.0,

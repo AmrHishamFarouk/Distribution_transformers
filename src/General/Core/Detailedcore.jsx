@@ -1,9 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setGeneral, selectGeneral} from '../../database/generalSlice';
+import { setGeneral, selectGeneral} from './../../database/generalSlice';
+import { setLV, selectLV } from './../../database/lvSlice';
+import { setSpec, selectSpec } from './../../database/specsSlice';
+import core from "./../../assets/core/core.jpeg";
 
 function Detailedcore() {
   const dispatch = useDispatch();
+  const Totalstacking = useSelector((state) => selectGeneral(state, 'Totalstacking'));  
+  const W1 = useSelector((state) => selectGeneral(state, 'W1'));  
+  const W2 = useSelector((state) => selectGeneral(state, 'W2'));  
+  const W3 = useSelector((state) => selectGeneral(state, 'W3'));  
+  const W4 = useSelector((state) => selectGeneral(state, 'W4'));  
+  const L1 = useSelector((state) => selectGeneral(state, 'L1'));  
+  const L2 = useSelector((state) => selectGeneral(state, 'L2'));  
+  const L3 = useSelector((state) => selectGeneral(state, 'L3'));  
+  const L4 = useSelector((state) => selectGeneral(state, 'L4'));  
+  const Csacore = useSelector((state) => selectGeneral(state, 'Csacore'));  
+  const CoreAreanet = useSelector((state) => selectGeneral(state, 'CoreAreanet'));  
+  const Nphlv = useSelector((state) => selectLV(state, 'Nph'));  
+  const B =  useSelector((state) => selectSpec(state, 'B'));
+  const LV = useSelector((state) => selectSpec(state, 'LV'));  
+  const F = useSelector((state) => selectSpec(state, 'F'));
+  const Requiredcsacore = ((LV*1000) / Math.pow(3, 1/2)) / (4.44 * Nphlv * F *1.6 * 0.000001);
+  
 
   function updateW1(value){
       dispatch(setGeneral({ key: 'W1', value: value}));
@@ -37,46 +57,34 @@ function Detailedcore() {
     };
 
 
-
-//         useEffect(() => {
-//           let CoreAspectRatio = Totalstacking/W1;
-//                 dispatch(setLV({ key: 'CoreAspectRatio', value: CoreAspectRatio}));
-//         }, [Totalstacking , W1 ]);
- 
- //carefull of this function when changing w1 in the quick setup
-        // useEffect(() => {
-        //   let CoreArea = (L1*W1)+(2*L2*W2)+(2*L3*W3)+(2*L4*W4);
-        //   dispatch(setLV({ key: 'Csacore', value: CoreArea}));
-        // }, [L1,W1,L2,W2,L3,W3,L4,W4];
+        useEffect(() => {
+          let CoreArea = (L1*W1)+(2*L2*W2)+(2*L3*W3)+(2*L4*W4);
+          dispatch(setGeneral({ key: 'Csacore', value: CoreArea}));
+          let CoreAreanet = CoreArea*Math.pow(0.98957, 2);
+          dispatch(setGeneral({ key: 'CoreAreanet', value: CoreAreanet}));
+          
+          let CoreAspectRatio = Totalstacking/W1;
+          dispatch(setGeneral({ key: 'CoreAspectRatio', value: CoreAspectRatio}));
+        }, [L1,W1,L2,W2,L3,W3,L4,W4]);
        
-        // //see if it is net or real area
-        // useEffect(() => {
-        //   let fluxdensity = (400/root3)/(4.44*Nphlv*Corearea*0.000001)
-        //   dispatch(setLV({ key: 'B', value: fluxdensity}));
-        // }, [Csacore];
+        useEffect(() => {
+          let fluxdensity = (400/Math.sqrt(3))/(4.44*Nphlv*CoreAreanet*0.000001);
+          dispatch(setSpec({ key: 'B', value: fluxdensity}));
+        }, [CoreAreanet]);
        
  
   return (
-    // <>
+    <>
 
-    //   <div>
-    //     <div>
+      <div>
+        <div>
         
-    //     <div>
-    //     required deltacore = {Requiredcsacore}
-    //     </div>
-    //     <div>
-    //     required B = 1.6
-    //     </div>
-    //     <div>
-    //     current deltacore = {Csacore}
-    //     </div>
-    //     <div>
-    //     current B = {B}
-    //     </div>
+        <div>required deltacore = {Requiredcsacore}</div>
+        <div>required B = 1.6</div>
+        <div>current deltacore net = {CoreAreanet}</div>
+        <div>current B = {B}</div>
         
           <div>
-          
             <div>
               <label>L1</label>
               <input name="myInput" onChange={(e) => updateL1(parseFloat(e.target.value))}/>
@@ -116,14 +124,15 @@ function Detailedcore() {
               <label>W4</label>
               <input name="myInput" onChange={(e) => updateW4(parseFloat(e.target.value))}/>
             </div>
-  
           </div>
 
-    //     </div>
+        </div>
 
-    //     <img src={foilwire} alt="foil CSA imgage missed" />
-    //   </div>
-    // </>
+ 
+        <img src={core} alt="core diagram" />
+  
+      </div>
+    </>
   );
 }
 
