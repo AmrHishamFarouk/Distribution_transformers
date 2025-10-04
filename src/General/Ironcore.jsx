@@ -10,7 +10,8 @@ function Ironcore(){
     const Фexternalradialhv = useSelector((state) => selectHV(state, 'Фexternalradial'));
     const Hmechhv = useSelector((state) => selectHV(state, 'Hmechhv'));
     
-
+    // need to specify core dimensions
+    
     // const massironcorenet = 7.65*0.000001*Csacore*((3*hw)+(4*ew)+(2*largeststep));
     
     // const massironcoregross = massironcorenet*(1+(Maj/100)); 
