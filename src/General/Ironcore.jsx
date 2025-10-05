@@ -12,6 +12,8 @@ function Ironcore(){
     const Ew =  useSelector((state) => selectGeneral(state, 'Ew'));
     const Hw =  useSelector((state) => selectGeneral(state, 'Hw'));
     const B = useSelector((state) => selectSpec(state, 'B'));
+    const Ratedpower = useSelector((state) => selectSpec(state, 'Ratedpower'));
+    const W1 = useSelector((state) => selectGeneral(state, 'W1'));  
 
     function updateEw(Ew){
         dispatch(setGeneral({ key: 'Ew', value: Ew }));
@@ -21,17 +23,20 @@ function Ironcore(){
     }
 
     useEffect(() => {
-    const massironcorenet = 7.65*0.000001*Csacore*((3*Hw)+(4*Ew)+(2*largeststep));
-
+    const massironcorenet = 7.65*0.000001*Csacore*((3*Hw)+(4*Ew)+(2*W1));
+    dispatch(setGeneral({ key: 'massironcorenet', value: massironcorenet }));
+    
     const massironcoregross = massironcorenet*(1+(Maj/100));
+    dispatch(setGeneral({ key: 'massironcoregross', value: massironcoregross }));
     
     const Po = (((Math.pow(B,4.2))+2.565)/6.7)*factor*massironcorenet;
-
-    Iomax = Po/reating;
+    dispatch(setGeneral({ key: 'Po', value: Po }));
+    
+    Iomax = Po/Ratedpower;
+    dispatch(setGeneral({ key: 'Iomax', value: Iomax }));
 
     Io = Iomax * 0.7;
-
-    
+    dispatch(setGeneral({ key: 'Io', value: Io }));
     }, [Ew,Hw]);
     
     return(
