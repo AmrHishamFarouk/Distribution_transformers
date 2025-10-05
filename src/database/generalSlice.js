@@ -17,6 +17,11 @@ const initialState = {
   L4: 0.0,
   Totalstacking: 0.0,
   CoreAspectRatio: 0.0,
+  Ew:0.0,
+  Hw:0.0,
+  massironcorenet:0.0,
+  massironcoregross:0.0,
+  //general
   Sticks:6.0,
   Cyl:1.0,
   Tums:0.13,
