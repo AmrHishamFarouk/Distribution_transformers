@@ -21,6 +21,12 @@ const initialState = {
   Hw:0.0,
   massironcorenet:0.0,
   massironcoregross:0.0,
+  //iron core losses
+  massironcorenet:0.0,  
+  massironcoregross:0.0,     
+  Po:0.0,    
+  Iomax:0.0,  
+  Io:0.0,  
   //general
   Sticks:6.0,
   Cyl:1.0,
