@@ -3,7 +3,7 @@ import HeightWire from '../../assets/heights/HeightWire.jpeg';
 import { setHV, selectHV } from './../../database/hvSlice';
 import { selectLV } from './../../database/lvSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { setGeneral, selectGeneral} from './../database/generalSlice';
+import { setGeneral, selectGeneral} from './../../database/generalSlice';
 
 function Roundheight() {
   const dispatch = useDispatch();

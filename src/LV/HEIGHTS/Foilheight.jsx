@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react';
-import { setGeneral, selectGeneral} from './../database/generalSlice';
+import { setGeneral, selectGeneral} from './../../database/generalSlice';
 import HeightFoil from '../../assets/heights/HeightFoil.png'
 import { setLV, selectLV } from './../../database/lvSlice';
 import { useSelector, useDispatch } from 'react-redux';

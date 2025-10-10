@@ -6,38 +6,38 @@ import { useSelector, useDispatch } from 'react-redux';
 
 
 function Round() {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
   
-      function updatenumber(value){
-        dispatch(setLV({ key: 'NumberOfWires', value: value}));
-      };
-      function updateDinner(value){
-        dispatch(setLV({ key: 'Dinner', value: value}));
-      };
-      function updateDouter(value){
-        dispatch(setLV({ key: 'Douter', value: value}));
-      };          
-      const Dinner = useSelector((state) => selectLV(state, 'Dinner'));
-      const NumberOfWires = useSelector((state) => selectLV(state, 'NumberOfWires'));
+    //   function updatenumber(value){
+    //     dispatch(setLV({ key: 'NumberOfWires', value: value}));
+    //   };
+    //   function updateDinner(value){
+    //     dispatch(setLV({ key: 'Dinner', value: value}));
+    //   };
+    //   function updateDouter(value){
+    //     dispatch(setLV({ key: 'Douter', value: value}));
+    //   };          
+    //   const Dinner = useSelector((state) => selectLV(state, 'Dinner'));
+    //   const NumberOfWires = useSelector((state) => selectLV(state, 'NumberOfWires'));
       
-      useEffect(() => {
-        let csa = (((22/7)*Math.pow(Dinner, 2))/4)*NumberOfWires
-        dispatch(setLV({ key: 'Csalv', value: csa}));
-      }, [NumberOfWires, Dinner]);
+    //   useEffect(() => {
+    //     let csa = (((22/7)*Math.pow(Dinner, 2))/4)*NumberOfWires
+    //     dispatch(setLV({ key: 'Csalv', value: csa}));
+    //   }, [NumberOfWires, Dinner]);
 
-        const Douter = useSelector((state) => selectLV(state, 'Douter'));
+    //     const Douter = useSelector((state) => selectLV(state, 'Douter'));
 
-      useEffect(() => {
-        let WireInsulation = (Douter-Dinner)/2;
-        dispatch(setLV({ key: 'WireInsulation', value: WireInsulation}));
-      }, [Douter, Dinner]);
+    //   useEffect(() => {
+    //     let WireInsulation = (Douter-Dinner)/2;
+    //     dispatch(setLV({ key: 'WireInsulation', value: WireInsulation}));
+    //   }, [Douter, Dinner]);
 
-      const Csalv = useSelector((state) => selectLV(state, 'Csalv'));
-      const WireInsulation = useSelector((state) => selectLV(state, 'WireInsulation'));
+    //   const Csalv = useSelector((state) => selectLV(state, 'Csalv'));
+    //   const WireInsulation = useSelector((state) => selectLV(state, 'WireInsulation'));
 
   return (
     <>
-      <div>
+      {/* <div>
         <h2>Round</h2>
         <img scr="./assets/round.png" />
       </div>
@@ -62,7 +62,7 @@ function Round() {
         </div>
 
         <img src={roundwire} alt="Round CSA imgage missed" />
-      </div>
+      </div> */}
     </>
   );
 }

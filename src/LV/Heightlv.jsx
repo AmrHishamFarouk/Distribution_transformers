@@ -12,8 +12,8 @@ function Heightlv() {
 
   return (
     <>
-      {Wiretypelv == 'Flat' && <Roundheight/>}
-      {Wiretypelv == 'Round' && <Flatheight/>}
+      {Wiretypelv == 'Flat' && <Flatheight/>}
+      {Wiretypelv == 'Round' && <Roundheight/>}
       {Wiretypelv == 'Foil' && <Foilheight/>}
     </>
   );

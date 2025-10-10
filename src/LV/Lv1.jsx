@@ -47,21 +47,21 @@ function barsSelection() {
 
   return (
       <>
-  <h1 className="neon-title">L.V. winding</h1>
-  <div className="neon-text">Iline = Iph = {Iphlv.toFixed(4)}</div>
+  <h1>L.V. winding</h1>
+  <div>Iline = Iph = {Iphlv.toFixed(4)}</div>
 
-  <h1 className="neon-title">Please choose the type of wire</h1>
-  <div className="wire-buttons">
+  <h1>Please choose the type of wire</h1>
+  <div>
     <button onClick={() => ChangeWire('Foil')}>Foil</button>
     <button onClick={() => ChangeWire('Flat')}>Flat</button>
-    <button onClick={() => ChangeWire('Round')}>Round</button>
+    {/* <button onClick={() => ChangeWire('Round')}>Round</button> */}
   </div>
 
-  <div className="wire-output">
+  <div>
     {Wiretypelv === 'Foil' && <Foil />}
     {Wiretypelv === 'Flat' && <Flat />}
     {Wiretypelv === 'Round' && <Round />}
-    <div className="neon-text">δ = {δlv.toFixed(4)}</div>
+    <div>δ = {δlv.toFixed(4)}</div>
   </div>
 </>
   );

@@ -4,39 +4,39 @@ import { setLV, selectLV } from './../../database/lvSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 function Roundheight(){
-const dispatch = useDispatch();
+// const dispatch = useDispatch();
 
-const Hmechlv = useSelector((state) => selectLV(state, 'Hmechlv'));
-const Heleclv = useSelector((state) => selectLV(state, 'Heleclv'));
-const Nph = useSelector((state) => selectLV(state, 'Nph'));
-const Layerslv = useSelector((state) => selectLV(state, 'Layerslv'));
-const Douter = useSelector((state) => selectLV(state, 'Douter'));
-useEffect(() => {
-  console.log('State Values:', { Hmechlv, Heleclv, Nph, Layerslv, Douter });
-}, [Hmechlv, Heleclv, Nph, Layerslv, Douter]);
+// const Hmechlv = useSelector((state) => selectLV(state, 'Hmechlv'));
+// const Heleclv = useSelector((state) => selectLV(state, 'Heleclv'));
+// const Nph = useSelector((state) => selectLV(state, 'Nph'));
+// const Layerslv = useSelector((state) => selectLV(state, 'Layerslv'));
+// const Douter = useSelector((state) => selectLV(state, 'Douter'));
+// useEffect(() => {
+//   console.log('State Values:', { Hmechlv, Heleclv, Nph, Layerslv, Douter });
+// }, [Hmechlv, Heleclv, Nph, Layerslv, Douter]);
 
-function updateHmechlv(value) {
-  console.log('updateHmechlv called with value:', value);
-  console.log('Current Douter:', Douter);
-  console.log('Current Nph:', Nph);
+// function updateHmechlv(value) {
+//   console.log('updateHmechlv called with value:', value);
+//   console.log('Current Douter:', Douter);
+//   console.log('Current Nph:', Nph);
 
-  let NumWires = parseInt(value / (Douter*1.025));
-  console.log('Computed NumWires:', NumWires);
+//   let NumWires = parseInt(value / (Douter*1.025));
+//   console.log('Computed NumWires:', NumWires);
 
-  dispatch(setLV({ key: 'TurnsPerLayer', value: NumWires }));
-  dispatch(setLV({ key: 'Hmechlv', value: NumWires * Douter }));
-  dispatch(setLV({ key: 'Heleclv', value: (NumWires - 1) * Douter }));
+//   dispatch(setLV({ key: 'TurnsPerLayer', value: NumWires }));
+//   dispatch(setLV({ key: 'Hmechlv', value: NumWires * Douter }));
+//   dispatch(setLV({ key: 'Heleclv', value: (NumWires - 1) * Douter }));
 
-  let layers = Nph / (NumWires - 1);
-  console.log('Computed Layers:', layers);
+//   let layers = Nph / (NumWires - 1);
+//   console.log('Computed Layers:', layers);
 
-  dispatch(setLV({ key: 'Layerslv', value: Math.ceil(layers) }));
-}
+//   dispatch(setLV({ key: 'Layerslv', value: Math.ceil(layers) }));
+// }
 
 
     return(
           <>
-          <div>
+          {/* <div>
             <div>
               <label>Hmech</label>
 <input name="myInput" placeholder="mm" onChange={(e) => {
@@ -50,7 +50,7 @@ function updateHmechlv(value) {
             src={HeightWire}
             alt="HeightWire.png is missing"
           />
-          <h3>no. of layers: {Layerslv}</h3>
+          <h3>no. of layers: {Layerslv}</h3> */}
 
         </>
   )

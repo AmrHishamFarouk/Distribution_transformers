@@ -9,7 +9,7 @@ function Flatheight(){
 
   const [sliderValue, setSliderValue] = useState(1);
   const [factor, setfactor] = useState(1.025);
-  const [maxValue, setmaxValue] = useState(401);
+  const [maxValue, setmaxValue] = useState(0);
   const [Layers, setLayers] = useState(0);
 
   const Douter = useSelector((state) => selectHV(state, 'Douter'));
@@ -44,7 +44,7 @@ function Flatheight(){
       if(Wirealignment == 'vertically'){
         const Helechv = sliderValue*NumberOfWires*(Wirelength+WireInsulation)*factor;
         dispatch(setHV({ key: 'Helechv', value: Helechv}));
-        const Hmechhv = Helechv+((Wirelength+WireInsulation)*factor);
+        const Hmechhv = Helechv+(NumberOfWires*(Wirelength+WireInsulation)*factor);
         dispatch(setHV({ key: 'Hmechhv', value: Hmechhv}));
         const layers = Turnshv[0]/sliderValue;
         setLayers(layers);
