@@ -25,7 +25,6 @@ function Lv3() {
       minins = 2;
     }else{
       minins = Math.ceil(mininstemp);
-
     }
 
     let gradient =  (4*vt*TurnsPerLayer*0.001)/(WireInsulation+(InsulationPaperThicknesslv*minins));
@@ -58,7 +57,6 @@ function Lv3() {
           break;
         }else{
         setNoins(Noins - 1);
-
         break;
         }
        
@@ -87,9 +85,9 @@ function Lv3() {
       <h1>Gimplv = {Gimplv}</h1>
       
       {vt} <br/>
-    TurnsPerLayer={TurnsPerLayer}<br/> 
-    WireInsulation = {WireInsulation} {WireInsulation === 0 && "because it is foil"}<br />
-    InsulationPaperThicknesslv={InsulationPaperThicknesslv}<br/>
+      TurnsPerLayer={TurnsPerLayer}<br/> 
+      WireInsulation = {WireInsulation} {WireInsulation === 0 && "because it is foil"}<br />
+      InsulationPaperThicknesslv={InsulationPaperThicknesslv}<br/>
       {Noins == 2 && (
         <img src={ins2} alt="ins 2 missed missed" />      )}
       {Noins == 3 && (

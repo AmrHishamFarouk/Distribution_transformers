@@ -17,6 +17,7 @@ function Flat() {
     const NumberOfWires = useSelector((state) => selectLV(state, 'NumberOfWires'));
     const Csalv = useSelector((state) => selectLV(state, 'Csalv'));
     const Wirealignment = useSelector((state) => selectLV(state, 'Wirealignmentlv'));
+    const WireInsulation = useSelector((state) => selectLV(state, 'WireInsulation'));
 
     function updatenumber(value){
       dispatch(setLV({ key: 'NumberOfWires', value: value}));
@@ -50,23 +51,23 @@ useEffect(() => {
   switch (`${Wirealignment}_${NumberOfWires}`) {
     case 'vertically_2':
       setwirepicture(flatwire2vertically);
-      dispatch(setLV({ key: 'Turnlengthlv', value: Wirelengthlv*NumberOfWires}));
+      dispatch(setLV({ key: 'Turnlengthlv', value: (Wirelengthlv+WireInsulation)*NumberOfWires}));
       dispatch(setLV({ key: 'Turnthicknesslv', value: Wirethicknesslv}));
       break;
     case 'vertically_3':
       setwirepicture(flatwire3vertically);
-      dispatch(setLV({ key: 'Turnlengthlv', value: Wirelengthlv*NumberOfWires}));
+      dispatch(setLV({ key: 'Turnlengthlv', value: (Wirelengthlv+WireInsulation)*NumberOfWires}));
       dispatch(setLV({ key: 'Turnthicknesslv', value: Wirethicknesslv}));
       break;
     case 'horizontally_2':
       setwirepicture(flatwire2horizontally);
       dispatch(setLV({ key: 'Turnlengthlv', value: Wirelengthlv}));
-      dispatch(setLV({ key: 'Turnthicknesslv', value: Wirethicknesslv*NumberOfWires}));
+      dispatch(setLV({ key: 'Turnthicknesslv', value: (Wirethicknesslv+WireInsulation)*NumberOfWires}));
       break;
     case 'horizontally_3':
       setwirepicture(flatwire3horizontally);
       dispatch(setLV({ key: 'Turnlengthlv', value: Wirelengthlv}));
-      dispatch(setLV({ key: 'Turnthicknesslv', value: Wirethicknesslv*NumberOfWires}));
+      dispatch(setLV({ key: 'Turnthicknesslv', value: (Wirethicknesslv+WireInsulation)*NumberOfWires}));
       break;
     default:
       setwirepicture(flatwire1);

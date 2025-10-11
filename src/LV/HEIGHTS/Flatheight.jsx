@@ -18,11 +18,15 @@ function Flatheight(){
   const WireInsulation = useSelector((state) => selectLV(state, 'WireInsulation'));
   const Turnlengthlv = useSelector((state) => selectLV(state, 'Turnlengthlv'));
   const Turnthicknesslv = useSelector((state) => selectLV(state, 'Turnthicknesslv'));
+  const Hardboardlv = useSelector((state) => selectLV(state, 'Hardboardlv'));
+  const Xalv = useSelector((state) => selectLV(state, 'Xalv'));
+  const Xblv = useSelector((state) => selectLV(state, 'Xblv'));
 
   const [sliderValue, setSliderValue] = useState(1);
   const [factor, setfactor] = useState(1.025);
   const [maxValue, setmaxValue] = useState(Nph);
   const [Layers, setLayers] = useState(0);
+  const [hardboardvalue, sethardboardvalue] = useState(10);
 
   const handleChange = (event) => {
     const newValue = Number(event.target.value);
@@ -50,7 +54,16 @@ function Flatheight(){
       };
   }, [sliderValue,factor]);
 
-  
+  const handlehardboard = (event) => {
+    const newValue = Number(event.target.value);
+    sethardboardvalue(newValue);
+    dispatch(setLV({ key: 'Hardboardlv', value: hardboardvalue}));
+    const Xa = Hardboardlv - 1;
+    dispatch(setLV({ key: 'Xalv', value: Xa}));
+    const Xb = Xa + Turnlengthlv;
+    dispatch(setLV({ key: 'Xblv', value: Xb}));
+  };
+
     return(
         <>
         <div>
@@ -68,7 +81,9 @@ function Flatheight(){
           <h3>no. of layers: {Layers.toFixed(2)}</h3>
           <h3>used layers: {Layerslv.toFixed(2)}</h3>
           <label>--BORAGET--</label>
-          <h3>BORAGET VALUEEEEEEEEEEEEEEEEE</h3>
+          <input type="range" min='8' max='100' value={hardboardvalue} onChange={handlehardboard} style={{ width: '50%' }}/>
+          <label>Xa = {Xalv}</label>
+          <label>Xb = {Xblv}</label>
 
       </>
   )
