@@ -24,12 +24,16 @@ function Flat() {
     };
     function updateThickness(value){
       dispatch(setLV({ key: 'Wirethicknesslv', value: value}));
+      dispatch(setLV({ key: 'Turnthicknesslv', value: Wirethicknesslv}));
     };
     function updateLength(value){
       dispatch(setLV({ key: 'Wirelengthlv', value: value}));
+      dispatch(setLV({ key: 'Turnlengthlv', value: (Wirelengthlv+WireInsulation)*NumberOfWires}));
     }
     function updateInsulation(value){
       dispatch(setLV({ key: 'WireInsulation', value: value}));
+      dispatch(setLV({ key: 'Turnlengthlv', value: (Wirelengthlv+WireInsulation)*NumberOfWires}));
+      dispatch(setLV({ key: 'Turnthicknesslv', value: (Wirethicknesslv+WireInsulation)}));
     }
     function updateR(value){
       dispatch(setLV({ key: 'WireR', value: value}));

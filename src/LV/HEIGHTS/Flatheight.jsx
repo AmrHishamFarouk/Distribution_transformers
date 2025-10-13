@@ -34,6 +34,7 @@ function Flatheight(){
   };
 
     useEffect(() => {
+      dispatch(setLV({ key: 'TurnsPerLayer', value: sliderValue}));
       if(Wirealignment == 'vertically'){
         const Heleclv = sliderValue*NumberOfWires*(Wirelength+WireInsulation)*factor;
         dispatch(setLV({ key: 'Heleclv', value: Heleclv}));

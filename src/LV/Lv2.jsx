@@ -7,44 +7,62 @@ import { setLV, selectLV } from './../database/lvSlice';
 
 
 function Lv2() {
-    const dispatch = useDispatch();
-  
-  const δlv = useSelector((state) => selectLV(state, 'δlv'));
-  const Wirethicknesslv = useSelector((state) => selectLV(state, 'Wirethicknesslv'));
+const dispatch = useDispatch();
+const [Nopack, setNopack] = useState(1);
 
+// Log initial state
+console.log("Initial Nopack:", Nopack);
 
-  useEffect(() => {
-      let MinLayersPerPacket = 100 / (Math.pow(δlv, 2) * Wirethicknesslv);
-      let n = parseInt(MinLayersPerPacket);
-      dispatch(setLV({ key: 'MinLayersPerPacketlv', value: n }));
-  }, [δlv, Wirethicknesslv]);
-        
-      const n = useSelector((state) => selectLV(state, 'MinLayersPerPacketlv'));
-      const Nph = useSelector((state) => selectLV(state, 'Nph'));
+// Selectors
+const δlv = useSelector((state) => selectLV(state, 'δlv'));
+const Wirethicknesslv = useSelector((state) => selectLV(state, 'Wirethicknesslv'));
+const n = useSelector((state) => selectLV(state, 'MinLayersPerPacketlv'));
+const Nph = useSelector((state) => selectLV(state, 'Nph'));
+const Minpacketslv = useSelector((state) => selectLV(state, 'Minpacketslv'));
 
-      useEffect(() => {
-        let packets = Math.ceil(Nph/n);
-        dispatch(setLV({ key: 'Minpacketslv', value: packets }));
-    }, [Nph, n]);
-          
-    const Minpacketslv = useSelector((state) => selectLV(state, 'Minpacketslv'));
+// Log selector values
+console.log("δlv:", δlv);
+console.log("Wirethicknesslv:", Wirethicknesslv);
+console.log("MinLayersPerPacketlv (n):", n);
+console.log("Nph:", Nph);
+console.log("Minpacketslv:", Minpacketslv);
 
-        
-  const [Nopack, setNopack] = useState(1);
-  
-  useEffect(() => {
-    setNopack(Minpacketslv); // Sync when Minpacketslv updates
-  }, [Minpacketslv]);
+useEffect(() => {
+  let MinLayersPerPacket = 100 / (Math.pow(δlv, 2) * Wirethicknesslv);
+  let parsedN = parseInt(MinLayersPerPacket);
+  console.log("Calculated MinLayersPerPacket:", MinLayersPerPacket);
+  console.log("Parsed MinLayersPerPacket (n):", parsedN);
+  dispatch(setLV({ key: 'MinLayersPerPacketlv', value: parsedN }));
+}, [δlv, Wirethicknesslv]);
 
-  let Changepack = (sign) => {
-    setNopack(prevNopack => {
-      if (sign === '+' && prevNopack < 4) return prevNopack + 1;
-      if (sign === '-' && prevNopack > Minpacketslv) return prevNopack - 1;
-      return prevNopack; // Keep the same value if conditions are not met
+useEffect(() => {
+  let packets = Math.ceil(Nph / n);
+  console.log("Calculated packets:", packets);
+  dispatch(setLV({ key: 'Minpacketslv', value: packets }));
+}, [Nph, n]);
+
+useEffect(() => {
+  console.log("Updating Nopack to Minpacketslv:", Minpacketslv);
+  setNopack(Minpacketslv);
+}, [Minpacketslv]);
+
+let Changepack = (sign) => {
+  setNopack(prevNopack => {
+    let newNopack = prevNopack;
+    if (sign === '+' && prevNopack < 4) newNopack = prevNopack + 1;
+    if (sign === '-' && prevNopack > Minpacketslv) newNopack = prevNopack - 1;
+    console.log(`Changepack triggered with sign '${sign}':`, {
+      prevNopack,
+      newNopack,
+      Minpacketslv
     });
-    console.log("Current Nopack:", Nopack);
+    return newNopack;
+  });
 
-  };
+  // Note: This will log the stale value of Nopack due to async state update
+  console.log("Current Nopack (before update):", Nopack);
+};
+
   
   return (
     <>
