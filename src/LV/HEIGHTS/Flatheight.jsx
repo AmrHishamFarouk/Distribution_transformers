@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
-
 import HeightWire from '../../assets/heights/HeightWire.jpeg'
+import { setGeneral, selectGeneral} from './../../database/generalSlice';
 import { setLV, selectLV } from './../../database/lvSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -21,6 +21,7 @@ function Flatheight(){
   const Hardboardlv = useSelector((state) => selectLV(state, 'Hardboardlv'));
   const Xalv = useSelector((state) => selectLV(state, 'Xalv'));
   const Xblv = useSelector((state) => selectLV(state, 'Xblv'));
+  const Hcoil = useSelector((state) => selectGeneral(state, 'Hcoil'));
 
   const [sliderValue, setSliderValue] = useState(1);
   const [factor, setfactor] = useState(1.025);
@@ -63,6 +64,8 @@ function Flatheight(){
     dispatch(setLV({ key: 'Xalv', value: Xa}));
     const Xb = Xa + Turnlengthlv;
     dispatch(setLV({ key: 'Xblv', value: Xb}));
+    const Hcoillv =  2*newValue + Hmechlv;
+    dispatch(setGeneral({ key: 'Hcoil', value: Hcoillv }));
   };
 
     return(
@@ -85,7 +88,7 @@ function Flatheight(){
           <input type="range" min='8' max='100' value={hardboardvalue} onChange={handlehardboard} style={{ width: '50%' }}/>
           <label>Xa = {Xalv}</label>
           <label>Xb = {Xblv}</label>
-
+          <h3>Hcoil ={Hcoil}</h3>
       </>
   )
 }
