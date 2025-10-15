@@ -41,6 +41,7 @@ const initialState = {
   Thickradiallv: 0.0,
   Thickaxiallv: 0.0,
   Barslv: 0.0,
+  Barslengthlv:0.0,
   Фexternalradial: 0.0,
   Фexternalaxial: 0.0,
   Dmeanlv: 0.0,
