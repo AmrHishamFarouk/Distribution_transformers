@@ -12,6 +12,7 @@ const [Nopack, setNopack] = useState(1);
 
 // Log initial state
 console.log("Initial Nopack:", Nopack);
+
 // Selectors
 const δlv = useSelector((state) => selectLV(state, 'δlv'));
 const Wirethicknesslv = useSelector((state) => selectLV(state, 'Wirethicknesslv'));
