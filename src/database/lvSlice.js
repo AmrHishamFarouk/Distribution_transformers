@@ -29,6 +29,7 @@ const initialState = {
   Secondpacketlv: 0.0,
   Thirdpacketlv: 0.0,
   Fourthpacketlv: 0.0,
+  Layoutlv: [],
   Glv: 0.0,
   Gimplv: 0.0,
   Insulationlv: 0.0,

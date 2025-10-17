@@ -37,6 +37,7 @@ const initialState = {
   Secondpackethv: 0.0,
   Thirdpackethv: 0.0,
   Fourthpackethv: 0.0,
+  Layouthv: [],
   Coolingductthicknesshv:3.1,
   Ghv: 0.0,
   Gimphv: 0.0,
