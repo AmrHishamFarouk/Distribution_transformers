@@ -43,8 +43,6 @@ function Calc1() {
       dispatch(setSpec({ key: 'VT', value: vt }));
   }
 
-
-
   return (
     <>
       <h1 className="neon-title">Temporary v/t: {Temporaryvt.toFixed(4)}</h1>
