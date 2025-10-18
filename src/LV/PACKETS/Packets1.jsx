@@ -8,10 +8,13 @@ function Packets1() {
     const Firstpacketlv = useSelector((state) => selectLV(state, 'Firstpacketlv'));
     const Layerslv = useSelector((state) => selectLV(state, 'Layerslv'));
 
+      const layout = useSelector((state) => selectLV(state, 'Layoutlv'));
+    
+
     dispatch(setLV({ key: 'Nocollingductlv', value: 0 }));
   
     dispatch(setLV({ key: 'Firstpacketlv', value: Layerslv }));
-    const Packets = [{ duct1: false, duct2: true, layers: Layerslv }]
+    const Packets = [{ duct1: "no", duct2: "partial", layers: Layerslv }]
     dispatch(setLV({ key: 'Layoutlv', value: Packets }));
 
     useEffect(() => {
@@ -22,7 +25,9 @@ function Packets1() {
     <>
       <div>No. of layers</div>
       <h3>{Layerslv}</h3>
-        <div><img src={onepacket} alt='one packet'/></div>
+      <div><img src={onepacket} alt='one packet'/></div>
+      <pre>{JSON.stringify(layout, null, 2)}</pre>
+
     </>
   );
 }

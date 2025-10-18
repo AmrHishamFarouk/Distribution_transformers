@@ -1,10 +1,10 @@
 import React, { useEffect,useState } from 'react';
+import Packets1 from './PACKETS/Packets1';
 import Packets2 from './PACKETS/Packets2';
 import Packets3 from './PACKETS/Packets3';
 import Packets4 from './PACKETS/Packets4';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLV, selectLV } from './../database/lvSlice';
-
 
 function Lv2() {
 const dispatch = useDispatch();
@@ -66,6 +66,7 @@ let Changepack = (sign) => {
   return (
     <>
       <div> n= {n.toFixed(2)}</div>
+      {Nopack == 1 && <Packets1 />}
       {Nopack == 2 && <Packets2 />}
       {Nopack == 3 && <Packets3 />}
       {Nopack == 4 && <Packets4 />}
