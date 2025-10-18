@@ -7,12 +7,10 @@ function Packets1() {
     const dispatch = useDispatch();
     const Firstpacketlv = useSelector((state) => selectLV(state, 'Firstpacketlv'));
     const Layerslv = useSelector((state) => selectLV(state, 'Layerslv'));
-
-      const layout = useSelector((state) => selectLV(state, 'Layoutlv'));
     
+    const layout = useSelector((state) => selectLV(state, 'Layoutlv'));
 
     dispatch(setLV({ key: 'Nocollingductlv', value: 0 }));
-  
     dispatch(setLV({ key: 'Firstpacketlv', value: Layerslv }));
     const Packets = [{ duct1: "no", duct2: "partial", layers: Layerslv }]
     dispatch(setLV({ key: 'Layoutlv', value: Packets }));

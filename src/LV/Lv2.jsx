@@ -39,18 +39,15 @@ useEffect(() => {
   let packets = Math.ceil(Nph / n);
   console.log("Calculated packets:", packets);
   dispatch(setLV({ key: 'Minpacketslv', value: packets }));
-}, [Nph, n]);
-
-useEffect(() => {
   console.log("Updating Nopack to Minpacketslv:", Minpacketslv);
   setNopack(Minpacketslv);
-}, [Minpacketslv]);
+}, [Nph, n]);
 
 let Changepack = (sign) => {
   setNopack(prevNopack => {
     let newNopack = prevNopack;
     if (sign === '+' && prevNopack < 4) newNopack = prevNopack + 1;
-    if (sign === '-' && prevNopack > Minpacketslv) newNopack = prevNopack - 1;
+    if (sign === '-' && prevNopack > 1) newNopack = prevNopack - 1;
     console.log(`Changepack triggered with sign '${sign}':`, {
       prevNopack,
       newNopack,
