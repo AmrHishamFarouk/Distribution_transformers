@@ -35,6 +35,7 @@ useEffect(() => {
   dispatch(setLV({ key: 'MinLayersPerPacketlv', value: parsedN }));
 }, [δlv, Wirethicknesslv]);
 
+
 useEffect(() => {
   let packets = Math.ceil(Nph / n);
   console.log("Calculated packets:", packets);
