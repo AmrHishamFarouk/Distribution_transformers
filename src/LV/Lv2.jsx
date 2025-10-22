@@ -56,7 +56,6 @@ let Changepack = (sign) => {
     });
     return newNopack;
   });
-
   // Note: This will log the stale value of Nopack due to async state update
   console.log("Current Nopack (before update):", Nopack);
 };
