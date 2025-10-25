@@ -11,6 +11,14 @@ function Bars(){
   const Hcoil =  useSelector((state) => selectGeneral(state, 'Hcoil'));
   const Iphlv = useSelector((state) => selectLV(state, 'Iphlv'));
  
+  const Barslv = useSelector((state) => selectLV(state, 'Barslv'));
+const Barslengthlv = useSelector((state) => selectLV(state, 'Barslengthlv'));
+
+useEffect(() => {
+  console.log('Barslv:', Barslv);
+  console.log('Barslengthlv:', Barslengthlv);
+}, [Barslv, Barslengthlv]);
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [useCustom, setUseCustom] = useState(false);
   const [selected, setSelected] = useState(null);
@@ -29,10 +37,14 @@ function Bars(){
     { label: '10x120', thickness: 10, length: 120 }
   ];
 
-  const handleSelect = (option) => {
-    setSelected(option);
-    setIsDropdownOpen(false);
-  };
+const handleSelect = (option) => {
+  setSelected(option);
+  setIsDropdownOpen(false);
+
+  dispatch(setLV({ key: 'Barslv', value: option.thickness }));
+  dispatch(setLV({ key: 'Barslengthlv', value: option.length }));
+};
+
 
   const toggleCustom = () => {
     setUseCustom(true);
@@ -89,33 +101,60 @@ function Bars(){
             type="number"
             placeholder="Thickness"
             value={customThickness}
-            onChange={(e) => setCustomThickness(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              setCustomThickness(value);
+              dispatch(setLV({ key: 'Barslv', value: Number(value) }));
+            }}
             style={{ marginRight: '10px', padding: '5px' }}
           />
+
           <input
             type="number"
             placeholder="Length"
             value={customLength}
-            onChange={(e) => setCustomLength(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              setCustomLength(value);
+              dispatch(setLV({ key: 'Barslengthlv', value: Number(value) }));
+            }}
             style={{ padding: '5px' }}
           />
         </div>
       )}
 
-      <button
-        onClick={toggleCustom}
-        style={{
-          padding: '8px 12px',
-          backgroundColor: '#0ff',
-          color: '#000',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer',
-          fontWeight: 'bold'
-        }}
-      >
-        Custom Bars
-      </button>
+{!useCustom ? (
+    <button
+      onClick={toggleCustom}
+      style={{
+        padding: '8px 12px',
+        backgroundColor: '#0ff',
+        color: '#000',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        fontWeight: 'bold'
+      }}
+    >
+      Custom Bars
+    </button>
+  ) : (
+    <button
+      onClick={() => setUseCustom(false)}
+      style={{
+        padding: '8px 12px',
+        backgroundColor: '#f0f',
+        color: '#000',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        fontWeight: 'bold'
+      }}
+    >
+      Back to Options
+    </button>
+  )}
+
     </div>
   );
 };
