@@ -7,25 +7,21 @@ import { setHV } from './../../database/hvSlice';
 
 function Packets1() {
     const dispatch = useDispatch();
+    const Firstpackethv = useSelector((state) => selectHV(state, 'Firstpackethv'));
+    const Layershv = useSelector((state) => selectHV(state, 'Layershv'));
+    const layout = useSelector((state) => selectHV(state, 'Layouthv'));
+
     dispatch(setHV({ key: 'Nocollingducthv', value: 0 }));
-    
-    function updatefirstpacket(value){
-        dispatch(setHV({ key: 'Firstpackethv', value: value }));
-    }
+    dispatch(setHV({ key: 'Firstpackethv', value: Layershv }));
+    const Packets = [{ duct1: "no", duct2: "partial", layers: Layerslv }]
+    dispatch(setHV({ key: 'Layouthv', value: Packets }));
 
   return (
     <>
       <div>No. of layers</div>
-
-      <div>
-        <div>
-          <div>
-            <label>1st packet</label>
-            <input name="myInput" placeholder="layers" onChange={(e) => updatefirstpacket(parseFloat(e.target.value))}/>
-          </div>
-        </div>
-        <div><img src={doublepackets} alt='one packet'/></div>
-      </div>
+      <h3>{Layerslv}</h3>
+      <div><img src={onepacket} alt='one packet'/></div>
+      <pre>{JSON.stringify(layout, null, 2)}</pre>
     </>
   );
 }
