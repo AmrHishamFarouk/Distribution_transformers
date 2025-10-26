@@ -1,5 +1,4 @@
-import doublepackets from '../../assets/packets/1packets.jpeg'
-
+import onepacket from '../../assets/packets/1packets.jpeg'
 import { useDispatch } from 'react-redux';
 import { setHV } from './../../database/hvSlice';
 
@@ -19,7 +18,7 @@ function Packets1() {
   return (
     <>
       <div>No. of layers</div>
-      <h3>{Layerslv}</h3>
+      <h3>{Layershv}</h3>
       <div><img src={onepacket} alt='one packet'/></div>
       <pre>{JSON.stringify(layout, null, 2)}</pre>
     </>
