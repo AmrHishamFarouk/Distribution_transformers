@@ -114,9 +114,9 @@ console.log('averagestep:', averagestep);
   const [length, setlength] = useState([]);
 
   useEffect(() => {
-        newturns()
-        calculateactualVT()
-        calculatetolerance()
+      newturns()
+      calculateactualVT()
+      calculatetolerance()
 
       setArray1(Voltages);
       setArray2(Turnshv);
