@@ -123,7 +123,6 @@ console.log('averagestep:', averagestep);
       setArray3(actualVT);
       setArray4(Tolerance);
       setlength(array1.length);
-
     }, [Voltages]); 
 
     return(
