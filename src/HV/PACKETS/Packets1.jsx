@@ -1,7 +1,6 @@
 import onepacket from '../../assets/packets/1packets.jpeg'
-import { useDispatch } from 'react-redux';
-import { setHV } from './../../database/hvSlice';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setHV, selectHV } from './../../database/hvSlice';
 
 
 function Packets1() {
@@ -12,7 +11,7 @@ function Packets1() {
 
     dispatch(setHV({ key: 'Nocollingducthv', value: 0 }));
     dispatch(setHV({ key: 'Firstpackethv', value: Layershv }));
-    const Packets = [{ duct1: "no", duct2: "partial", layers: Layerslv }]
+    const Packets = [{ duct1: "no", duct2: "partial", layers: Layershv }]
     dispatch(setHV({ key: 'Layouthv', value: Packets }));
 
   return (

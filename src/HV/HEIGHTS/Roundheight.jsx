@@ -38,7 +38,7 @@ function Roundheight() {
         const layers = Turnshv[0]/sliderValue;
         setLayers(layers);
         dispatch(setHV({ key: 'Layershv', value: Math.ceil(layers)}));
-        const Hardboard = Hcoil - Hmechhv;
+        const Hardboard = (Hcoil - Hmechhv)/2;
         dispatch(setHV({ key: 'Hardboardhv', value: Hardboard}));
   }, [sliderValue,factor]);
 
