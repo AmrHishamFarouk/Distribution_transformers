@@ -20,8 +20,7 @@ function Hv3() {
       let n = parseInt(MinLayersPerPacket);
       dispatch(setHV({ key: 'MinLayersPerPackethv', value: n }));
   }, [δhv, Wirethicknesshv,Nopack]);
-        
-
+      
   
   let Changepack = (sign) => {
     setNopack(prevNopack => {
