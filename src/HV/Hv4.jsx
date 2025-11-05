@@ -87,7 +87,6 @@ function Hv3() {
             </div>
       <h1>Glv = {Glv}</h1>
       <h1>Gimplv = {Gimplv}</h1>
-      
       {vt} <br/>
     TurnsPerLayer={TurnsPerLayer}<br/> 
     WireInsulation = {WireInsulation} {WireInsulation === 0 && "because it is foil"}<br />
