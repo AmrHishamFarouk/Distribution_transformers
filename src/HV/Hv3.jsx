@@ -21,7 +21,6 @@ function Hv3() {
       dispatch(setHV({ key: 'MinLayersPerPackethv', value: n }));
   }, [δhv, Wirethicknesshv,Nopack]);
       
-  
   let Changepack = (sign) => {
     setNopack(prevNopack => {
       if (sign === '+' && prevNopack < 4) return prevNopack + 1;
