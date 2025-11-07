@@ -50,7 +50,7 @@ function Foil() {
             </div>
             <div>
               <label>r</label>
-              <input name="myInput" placeholder="r" onChange={(e) => updateR(parseFloat(e.target.value))}/>
+              <input name="myInput" placeholder="r" value='0.5' onChange={(e) => updateR(parseFloat(e.target.value))}/>
             </div>
           </div>
 

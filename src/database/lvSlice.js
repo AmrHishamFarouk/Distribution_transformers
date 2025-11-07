@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   Nph: 0.0,
   Iphlv: 0.0,
-  Wiretypelv: 'foil',
+  Wiretypelv: 'Foil',
   Wirealignmentlv:'vertically',
   NumberOfWires: 1,
   δlv: 0.0,

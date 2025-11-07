@@ -11,7 +11,7 @@ import { setSpec, selectSpec} from './../database/specsSlice';
 
 function Lv3() {
   const dispatch = useDispatch();
-  const InsNo = [2,2.5,3,3.5,4,5,6]
+  const InsNo = [2,2.5,3,4,4,5,6]
 
     const vt = useSelector((state) => selectSpec(state, 'VT'));
     const TurnsPerLayer = useSelector((state) => selectLV(state, 'TurnsPerLayer'));
