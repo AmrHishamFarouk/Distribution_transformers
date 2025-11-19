@@ -13,7 +13,7 @@ function Foilheight(){
   const Nph = useSelector((state) => selectLV(state, 'Nph'));
   const Layerslv = useSelector((state) => selectLV(state, 'Layerslv'));
   const Hardboardlv = useSelector((state) => selectLV(state, 'Hardboardlv'));
-  const Hcoil =  useSelector((state) => selectGeneral(state, 'Hcoil'));
+  const Hcoil =  useSelector((state) => selectGeneral(state, 'Hcoillv'));
   const Iphlv = useSelector((state) => selectLV(state, 'Iphlv'));
 
   const [sliderValue, setSliderValue] = useState(1);
