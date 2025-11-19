@@ -20,6 +20,7 @@ const initialState = {
   Hmechlv: 0.0,
   Heleclv: 0.0,
   Hardboardlv:0.0,
+  Hcoillv:0.0,
   Xalv:0.0,
   Xblv:0.0,
   MinLayersPerPacketlv:0,
