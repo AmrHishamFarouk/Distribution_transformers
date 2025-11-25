@@ -9,7 +9,7 @@ const initialState = {
   δlv: 0.0,
   Wirethicknesslv: 0.0,
   Wirelengthlv:0.0,
-  WireInsulation: 0.5,
+  WireInsulation: 0.0,
   WireR:0.5,
   Dinner:0.0,
   Douter:0.0,
