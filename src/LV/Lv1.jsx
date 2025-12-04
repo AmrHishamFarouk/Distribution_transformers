@@ -17,7 +17,7 @@ function Lv1() {
   const δlv = useSelector((state) => selectLV(state, 'δlv'));
 
   let Iph = (Ratedpower)/((Math.sqrt(3))*LV);
-  dispatch(setLV({ key: 'Iphlv', value: Iph}));
+  dispatch(setLV({ key: 'Iphlv', value: Iph.toFixed(3)}));
 
   const ChangeWire = (wire) => {
     dispatch(setLV({ key: 'Wiretypelv', value: wire})); 
@@ -25,13 +25,13 @@ function Lv1() {
 
   useEffect(() => {
     let δlv =  Iphlv/Csalv;
-    dispatch(setLV({ key: 'δlv', value: δlv}));
+    dispatch(setLV({ key: 'δlv', value: δlv.toFixed(3)}));
   }, [Csalv, Iphlv]); 
 
   return (
       <>
   <h1>L.V. winding</h1>
-  <div>Iline = Iph = {Iphlv.toFixed(4)}</div>
+  <div>Iline = Iph = {Iphlv}</div>
   <h1>Please choose the type of wire</h1>
   <div>
     <button onClick={() => ChangeWire('Foil')}>Foil</button>
@@ -43,7 +43,7 @@ function Lv1() {
     {Wiretypelv === 'Foil' && <Foil />}
     {Wiretypelv === 'Flat' && <Flat />}
     {Wiretypelv === 'Round' && <Round />}
-    <div>δ = {δlv.toFixed(4)}</div>
+    <div>δ = {δlv}</div>
   </div>
 </>
   );
