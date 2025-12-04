@@ -9,21 +9,18 @@ function Calc1() {
 
   const Ratedpower = useSelector((state) => selectSpec(state, 'Ratedpower'));
   const LV = useSelector((state) => selectSpec(state, 'LV'));
-  const B = useSelector((state) => selectSpec(state, 'B'));
-  const F = useSelector((state) => selectSpec(state, 'F'));
-  const Δironcore = useSelector((state) => selectSpec(state, 'Δironcore'));
   const VT = useSelector((state) => selectSpec(state, 'VT'));
   const Nph = useSelector((state) => selectLV(state, 'Nph'));
 
-
-  let k = 0.486865;
-  let [Temporaryvt, setTemporaryvt] = useState(0.0);
+  let tempk = 0.486865;
+  const[K,setK] = useState(0.486865);
+  const [Temporaryvt, setTemporaryvt] = useState(0.0);
 
 
 
   useEffect(() => {
-    setTemporaryvt(k * Math.sqrt(Ratedpower)) 
-  }, [Ratedpower, k]); // Updates Temporaryvt first
+    setTemporaryvt(tempk * Math.sqrt(Ratedpower)) 
+  }, [Ratedpower, tempk]); // Updates Temporaryvt first
   
   useEffect(() => {
     if (Temporaryvt > 0) {
@@ -33,21 +30,22 @@ function Calc1() {
       dispatch(setLV({ key: 'Nph', value: roundedNph }));
   
       const vt = (LV*1000) / Math.sqrt(3) / roundedNph;  
-      dispatch(setSpec({ key: 'VT', value: vt }));
+      dispatch(setSpec({ key: 'VT', value: vt.toFixed(3) }));
     }
   }, [Temporaryvt, LV]); // Runs when Temporaryvt updates
 
   function updateNph(newNph){
       dispatch(setLV({ key: 'Nph', value: newNph }));
       const vt = (LV*1000) / Math.sqrt(3) / newNph;
-      dispatch(setSpec({ key: 'VT', value: vt }));
+      dispatch(setSpec({ key: 'VT', value: vt.toFixed(3) }));
+      setK( (vt.toFixed(3) / Math.sqrt(Ratedpower).toFixed(3)).toFixed(3) )
   }
 
   return (
     <>
-      <h1 className="neon-title">Temporary v/t: {Temporaryvt.toFixed(4)}</h1>
-      <h1 className="neon-title">Nph: {Nph}</h1>
-      <h1 className="neon-title">V/t: {VT.toFixed(4)}</h1>
+      <h1>K: {K}</h1>
+      <h1>Nph: {Nph}</h1>
+      <h1>V/t: {VT}</h1>
       <div>
         <label>change Nph</label>
         <input name="myInput" placeholder="layers" onChange={(e) => updateNph(parseFloat(e.target.value))} value={Nph}/>
