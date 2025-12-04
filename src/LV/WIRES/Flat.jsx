@@ -41,7 +41,7 @@ function Flat() {
 
         useEffect(() => {
           let csa = ((Wirelengthlv * Wirethicknesslv) - ((WireR^2)*(4-(22/7))))*NumberOfWires;
-          dispatch(setLV({ key: 'Csalv', value: csa}));
+          dispatch(setLV({ key: 'Csalv', value: csa.toFixed(3)}));
         }, [Wirethicknesslv, Wirelengthlv, WireR,NumberOfWires]);
 
 
