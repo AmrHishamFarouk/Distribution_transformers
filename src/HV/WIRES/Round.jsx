@@ -28,12 +28,12 @@ function Round() {
 
       useEffect(() => {
         let csa = (((22/7)*Math.pow(Dinner, 2))/4)*NumberOfWires;
-        dispatch(setHV({ key: 'Csahv', value: csa}));
+        dispatch(setHV({ key: 'Csahv', value: csa.toFixed(3)}));
       }, [NumberOfWires, Dinner]);
 
       useEffect(() => {
         let WireInsulation = (Douter-Dinner);
-        dispatch(setHV({ key: 'WireInsulation', value: WireInsulation}));
+        dispatch(setHV({ key: 'WireInsulation', value: WireInsulation.toFixed(3)}));
       }, [Douter, Dinner]);
 
   return (
@@ -58,8 +58,8 @@ function Round() {
           </div>
         <div>
         <div>
-          <div> ∆c.s.a = {typeof Csahv === "number" ? Csahv.toFixed(4) : "N/A"}</div>
-          <div> WireInsulation = {typeof WireInsulation === "number" ? WireInsulation.toFixed(4) : "N/A"}</div>
+          <div> ∆c.s.a = {typeof Csahv === "number" ? Csahv : "N/A"}</div>
+          <div> WireInsulation = {typeof WireInsulation === "number" ? WireInsulation : "N/A"}</div>
         </div>
 
         <img src={roundwire} alt="Round CSA imgage missed" />
