@@ -25,7 +25,7 @@ function Foil() {
 
         useEffect(() => {
           let csa = (Wirelengthlv * Wirethicknesslv) - ((Math.pow(WireR, 2))*(4-(22/7)));
-          dispatch(setLV({ key: 'Csalv', value: csa}));
+          dispatch(setLV({ key: 'Csalv', value: csa.toFixed(3)}));
         }, [Wirethicknesslv, Wirelengthlv, WireR]);
         
   const Csalv = useSelector((state) => selectLV(state, 'Csalv'));
