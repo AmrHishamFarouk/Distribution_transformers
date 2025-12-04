@@ -34,7 +34,7 @@ function Flat() {
 
         useEffect(() => {
           let csa = ((Wirelengthhv * Wirethicknesshv) - ((WireR^2)*(4-(22/7))))*NumberOfWires;
-          dispatch(setHV({ key: 'Csahv', value: csa}));
+          dispatch(setHV({ key: 'Csahv', value: csa.toFixed(3)}));
         }, [Wirethicknesshv, Wirelengthhv, WireR,NumberOfWires]);
         
     const Csahv = useSelector((state) => selectHV(state, 'Csahv'));
@@ -109,7 +109,7 @@ useEffect(() => {
           </div>
           </div>
 
-          <div> ∆c.s.a = {Csahv.toFixed(4)}</div>
+          <div> ∆c.s.a = {Csahv}</div>
         </div>
 
         <img src={wirepicture} alt="flat CSA imgage missed" />
