@@ -55,7 +55,6 @@ function Detailedcore() {
       dispatch(setGeneral({ key: 'Totalstacking', value: value}));
     };
 
-
         useEffect(() => {
           let newTotalstacking = L1+(2*L2)+(2*L3)+(2*L4);
           dispatch(setGeneral({ key: 'Totalstacking', value: newTotalstacking}));
@@ -80,9 +79,7 @@ function Detailedcore() {
 
       <div>
         <div>
-        
-        <div>required deltacore = {Requiredcsacore}</div>
-        <div>required B = 1.6</div>
+        <div>required deltacore = {Requiredcsacore.toFixed(0)}</div>
         <div>current deltacore net = {CoreAreanet}</div>
         <div>current B = {B}</div>
         
@@ -111,26 +108,20 @@ function Detailedcore() {
               <label>W1</label>
               <input name="myInput" onChange={(e) => updateW1(parseFloat(e.target.value))}/>
             </div>
-
             <div>
               <label>W2</label>
               <input name="myInput" onChange={(e) => updateW2(parseFloat(e.target.value))}/>
             </div>
-
             <div>
               <label>W3</label>
               <input name="myInput" onChange={(e) => updateW3(parseFloat(e.target.value))}/>
             </div>
-
             <div>
               <label>W4</label>
               <input name="myInput" onChange={(e) => updateW4(parseFloat(e.target.value))}/>
             </div>
           </div>
-
         </div>
-
- 
         <img src={core} alt="core diagram" />
   
       </div>
