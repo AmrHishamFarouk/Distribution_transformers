@@ -42,8 +42,7 @@ function Quickcore(){
         <>
 <div>
   <div>
-    <div>required deltacore = {Requiredcsacore}</div>
-    <div>required B = 1.6</div>
+    <div>required deltacore = {Requiredcsacore.toFixed(0)}</div>
     <div>current deltacore = {Csacore}</div>
     <div>current B = {B}</div>
 
