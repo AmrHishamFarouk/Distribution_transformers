@@ -19,7 +19,9 @@ function Core(){
   const W1 =  useSelector((state) => selectGeneral(state, 'W1'));
   const Inssteel =  useSelector((state) => selectGeneral(state, 'Inssteel'));
   const Totalstacking =  useSelector((state) => selectGeneral(state, 'Totalstacking'));
-
+  const Фinternalradial =  useSelector((state) => selectGeneral(state, 'Фinternalradial'));
+  const Фinternalaxial =  useSelector((state) => selectGeneral(state, 'Фinternalaxial'));
+  
   useEffect(() => {
     const Фinternalradial = W1 + (2*Sticks) +(2*Cyl)+(2*2*Tums)
     dispatch(setLV({ key: 'Фinternalradial', value: Фinternalradial}));
@@ -29,9 +31,6 @@ function Core(){
     const Фinternalaxial = Totalstacking + Sticks +(2*1.35)+(((2*Cyl)+ (2*Inssteel) + (6*0.35)  +(2*2*Tums))*1.035);
     dispatch(setLV({ key: 'Фinternalaxial', value: Фinternalaxial}));
   }, [Totalstacking]);
-
-  const Фinternalradial =  useSelector((state) => selectGeneral(state, 'Фinternalradial'));
-  const Фinternalaxial =  useSelector((state) => selectGeneral(state, 'Фinternalaxial'));
 
     return(
       <div class="parent">

@@ -1,4 +1,4 @@
-.parent {
+/* .parent {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(6, 1fr);
@@ -30,4 +30,4 @@
     grid-row: span 6 / span 6;
     grid-column-start: 4;
     grid-row-start: 1;
-}
+} */

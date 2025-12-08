@@ -2,7 +2,7 @@ import Flat from './WIRES/Flat';
 import Foil from './WIRES/Foil';
 import Round from './WIRES/Round';
 import React, { useEffect } from 'react';
-import './../CSS/LV/Lv1.css'
+import styled from './../CSS/LV/Lv1.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSpec} from './../database/specsSlice';
 import { setLV, selectLV } from './../database/lvSlice';
@@ -29,23 +29,22 @@ function Lv1() {
   }, [Csalv, Iphlv]); 
 
   return (
-  <div className="parent">
-    <div className="div1">L.V. winding</div>
-    <div className="div2">Iline = Iph = {Iphlv}</div>
-    <div className="div3">Please choose the type of wire</div>
-    <div className="div4">
+  <div className="styled.parent">
+    <div className="styled.div1">L.V. winding</div>
+    <div className="styled.div2">Iline = Iph = {Iphlv}</div>
+    <div className="styled.div3">Please choose the type of wire</div>
+    <div className="styled.div4">
       <button onClick={() => ChangeWire('Foil')}>Foil</button>
       <button onClick={() => ChangeWire('Flat')}>Flat</button>
       {/* <button onClick={() => ChangeWire('Round')}>Round</button> */}
     </div>
 
-    <div className="div5">
+    <div className="styled.div5">
       {Wiretypelv === 'Foil' && <Foil />}
       {Wiretypelv === 'Flat' && <Flat />}
       {Wiretypelv === 'Round' && <Round />}
       <div>δ = {δlv}</div>
     </div>
-
   </div>
  
   );

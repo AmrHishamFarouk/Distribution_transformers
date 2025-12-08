@@ -4,6 +4,7 @@ import HeightFoil from '../../assets/heights/HeightFoil.png'
 import { setLV, selectLV } from './../../database/lvSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import Bars from './Bars';
+import './../../CSS/Height/Foilheight.css';
 
 function Foilheight(){
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ function Foilheight(){
     }
 
     return(
-        <>
+        <div className='parent'>
           <label>Hmech = Helec = {Heleclv}</label>
           <img src={HeightFoil} alt="HeightFoil.png is missing"/>
           <h3>no. of layers:{Layerslv}</h3>
@@ -55,7 +56,8 @@ function Foilheight(){
           <h3>Extra hard board above and under: {Hardboardlv}</h3>
           <h3>Hcoil ={Hcoil}</h3>
           <Bars/>
-        </>
+        </div>
+
   )
 }
 export default Foilheight;
