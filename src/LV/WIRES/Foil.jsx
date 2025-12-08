@@ -55,7 +55,7 @@ function Foil() {
           </div>
 
           <div>
-            C.S.A = {Csalv.toFixed(4)}
+            C.S.A = {Csalv}
           </div>
         </div>
 

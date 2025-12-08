@@ -26,10 +26,16 @@ function App() {
       setCurrentIndex(currentIndex + 1); // Increment index only if it's not the last one
   }
   };
+  const handleBack = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1); // Increment index only if it's not the last one
+  }
+  };
   return (
     <div>
         {pages[currentIndex]}
-        <button onClick={handleNext} >Next</button>    
+        <button onClick={handleBack} >Back</button> 
+        <button onClick={handleNext} >Next</button>   
     </div>
     );
 }

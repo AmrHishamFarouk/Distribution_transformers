@@ -27,7 +27,7 @@ function Foilheight(){
       const newValue = Number(event.target.value);
       dispatch(setLV({ key: 'Hardboardlv', value: newValue}));
       const Hcoillv =  2*newValue + Hmechlv;
-      dispatch(setGeneral({ key: 'Hcoil', value: Hcoillv }));
+      dispatch(setGeneral({ key: 'Hcoillv', value: Hcoillv }));
     };
 
     function barsSelection() {

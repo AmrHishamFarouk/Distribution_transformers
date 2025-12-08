@@ -148,39 +148,40 @@ function Impedance(){
 //       }
       
 return(
-    <><h1>impedance</h1>
- {/* <div>
-   <div>Kf: {Kf}</div>
-   <div>Ur: {Ur}</div>
-   <div>Uxtemp: {Uxtemp}</div>
-   <div>Ux: {Ux}</div>
-   <div>Ucc: {Ucc}</div>
-   <div>Voltage Drop @ 0.8: {voltagedrop08}</div>
-   <div>Voltage Drop @ Unity: {voltagedropunity}</div>
-   <div>Voltage LV @ 0.8: {voltagelv08}</div>
-   <div>Tsclv: {Tsclv}</div>
-   <div>Tschv: {Tschv}</div>
-   <div>Tsc: {Tsc}</div>
-   <div>Temp Coil LV: {tempcoillv}</div>
-   <div>Temp Coil HV: {tempcoilhv}</div>
+    <>
+    {/* <h1>impedance</h1>
+//  <div>
+//    <div>Kf: {Kf}</div>
+//    <div>Ur: {Ur}</div>
+//    <div>Uxtemp: {Uxtemp}</div>
+//    <div>Ux: {Ux}</div>
+//    <div>Ucc: {Ucc}</div>
+//    <div>Voltage Drop @ 0.8: {voltagedrop08}</div>
+//    <div>Voltage Drop @ Unity: {voltagedropunity}</div>
+//    <div>Voltage LV @ 0.8: {voltagelv08}</div>
+//    <div>Tsclv: {Tsclv}</div>
+//    <div>Tschv: {Tschv}</div>
+//    <div>Tsc: {Tsc}</div>
+//    <div>Temp Coil LV: {tempcoillv}</div>
+//    <div>Temp Coil HV: {tempcoilhv}</div>
 
-   <div>Isc: {Isc}</div>
-   <div>Ec: {Ec}</div>
-   <div>d: {d}</div>
-   <div>Fd: {Fd}</div>
+//    <div>Isc: {Isc}</div>
+//    <div>Ec: {Ec}</div>
+//    <div>d: {d}</div>
+//    <div>Fd: {Fd}</div>
 
-   <div>σct Total: {σcttotal}</div>
-   <div>σft LV: {σftlv}</div>
-   <div>σex HV: {σexhv}</div>
- </div>
+//    <div>σct Total: {σcttotal}</div>
+//    <div>σft LV: {σftlv}</div>
+//    <div>σex HV: {σexhv}</div>
+//  </div>
 
 
-       <div>
-         <label>change Rods distances</label>
-         <input type="number" placeholder="Distance between Rods" onChange={(e) => updateRods(parseFloat(e.target.value))} value={Rods}/>
-       </div>
-         <button onClick={() => {setnum(12)}}>Power transformer</button>
-         <button onClick={() => {setnum(6)}}>distrebution transformer</button> */}
+//        <div>
+//          <label>change Rods distances</label>
+//          <input type="number" placeholder="Distance between Rods" onChange={(e) => updateRods(parseFloat(e.target.value))} value={Rods}/>
+//        </div>
+//          <button onClick={() => {setnum(12)}}>Power transformer</button>
+//          <button onClick={() => {setnum(6)}}>distrebution transformer</button> */}
         </>
     )
 }

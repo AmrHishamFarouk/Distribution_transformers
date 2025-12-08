@@ -40,7 +40,7 @@ function Flat() {
     }
 
         useEffect(() => {
-          let csa = ((Wirelengthlv * Wirethicknesslv) - ((WireR^2)*(4-(22/7))))*NumberOfWires;
+          let csa = ((Wirelengthlv * Wirethicknesslv) - ((Math.pow(WireR,2))*(4-(22/7))))*NumberOfWires;
           dispatch(setLV({ key: 'Csalv', value: csa.toFixed(3)}));
         }, [Wirethicknesslv, Wirelengthlv, WireR,NumberOfWires]);
 
@@ -120,7 +120,7 @@ useEffect(() => {
           </div>
           </div>
 
-          <div> ∆c.s.a = {Csalv.toFixed(4)}</div>
+          <div> ∆c.s.a = {Csalv}</div>
         </div>
 
         <img src={wirepicture} alt="flat CSA imgage missed" />

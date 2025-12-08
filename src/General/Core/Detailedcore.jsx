@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setGeneral, selectGeneral} from './../../database/generalSlice';
 import { setLV, selectLV } from './../../database/lvSlice';
 import { setSpec, selectSpec } from './../../database/specsSlice';
-import core from "./../../assets/core/core.jpeg";
 
 function Detailedcore() {
   const dispatch = useDispatch();
@@ -108,22 +107,23 @@ function Detailedcore() {
               <label>W1</label>
               <input name="myInput" onChange={(e) => updateW1(parseFloat(e.target.value))}/>
             </div>
+
             <div>
               <label>W2</label>
               <input name="myInput" onChange={(e) => updateW2(parseFloat(e.target.value))}/>
             </div>
+
             <div>
               <label>W3</label>
               <input name="myInput" onChange={(e) => updateW3(parseFloat(e.target.value))}/>
             </div>
+
             <div>
               <label>W4</label>
               <input name="myInput" onChange={(e) => updateW4(parseFloat(e.target.value))}/>
             </div>
           </div>
-        </div>
-        <img src={core} alt="core diagram" />
-  
+        </div>  
       </div>
     </>
   );

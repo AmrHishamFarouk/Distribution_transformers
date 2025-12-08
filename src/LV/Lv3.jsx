@@ -88,6 +88,14 @@ function Lv3() {
       TurnsPerLayer={TurnsPerLayer}<br/> 
       WireInsulation = {WireInsulation} {WireInsulation === 0 && "because it is foil"}<br />
       InsulationPaperThicknesslv={InsulationPaperThicknesslv}<br/>
+      <ul>
+        <li>vt: {vt}</li>
+        <li>TurnsPerLayer: {TurnsPerLayer}</li>
+        <li>WireInsulation: {WireInsulation}</li>
+        <li>InsulationPaperThicknesslv: {InsulationPaperThicknesslv}</li>
+        <li>minins: {minins}</li>
+      </ul>
+      <h3>Computed Gradient: {gradient}</h3>
       {Noins == 2 && (
         <img src={ins2} alt="ins 2 missed missed" />      )}
       {Noins == 3 && (
