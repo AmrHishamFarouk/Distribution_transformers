@@ -1,9 +1,8 @@
-.parent {
+/* .parent {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
     gap: 8px;
-    width: 100vw;
 }
     
 .div1 {
@@ -23,4 +22,4 @@
     grid-column-start: 3;
     grid-row-start: 1;
 }
-        
+         */
