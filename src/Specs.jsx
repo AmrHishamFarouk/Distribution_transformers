@@ -1,20 +1,16 @@
 import React, { useRef, useMemo, useState, useCallback, useEffect } from 'react';
-// MOCK IMPORTS for standalone running since external files are not available:
-// import { setSpec } from './database/specsSlice';
-// import { useDispatch } from 'react-redux';
+// REMOVE THE MOCK IMPORTS AND USE REAL ONES:
+import { setSpec } from './database/specsSlice';
+import { useDispatch } from 'react-redux';
 
-// --- MOCK REDUX SETUP FOR STANDALONE RUNNING ---
-// In a real application, you would use the imports above.
-const MOCK_DISPATCH = (action) => {
-  console.log('Action Dispatched (MOCK):', action.type, action.payload);
-  // This mock function simulates updating state, showing what the real Redux action would carry.
-};
-const MOCK_USE_DISPATCH = () => MOCK_DISPATCH;
-const MOCK_SET_SPEC = (payload) => ({ type: 'specs/setSpec', payload });
-// -----------------------------------------------
+// REMOVE ALL MOCK REDUX SETUP:
+// const MOCK_DISPATCH = (action) => {
+//   console.log('Action Dispatched (MOCK):', action.type, action.payload);
+// };
+// const MOCK_USE_DISPATCH = () => MOCK_DISPATCH;
+// const MOCK_SET_SPEC = (payload) => ({ type: 'specs/setSpec', payload });
 
-// 1. Transformer Lookup Table (Source: User provided data)
-// Po is No load losses (W). Pcc is load losses (W). Z is %Z. Maj is Magnetizing Current (assumed to be % of rated current).
+// Keep the transformer data lookup (unchanged)
 const TRANSFORMER_DATA_LOOKUP = {
   50:    { Po: 168, Pcc: 875, Z: 4.0, Maj: 1 },
   63:    { Po: 224, Pcc: 1260, Z: 4.0, Maj: 1 },
@@ -38,20 +34,18 @@ const TRANSFORMER_DATA_LOOKUP = {
   5000:  { Po: 5000, Pcc: 31500, Z: 7.0, Maj: 10 },
 };
 
-// Standardized rated power values in kVA
 const RATED_POWER_OPTIONS = Object.keys(TRANSFORMER_DATA_LOOKUP).map(k => parseInt(k, 10));
 const DATALIST_ID = 'rated-power-options';
 
 function Specs() {
-  const dispatch = MOCK_USE_DISPATCH();
+  // USE REAL REDUX DISPATCH HOOK
+  const dispatch = useDispatch();
 
-  // State to hold the current values of the fields
+  // State to hold the current values of the fields (unchanged)
   const [currentSpecs, setCurrentSpecs] = useState(() => {
-    // Initialize with default values, using the 1000 kVA rating data
     const defaultRating = 1000;
     const defaultData = TRANSFORMER_DATA_LOOKUP[defaultRating];
     
-    // Convert W to kW for Po and Pcc
     const Po_kW = (defaultData.Po / 1000).toFixed(3); 
     const Pcc_kW = (defaultData.Pcc / 1000).toFixed(3); 
 
@@ -63,11 +57,11 @@ function Specs() {
       Pcc: parseFloat(Pcc_kW),
       Z: defaultData.Z,
       F: 50,
-      Maj: defaultData.Maj, // Initialize Maj from lookup
+      Maj: defaultData.Maj,
     };
   });
 
-  // References for all input fields
+  // References for all input fields (unchanged)
   const inputRefs = {
     Ratedpower: useRef(null),
     HV: useRef(null),
@@ -79,38 +73,41 @@ function Specs() {
     Maj: useRef(null),
   };
   
-  // Handler for manual input changes on fields like Po, Pcc, Z, Maj, HV, LV, F
+  // Handler for manual input changes (MODIFIED: Use real dispatch)
   const handleManualInputChange = useCallback((event) => {
     const { id, value } = event.target;
-    // Update local state for the 'Current Value' display
-    setCurrentSpecs(prev => ({ ...prev, [id]: parseFloat(value) || null }));
-    // Note: The actual dispatch to the mock store only happens when 'Commit All Specifications' is pressed.
-  }, []);
+    const numValue = parseFloat(value) || null;
+    
+    // Update local state
+    setCurrentSpecs(prev => ({ ...prev, [id]: numValue }));
+    
+    // DISPATCH TO REDUX IMMEDIATELY
+    dispatch(setSpec({ key: id, value: numValue }));
+  }, [dispatch]);
 
-  // Handler for when the Rated Power input/datalist changes
+  // Handler for Rated Power changes (MODIFIED: Use real dispatch)
   const handleRatedPowerChange = useCallback((event) => {
     const newRating = parseFloat(event.target.value);
     
-    // 1. Always update the Ratedpower state and dispatch the new value
+    // 1. Update state and dispatch Ratedpower
     setCurrentSpecs(prev => ({ ...prev, Ratedpower: newRating }));
-    dispatch(MOCK_SET_SPEC({ key: 'Ratedpower', value: newRating }));
+    dispatch(setSpec({ key: 'Ratedpower', value: newRating }));
     
-    // Check if the entered value is a standard rating (needs to be checked against the object keys)
+    // Check if it's a standard rating
     const newSpecsData = TRANSFORMER_DATA_LOOKUP[newRating];
 
-    // 2. Only perform automatic updates if the entered value is a standard rating
+    // 2. Update automatic fields if it's a standard rating
     if (newSpecsData) {
-        // Convert W to kW for display (as inputs use kW unit)
         const newPo_kW = (newSpecsData.Po / 1000).toFixed(3);
         const newPcc_kW = (newSpecsData.Pcc / 1000).toFixed(3);
         
-        // Update the references/inputs directly (since they are uncontrolled)
+        // Update refs
         if (inputRefs.Po.current) inputRefs.Po.current.value = newPo_kW;
         if (inputRefs.Pcc.current) inputRefs.Pcc.current.value = newPcc_kW;
         if (inputRefs.Z.current) inputRefs.Z.current.value = newSpecsData.Z;
         if (inputRefs.Maj.current) inputRefs.Maj.current.value = newSpecsData.Maj;
 
-        // Update the local state for the 'Current' display for automatic fields
+        // Update local state
         setCurrentSpecs(prev => ({
           ...prev,
           Po: parseFloat(newPo_kW),
@@ -119,18 +116,16 @@ function Specs() {
           Maj: newSpecsData.Maj,
         }));
         
-        // Dispatch the changes for automatic fields to Redux (MOCK)
-        dispatch(MOCK_SET_SPEC({ key: 'Po', value: parseFloat(newPo_kW) }));
-        dispatch(MOCK_SET_SPEC({ key: 'Pcc', value: parseFloat(newPcc_kW) }));
-        dispatch(MOCK_SET_SPEC({ key: 'Z', value: newSpecsData.Z }));
-        dispatch(MOCK_SET_SPEC({ key: 'Maj', value: newSpecsData.Maj }));
-    } 
-    // If it's a custom rating, Po, Pcc, Z, and Maj remain whatever the user last set them to, allowing manual overrides.
+        // DISPATCH AUTOMATIC FIELDS TO REDUX
+        dispatch(setSpec({ key: 'Po', value: parseFloat(newPo_kW) }));
+        dispatch(setSpec({ key: 'Pcc', value: parseFloat(newPcc_kW) }));
+        dispatch(setSpec({ key: 'Z', value: newSpecsData.Z }));
+        dispatch(setSpec({ key: 'Maj', value: newSpecsData.Maj }));
+    }
 
   }, [dispatch, inputRefs]);
 
-
-  // Generic function to handle the final 'Commit Specs' update
+  // Generic function to handle the final 'Commit Specs' update (MODIFIED: Use real dispatch)
   const updateValues = useCallback(() => {
     const updatedValues = {};
     
@@ -139,25 +134,22 @@ function Specs() {
       const currentRef = inputRefs[key].current;
 
       if (currentRef) {
-        // Use parseFloat to ensure numbers are dispatched, and handle empty strings gracefully
         const value = currentRef.value === '' ? null : parseFloat(currentRef.value);
         updatedValues[key] = value;
         
-        // Dispatch the action to Redux (using MOCK_SET_SPEC here)
-        dispatch(MOCK_SET_SPEC({ key, value }));
+        // DISPATCH TO REDUX USING REAL ACTION
+        dispatch(setSpec({ key, value }));
       }
     });
 
-    // Update local state (for mock purposes)
+    // Update local state
     setCurrentSpecs(prev => ({ ...prev, ...updatedValues }));
     
   }, [dispatch, inputRefs]);
 
-  // Configuration for input fields
+  // Configuration for input fields (unchanged)
   const inputConfig = useMemo(() => [
-    // FIX: Added onChange: handleRatedPowerChange
     { key: 'Ratedpower', label: 'Rated Power', type: 'datalist_input', defaultValue: currentSpecs.Ratedpower, options: RATED_POWER_OPTIONS, unit: 'kVA', onChange: handleRatedPowerChange },
-    // Added handleManualInputChange to all other fields
     { key: 'Po', label: 'Po (No-Load Loss)', placeholder: '1.222', type: 'input', defaultValue: currentSpecs.Po, unit: 'kW', onChange: handleManualInputChange }, 
     { key: 'Pcc', label: 'Pcc (Load Loss)', placeholder: '9.450', type: 'input', defaultValue: currentSpecs.Pcc, unit: 'kW', onChange: handleManualInputChange }, 
     { key: 'Z', label: 'Z% (Impedance)', placeholder: '5', type: 'input', defaultValue: currentSpecs.Z, unit: '%', onChange: handleManualInputChange },
@@ -172,11 +164,10 @@ function Specs() {
     <div>
       <style>
         {`
-          /* Basic container for structure and readability */
+          /* (CSS unchanged - same as before) */
           .specs-container {
-            /* Adjusted for responsiveness */
-            width: 95%; /* Takes up most of the available width */
-            max-width: 800px; /* Limits size on very large screens */
+            width: 95%;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             font-family: Arial, sans-serif;
@@ -185,7 +176,6 @@ function Specs() {
             background-color: #f9f9f9;
           }
 
-          /* Header Styling */
           .specs-container h1 {
             border-bottom: 2px solid #eee;
             padding-bottom: 10px;
@@ -197,28 +187,25 @@ function Specs() {
             margin-bottom: 20px;
           }
 
-          /* Two-Column Grid Layout for Inputs */
           .input-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Two equal columns */
-            gap: 20px 30px; /* Vertical and horizontal gap */
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px 30px;
             margin-bottom: 20px;
           }
 
-          /* Mobile responsiveness: revert to single column on small screens */
           @media (max-width: 600px) {
             .input-grid {
                 grid-template-columns: 1fr;
                 gap: 0; 
             }
             .field-group {
-              margin-bottom: 15px !important; /* Re-apply margin for vertical spacing on mobile */
+              margin-bottom: 15px !important;
             }
           }
 
-          /* General Label and Field Layout */
           .field-group {
-            margin-bottom: 0; /* Handled by grid gap on larger screens */
+            margin-bottom: 0;
             display: flex;
             flex-direction: column;
           }
@@ -236,12 +223,11 @@ function Specs() {
             color: #666;
           }
 
-          /* Input Styling (with borders as requested) */
           .input-wrapper {
             display: flex;
             border: 1px solid #aaa;
             border-radius: 4px;
-            overflow: hidden; /* To keep the unit span inside the border */
+            overflow: hidden;
           }
 
           .input-wrapper input {
@@ -250,7 +236,7 @@ function Specs() {
             border: none;
             outline: none;
             font-size: 1em;
-            width: 100%; /* Ensure input takes full width of its flex container */
+            width: 100%;
           }
           
           .input-wrapper span {
@@ -258,10 +244,9 @@ function Specs() {
             background-color: #eee;
             color: #555;
             font-size: 0.9em;
-            pointer-events: none; /* Make sure the unit text doesn't interfere with the input */
+            pointer-events: none;
           }
 
-          /* Button Styling */
           .commit-button {
             width: 100%;
             padding: 10px;
@@ -279,7 +264,6 @@ function Specs() {
             background-color: #0056b3;
           }
 
-          /* Footer and Helper Text */
           .helper-text {
             padding: 10px;
             border: 1px dashed #ccc;
@@ -309,7 +293,6 @@ function Specs() {
             </h2>
         </header>
         
-        {/* Helper message for new automatic behavior */}
         <p className="helper-text">
           The calculation of this app is not right as this is just a preview
         </p>
@@ -321,26 +304,23 @@ function Specs() {
                 <div>
                     <span>{config.label}</span>
                 </div>
-                {/* Display current value for quick feedback */}
                 <span className="current-value">
                   {currentSpecs[config.key] !== null ? `${currentSpecs[config.key]} ${config.unit}` : 'N/A'}
                 </span>
               </label>
               
-              {/* Conditional rendering for Datalist Input vs. standard Input */}
               <div className="input-wrapper">
                 <input
                   id={config.key}
                   ref={inputRefs[config.key]}
                   defaultValue={config.defaultValue}
-                  onChange={config.key === 'Ratedpower' ? handleRatedPowerChange : handleManualInputChange} // Now correctly using the appropriate handler
+                  onChange={config.onChange} // Now correctly using the appropriate handler
                   placeholder={config.placeholder}
                   type="number" 
                   step="any"
                   list={config.type === 'datalist_input' ? DATALIST_ID : undefined}
                 />
                 
-                {/* The Datalist provides the dropdown capability */}
                 {config.type === 'datalist_input' && (
                   <datalist id={DATALIST_ID}>
                     {config.options.map(option => (
@@ -349,7 +329,6 @@ function Specs() {
                   </datalist>
                 )}
 
-                {/* Unit label inside the input for better context */}
                 <span>
                   {config.unit}
                 </span>
@@ -367,7 +346,7 @@ function Specs() {
         
         <footer>
           <p className="footer-text">
-            Note: This is a mock interface. Actions are logged to the console instead of a database.
+            Note: This interface now dispatches to Redux store.
           </p>
         </footer>
       </div>
