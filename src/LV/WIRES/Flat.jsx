@@ -4,7 +4,7 @@ import flatwire2horizontally from "../../assets/wires/2wires_horizontal_flat.png
 import flatwire3horizontally from "../../assets/wires/3wires_horizontal_flat.png";
 import flatwire2vertically from "../../assets/wires/2wires_vertical_flat.png";
 import flatwire3vertically from "../../assets/wires/3wires_vertical_flat.png";
-
+import './../../CSS/Wires/Flat.css';
 import { setLV, selectLV } from './../../database/lvSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -80,12 +80,7 @@ useEffect(() => {
 
 
   return (
-    <>
-      <div>
-        <h2>Flat</h2>
-        <img scr=".assets/Flat.png" />
-      </div>
-
+    <div>
       <div>
         
         <div>
@@ -125,7 +120,7 @@ useEffect(() => {
 
         <img src={wirepicture} alt="flat CSA imgage missed" />
       </div>
-    </>
+    </div>
   );
 }
 

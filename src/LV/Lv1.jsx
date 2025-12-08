@@ -29,23 +29,25 @@ function Lv1() {
   }, [Csalv, Iphlv]); 
 
   return (
-      <>
-  <h1>L.V. winding</h1>
-  <div>Iline = Iph = {Iphlv}</div>
-  <h1>Please choose the type of wire</h1>
-  <div>
-    <button onClick={() => ChangeWire('Foil')}>Foil</button>
-    <button onClick={() => ChangeWire('Flat')}>Flat</button>
-    {/* <button onClick={() => ChangeWire('Round')}>Round</button> */}
-  </div>
+  <div className="parent">
+    <div className="div1">L.V. winding</div>
+    <div className="div2">Iline = Iph = {Iphlv}</div>
+    <div className="div3">Please choose the type of wire</div>
+    <div className="div4">
+      <button onClick={() => ChangeWire('Foil')}>Foil</button>
+      <button onClick={() => ChangeWire('Flat')}>Flat</button>
+      {/* <button onClick={() => ChangeWire('Round')}>Round</button> */}
+    </div>
 
-  <div>
-    {Wiretypelv === 'Foil' && <Foil />}
-    {Wiretypelv === 'Flat' && <Flat />}
-    {Wiretypelv === 'Round' && <Round />}
-    <div>δ = {δlv}</div>
+    <div className="div5">
+      {Wiretypelv === 'Foil' && <Foil />}
+      {Wiretypelv === 'Flat' && <Flat />}
+      {Wiretypelv === 'Round' && <Round />}
+      <div>δ = {δlv}</div>
+    </div>
+
   </div>
-</>
+ 
   );
 }
 export default Lv1;
