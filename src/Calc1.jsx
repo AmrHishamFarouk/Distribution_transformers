@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react';
-import './CSS/Calc1.css'
+import style from './CSS/Calc1.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { setSpec, selectSpec} from './database/specsSlice';
 import { setLV, selectLV } from './database/lvSlice';

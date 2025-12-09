@@ -5,7 +5,7 @@ import Quickcore from './Quickcore';
 import Detailedcore from './Detailedcore';
 import { setGeneral, selectGeneral} from '../../database/generalSlice';
 import { setLV, selectLV } from '../../database/lvSlice';
-import './../../CSS/General/Core.css'
+import coreStyled from './../../CSS/General/Core.css'
 import Calc1 from './../../Calc1'
 import core from "./../../assets/core/core.jpeg";
 
@@ -33,22 +33,22 @@ function Core(){
   }, [Totalstacking]);
 
     return(
-      <div class="parent">
-        <div class="div1">
+      <div className={coreStyled.parent}>
+        <div className={coreStyled.div1}>
           <Calc1/>
         </div>
           
-        <div class="div2">
+        <div className={coreStyled.div2}>
           <button onClick={() => setsimpleCore(true)}>Simple Core</button>
           <button onClick={() => setsimpleCore(false)}>Detailed Core</button>
         </div>
 
-        <div class="div3">
+        <div className={coreStyled.div3}>
           {simpleCore === true && <Quickcore />}
           {simpleCore === false && <Detailedcore />}       
         </div>
       
-        <div class="div4">
+        <div className={coreStyled.div4}>
           <img src={core} alt="core diagram" />
         </div>
       </div>

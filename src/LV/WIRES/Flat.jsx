@@ -4,7 +4,7 @@ import flatwire2horizontally from "../../assets/wires/2wires_horizontal_flat.png
 import flatwire3horizontally from "../../assets/wires/3wires_horizontal_flat.png";
 import flatwire2vertically from "../../assets/wires/2wires_vertical_flat.png";
 import flatwire3vertically from "../../assets/wires/3wires_vertical_flat.png";
-import './../../CSS/Wires/Flat.css';
+import Flatstyle from './../../CSS/Wires/Flat.css';
 import { setLV, selectLV } from './../../database/lvSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -80,12 +80,9 @@ useEffect(() => {
 
 
   return (
-    <div>
-      <div>
-        
+    <div className={Flatstyle.parent}>
+      <div className={Flatstyle.div1}>
         <div>
-          <div>
-          <div>
             <div>
               <label>Length</label>
               <input name="myInput" placeholder="Length" onChange={(e) => updateLength(parseFloat(e.target.value))} />
@@ -112,12 +109,10 @@ useEffect(() => {
             </div>
             <button onClick={() => alignWire('vertically')}>Aligned vertically</button>
             <button onClick={() => alignWire('horizontally')}>Aligned horizontally</button>
-          </div>
-          </div>
-
-          <div> ∆c.s.a = {Csalv}</div>
         </div>
-
+        <div> ∆c.s.a = {Csalv}</div>
+      </div>
+      <div className={Flatstyle.div2}>
         <img src={wirepicture} alt="flat CSA imgage missed" />
       </div>
     </div>

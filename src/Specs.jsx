@@ -2,7 +2,7 @@ import React, { useRef, useMemo, useState, useCallback, useEffect } from 'react'
 // REMOVE THE MOCK IMPORTS AND USE REAL ONES:
 import { setSpec } from './database/specsSlice';
 import { useDispatch } from 'react-redux';
-import './CSS/Specs.css'
+import specsStyle from'./CSS/Specs.module.css'
 
 const TRANSFORMER_DATA_LOOKUP = {
   50:    { Po: 168, Pcc: 875, Z: 4.0, Maj: 1 },
@@ -152,78 +152,86 @@ function Specs() {
     { key: 'F', label: 'Frequency', placeholder: '50', type: 'input', defaultValue: currentSpecs.F, unit: 'Hz', onChange: handleManualInputChange },
   ], [currentSpecs, handleRatedPowerChange, handleManualInputChange]);
 
+return (
+  <div>
+    {/* 1. Use the specsStyle object for CSS Module scoping */}
+    <div className={specsStyle['specs-container']}> 
+      <header>
+          <h1>
+            Transformer Specs
+          </h1>
+          <h2>
+            Design Input (Dyn11 Vector Group)
+          </h2>
+      </header>
+      
+      {/* 2. Use the specsStyle object */}
+      <p className={specsStyle['helper-text']}>
+        The calculation of this app is not right as this is just a preview
+      </p>
 
-  return (
-    <div>
-      <div className="specs-container">
-        <header>
-            <h1>
-              Transformer Specs
-            </h1>
-            <h2>
-              Design Input (Dyn11 Vector Group)
-            </h2>
-        </header>
-        
-        <p className="helper-text">
-          The calculation of this app is not right as this is just a preview
-        </p>
-
-        <div className="input-grid">
-          {inputConfig.map((config) => (
-            <div key={config.key} className="field-group">
-              <label htmlFor={config.key} className="field-label">
-                <div>
-                    <span>{config.label}</span>
-                </div>
-                <span className="current-value">
-                  {currentSpecs[config.key] !== null ? `${currentSpecs[config.key]} ${config.unit}` : 'N/A'}
-                </span>
-              </label>
-              
-              <div className="input-wrapper">
-                <input
-                  id={config.key}
-                  ref={inputRefs[config.key]}
-                  defaultValue={config.defaultValue}
-                  onChange={config.onChange} // Now correctly using the appropriate handler
-                  placeholder={config.placeholder}
-                  type="number" 
-                  step="any"
-                  list={config.type === 'datalist_input' ? DATALIST_ID : undefined}
-                />
-                
-                {config.type === 'datalist_input' && (
-                  <datalist id={DATALIST_ID}>
-                    {config.options.map(option => (
-                      <option key={option} value={option}></option>
-                    ))}
-                  </datalist>
-                )}
-
-                <span>
-                  {config.unit}
-                </span>
+      {/* 3. Use the specsStyle object */}
+      <div className={specsStyle['input-grid']}>
+        {inputConfig.map((config) => (
+          // 4. Use the specsStyle object
+          <div key={config.key} className={specsStyle['field-group']}>
+            {/* 5. Use the specsStyle object */}
+            <label htmlFor={config.key} className={specsStyle['field-label']}>
+              <div>
+                  <span>{config.label}</span>
               </div>
+              {/* 6. Use the specsStyle object */}
+              <span className={specsStyle['current-value']}>
+                {currentSpecs[config.key] !== null ? `${currentSpecs[config.key]} ${config.unit}` : 'N/A'}
+              </span>
+            </label>
+            
+            {/* 7. Use the specsStyle object */}
+            <div className={specsStyle['input-wrapper']}>
+              <input
+                id={config.key}
+                ref={inputRefs[config.key]}
+                defaultValue={config.defaultValue}
+                onChange={config.onChange}
+                placeholder={config.placeholder}
+                type="number" 
+                step="any"
+                list={config.type === 'datalist_input' ? DATALIST_ID : undefined}
+              />
+              
+              {config.type === 'datalist_input' && (
+                <datalist id={DATALIST_ID}>
+                  {config.options.map(option => (
+                    <option key={option} value={option}></option>
+                  ))}
+                </datalist>
+              )}
+
+              <span>
+                {config.unit}
+              </span>
             </div>
-          ))}
-        </div>
-        
-        <button 
-          onClick={updateValues}
-          className="commit-button"
-        >
-          Commit All Specifications
-        </button>
-        
-        <footer>
-          <p className="footer-text">
-            Note: This interface now dispatches to Redux store.
-          </p>
-        </footer>
+          </div>
+        ))}
       </div>
+      
+      <button 
+        onClick={updateValues}
+        // 8. Use the specsStyle object
+        className={specsStyle['commit-button']}
+      >
+        Commit All Specifications
+      </button>
+      
+      <footer>
+        {/* 9. Use the specsStyle object */}
+        <p className={specsStyle['footer-text']}>
+          Note: This interface now dispatches to Redux store.
+        </p>
+      </footer>
     </div>
-  );
+  </div>
+);
 }
 
 export default Specs;

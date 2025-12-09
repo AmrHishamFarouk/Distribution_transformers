@@ -36,23 +36,23 @@ function Quickcore(){
   }, [Csacore]);
 
     return(
-          <div class="parent">
-            <div class="div1">
+          <div className="parent">
+            <div className="div1">
               <label>total stacking</label>
               <input onChange={(e) => updateTotalstacking(parseFloat(e.target.value))} />
             </div>
 
-            <div class="div2">
+            <div className="div2">
               <label>largest width</label>
               <input onChange={(e) => updateW1(parseFloat(e.target.value))} />
             </div>
 
-            <div class="div3">
+            <div className="div3">
               <label>core area net</label>
               <input onChange={(e) => updateCsacore(parseFloat(e.target.value))} />
             </div>
 
-            <div class="div4">
+            <div className="div4">
               <div>required deltacore = {Requiredcsacore.toFixed(0)}</div>
               <div>current deltacore = {Csacore}</div>
               <div>current B = {B}</div>

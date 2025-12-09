@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import foilwire from "../../assets/wires/foil_csa.png";
-import './../../CSS/Wires/Foil.css';
+import styled from './../../CSS/Wires/Foil.module.css';
 import { setLV, selectLV } from './../../database/lvSlice';
 import { useSelector, useDispatch } from 'react-redux';
 function Foil() {
@@ -29,8 +29,8 @@ function Foil() {
     }, [Wirethicknesslv, Wirelengthlv, WireR]);
         
   return (
-      <div className='parent'>
-          <div className='div1'>
+      <div className={styled.parent}>
+          <div className={styled.div1}>
             <div>
               <label>Length</label>
               <input name="myInput" placeholder="Length" onChange={(e) => updateLength(parseFloat(e.target.value))}/>
@@ -43,11 +43,11 @@ function Foil() {
               <label>r</label>
               <input name="myInput" placeholder="r" value='0.5' onChange={(e) => updateR(parseFloat(e.target.value))}/>
             </div>
-          </div>
-          <div className='div2'>
             C.S.A = {Csalv}
           </div>
-            <img src={foilwire} className='div3' alt="foil CSA imgage missed" />
+          <div className={styled.div2}>
+            <img src={foilwire} className='styled.div3' alt="foil CSA imgage missed" />
+          </div>
       </div>
   );
 }
